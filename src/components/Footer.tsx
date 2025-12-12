@@ -1,10 +1,17 @@
+'use client';
 
 import Link from 'next/link';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from './SocialIcons';
+import { useState } from 'react';
+import PricelistModal from './PricelistModal';
 
 export default function Footer() {
+    const [showPricelist, setShowPricelist] = useState(false);
+
     return (
         <footer style={{ background: '#0a192f', color: '#e6f1ff', paddingTop: '6rem', paddingBottom: '3rem', borderTop: '4px solid var(--color-red)' }}>
+            <PricelistModal isOpen={showPricelist} onClose={() => setShowPricelist(false)} />
+
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '4rem', marginBottom: '4rem' }}>
 
@@ -29,7 +36,14 @@ export default function Footer() {
                             <li><Link href="/innovation" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Our Innovation</Link></li>
                             <li><Link href="/gallery" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Design Gallery</Link></li>
                             <li><Link href="/about" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>About Us</Link></li>
-                            <li><Link href="/pricelist" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Printable Price List</Link></li>
+                            <li>
+                                <button
+                                    onClick={() => setShowPricelist(true)}
+                                    style={{ background: 'none', border: 'none', padding: 0, color: 'inherit', textDecoration: 'underline', transition: 'color 0.2s', fontSize: '1.1rem', cursor: 'pointer', fontFamily: 'inherit' }}
+                                >
+                                    Printable Price List
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
