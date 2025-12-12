@@ -15,6 +15,7 @@ services:
       - AUTH_SECRET=${AUTH_SECRET}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - AUTH_TRUST_HOST=true
       - DATABASE_URL=file:/app/prisma/dev.db # In-container DB path
     volumes:
       - ./prisma:/app/prisma # Persist DB and migrations
