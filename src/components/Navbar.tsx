@@ -38,8 +38,8 @@ export default function Navbar() {
                 </nav>
 
                 <div style={{ display: 'flex', gap: '1rem' }}>
-                    <Link href="/contact" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>LIVE CHAT</Link>
-                    <Link href="/api/auth/signin" className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>SIGN UP / LOG IN</Link>
+                    <Link href="/api/auth/signin" className="btn" style={{ padding: '8px 20px', fontSize: '0.9rem', background: 'white', color: 'var(--color-navy)', border: '1px solid var(--color-navy)' }}>Log In</Link>
+                    <Link href="/api/auth/signin" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem', background: 'var(--color-navy)', color: 'white' }}>Sign Up</Link>
                 </div>
             </div>
         </header >
