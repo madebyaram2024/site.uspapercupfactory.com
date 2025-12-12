@@ -62,8 +62,8 @@ export default function Footer() {
                 <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', opacity: 0.6, fontSize: '0.9rem', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>&copy; {new Date().getFullYear()} US Paper Cup Factory. All rights reserved.</div>
                     <div style={{ display: 'flex', gap: '2rem' }}>
-                        <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</Link>
-                        <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</Link>
+                        <Link href="/privacy" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</Link>
+                        <Link href="/terms" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</Link>
                     </div>
                 </div>
             </div>
