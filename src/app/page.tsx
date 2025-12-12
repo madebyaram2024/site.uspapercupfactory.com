@@ -151,7 +151,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <button className="btn btn-primary">Start Your Party Order</button>
+                <a href="/shop" className="btn btn-primary">Start Your Party Order</a>
               </div>
               <div style={{ flex: 1, minWidth: '300px' }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', border: '4px solid white' }}>

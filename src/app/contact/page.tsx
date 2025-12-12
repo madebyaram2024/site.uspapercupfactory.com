@@ -1,6 +1,7 @@
 
 import Navbar from '@/components/Navbar';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
+import ContactForm from '@/components/ContactForm';
 
 export default function ContactPage() {
     return (
@@ -41,25 +42,7 @@ export default function ContactPage() {
                         {/* Contact Form */}
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)' }}>
                             <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: 'var(--color-navy)' }}>Send a Message</h2>
-                            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                <div>
-                                    <label htmlFor="name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Name</label>
-                                    <input type="text" id="name" style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc' }} placeholder="Your Name" />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Email</label>
-                                    <input type="email" id="email" style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc' }} placeholder="your@email.com" />
-                                </div>
-                                <div>
-                                    <label htmlFor="phone" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Phone (Optional)</label>
-                                    <input type="tel" id="phone" style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc' }} placeholder="(555) 123-4567" />
-                                </div>
-                                <div>
-                                    <label htmlFor="message" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Message</label>
-                                    <textarea id="message" rows={5} style={{ width: '100%', padding: '12px', borderRadius: '4px', border: '1px solid #ccc' }} placeholder="Tell us about your project..."></textarea>
-                                </div>
-                                <button type="submit" className="btn btn-primary" style={{ padding: '14px' }}>Send Message</button>
-                            </form>
+                            <ContactForm />
                         </div>
 
                         {/* Contact Info */}
