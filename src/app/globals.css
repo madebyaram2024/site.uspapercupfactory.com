@@ -116,3 +116,39 @@ a {
   background-color: var(--color-red);
   margin: 10px auto 0;
 }
+
+/* Mobile Responsiveness & Utilities */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem !important;
+  }
+
+  .hero-p {
+    font-size: 1.1rem !important;
+    padding: 0 1rem;
+  }
+
+  .flex-col-mobile {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+
+  .grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+
+  .btn-mobile-full {
+    width: 100%;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-padding-mobile {
+    padding: 3rem 0 !important;
+  }
+
+  /* Hide elements if needed or adjust alignment */
+  .text-center-mobile {
+    text-align: center !important;
+  }
+}

@@ -24,15 +24,15 @@ export default function Home() {
           textAlign: 'center'
         }}>
           <div className="container">
-            <h1 style={{ color: 'var(--color-navy)', fontSize: '5rem', marginBottom: '1rem', lineHeight: 1, textShadow: '0 2px 20px rgba(255,255,255,0.6)' }}>
+            <h1 className="hero-title" style={{ color: 'var(--color-navy)', fontSize: '5rem', marginBottom: '1rem', lineHeight: 1, textShadow: '0 2px 20px rgba(255,255,255,0.6)' }}>
               CUSTOM DESIGNED, <br /> <span style={{ color: 'var(--color-red)' }}>FULL COLOR PAPER CUPS.</span>
             </h1>
-            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', maxWidth: '700px', margin: '0 auto 2.5rem', color: 'var(--color-navy)', textShadow: '0 1px 15px rgba(255,255,255,0.6)' }}>
+            <p className="hero-p" style={{ fontSize: '1.5rem', fontWeight: 'bold', maxWidth: '700px', margin: '0 auto 2.5rem', color: 'var(--color-navy)', textShadow: '0 1px 15px rgba(255,255,255,0.6)' }}>
               MADE IN USA. Low MOQ, Free Design. The Best Value for Your Brand.
             </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-              <a href="/dashboard" className="btn btn-primary" style={{ padding: '16px 40px', fontSize: '1.25rem', boxShadow: '0 4px 6px rgba(0,0,0,0.2)' }}>START YOUR PROJECT</a>
-              <a href="/gallery" className="btn" style={{ background: 'white', border: '2px solid var(--color-navy)', color: 'var(--color-navy)', padding: '16px 40px', fontSize: '1.25rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>GET INSPIRED</a>
+            <div className="flex-col-mobile" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center' }}>
+              <a href="/dashboard" className="btn btn-primary btn-mobile-full" style={{ padding: '16px 40px', fontSize: '1.25rem', boxShadow: '0 4px 6px rgba(0,0,0,0.2)' }}>START YOUR PROJECT</a>
+              <a href="/gallery" className="btn btn-mobile-full" style={{ background: 'white', border: '2px solid var(--color-navy)', color: 'var(--color-navy)', padding: '16px 40px', fontSize: '1.25rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>GET INSPIRED</a>
             </div>
 
             <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
@@ -57,7 +57,7 @@ export default function Home() {
               <p>Start small or go big. Same premium quality.</p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+            <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
               {/* 25 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -104,7 +104,7 @@ export default function Home() {
         {/* BUSINESS PARTNER SECTION */}
         <section style={{ padding: '6rem 0', background: 'white' }}>
           <div className="container">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '5rem' }}>
+            <div className="flex-col-mobile" style={{ display: 'flex', alignItems: 'center', gap: '5rem' }}>
               {/* Left Image - Using 500 cups image as placeholder for 'Business' context */}
               <div style={{ flex: 1 }}>
                 <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
@@ -136,7 +136,7 @@ export default function Home() {
         {/* EVENTS SECTION - Refined */}
         <section style={{ padding: '6rem 0', background: 'var(--color-navy)', color: 'white' }}>
           <div className="container">
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
+            <div className="flex-col-mobile" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
               <div style={{ flex: 1 }}>
                 <p style={{ color: 'var(--color-gold)', fontWeight: 'bold', letterSpacing: '2px', marginBottom: '1rem' }}>NOT JUST FOR BUSINESS</p>
                 <h2 style={{ color: 'white', fontSize: '3rem', marginBottom: '1.5rem' }}>For Every Occasion</h2>
