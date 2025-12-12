@@ -28,7 +28,7 @@ export default async function GalleryAdminPage() {
             <h3 style={{ marginBottom: '1rem' }}>Existing Items</h3>
             <div style={{ display: 'grid', gap: '1rem' }}>
                 {items.length === 0 && <p>No items yet.</p>}
-                {items.map(item => (
+                {items.map((item: any) => (
                     <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '4px' }}>
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <div style={{ width: '50px', height: '50px', background: '#ccc', borderRadius: '4px', overflow: 'hidden' }}>
