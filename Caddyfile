@@ -1,0 +1,3 @@
+uspapercupfactory.com, www.uspapercupfactory.com {
+    reverse_proxy us_paper_cup_web:3000
+}

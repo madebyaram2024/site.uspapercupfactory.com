@@ -6,8 +6,8 @@ services:
     build: .
     container_name: us_paper_cup_web
     restart: always
-    ports:
-      - "80:3000" # Expose internally, use Nginx/Reverse Proxy or direct if testing
+    # ports:
+    #   - "3000:3000" # Not exposed directly anymore, access via Caddy
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
@@ -18,3 +18,21 @@ services:
       - DATABASE_URL=file:/app/prisma/dev.db # In-container DB path
     volumes:
       - ./prisma:/app/prisma # Persist DB and migrations
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+
+volumes:
+  caddy_data:
+  caddy_config:
