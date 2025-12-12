@@ -39,7 +39,7 @@ export default function Navbar() {
 
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <Link href="/contact" className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>LIVE CHAT</Link>
-                    <Link href="/api/auth/signin" className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Login</Link>
+                    <Link href="/api/auth/signin" className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>SIGN UP / LOG IN</Link>
                 </div>
             </div>
         </header >
