@@ -95,7 +95,7 @@ export default function Home() {
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-              <a href="/services" className="btn btn-secondary" style={{ padding: '16px 40px' }}>View Full Catalog & Bulk Pricing</a>
+              <a href="/shop" className="btn btn-secondary" style={{ padding: '16px 40px' }}>View Full Catalog & Bulk Pricing</a>
             </div>
           </div>
         </section>
