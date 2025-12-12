@@ -23,7 +23,7 @@ export default async function GalleryPage() {
                     </div>
                 ) : (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                        {items.map((item) => (
+                        {items.map((item: any) => (
                             <div key={item.id} style={{
                                 borderRadius: 'var(--radius-md)',
                                 overflow: 'hidden',

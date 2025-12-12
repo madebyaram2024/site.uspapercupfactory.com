@@ -20,7 +20,7 @@ export default async function BlogListPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
                     {posts.length === 0 && <p style={{ textAlign: 'center', color: '#666', gridColumn: '1/-1' }}>No articles published yet.</p>}
 
-                    {posts.map(post => (
+                    {posts.map((post: any) => (
                         <Link href={`/blog/${post.slug}`} key={post.id} style={{ display: 'block' }}>
                             <div style={{
                                 borderRadius: 'var(--radius-md)',

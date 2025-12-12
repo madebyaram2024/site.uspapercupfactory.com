@@ -22,7 +22,7 @@ export default async function DashboardPage() {
                 </div>
             ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    {orders.map(order => (
+                    {orders.map((order: any) => (
                         <div key={order.id} style={{ padding: '1.5rem', background: 'white', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', borderLeft: '4px solid var(--color-navy)' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                                 <div>
