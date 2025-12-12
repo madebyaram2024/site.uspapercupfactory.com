@@ -32,8 +32,9 @@ export default function Navbar() {
                     <Link href="/shop" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Shop</Link>
                     <Link href="/innovation" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Innovation</Link>
                     <Link href="/gallery" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Gallery</Link>
-                    <Link href="/about" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Abous Us</Link>
+                    <Link href="/about" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>About Us</Link>
                     <Link href="/blog" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Blog</Link>
+                    <Link href="/contact" style={{ fontWeight: 500, color: 'var(--color-navy)' }}>Contact</Link>
                 </nav>
 
                 <div style={{ display: 'flex', gap: '1rem' }}>
