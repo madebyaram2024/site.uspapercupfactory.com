@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import BuyButton from '@/components/BuyButton';
+import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 // import Image from 'next/image'; // Assuming standard img tag for simplicity with user uploads, or Next Image if preferred
 
 export default function Home() {
@@ -35,9 +36,15 @@ export default function Home() {
             </div>
 
             <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-              <a href="#" style={{ color: 'var(--color-navy)', fontSize: '1.5rem' }}>Instagram</a>
-              <a href="#" style={{ color: 'var(--color-navy)', fontSize: '1.5rem' }}>Facebook</a>
-              <a href="#" style={{ color: 'var(--color-navy)', fontSize: '1.5rem' }}>TikTok</a>
+              <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                <InstagramIcon size={28} />
+              </a>
+              <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                <FacebookIcon size={28} />
+              </a>
+              <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+                <TikTokIconClean size={28} />
+              </a>
             </div>
           </div>
         </section>
