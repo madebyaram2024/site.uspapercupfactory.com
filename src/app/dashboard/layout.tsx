@@ -23,7 +23,7 @@ export default async function DashboardLayout({
                         </div>
                         <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                             <a href="/dashboard" style={{ padding: '0.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>My Orders</a>
-                            <a href="/profile" style={{ padding: '0.5rem', color: '#666' }}>Settings</a>
+                            <a href="/dashboard/settings" style={{ padding: '0.5rem', color: '#666' }}>Settings</a>
                         </nav>
                     </aside>
 

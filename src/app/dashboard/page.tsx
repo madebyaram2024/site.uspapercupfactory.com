@@ -9,10 +9,9 @@ export default async function DashboardPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '2rem' }}>My Orders</h1>
                 {/* Simple Create Order Form Trigger */}
-                <form action={createOrder} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <input type="hidden" name="details" value="New Website Order" />
-                    <button className="btn btn-primary">New Order (+)</button>
-                </form>
+                <Link href="/shop" className="btn btn-primary" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                    New Order (+)
+                </Link>
             </div>
 
             {orders.length === 0 ? (
