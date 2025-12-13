@@ -72,6 +72,7 @@ export default function LoginPage() {
                 </button>
             </form>
 
+            {/* Google Login - Disabled until Client ID provided
             <div style={{ margin: '1.5rem 0', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ flex: 1, height: '1px', background: '#eee' }}></div>
                 <span style={{ color: '#666', fontSize: '0.85rem' }}>OR</span>
@@ -99,6 +100,7 @@ export default function LoginPage() {
                 <img src="https://authjs.dev/img/providers/google.svg" width="20" height="20" alt="Google" />
                 Sign in with Google
             </button>
+            */}
 
             <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.9rem', color: '#666' }}>
                 Don&apos;t have an account? <Link href="/auth/register" style={{ color: '#00204A', fontWeight: 600 }}>Sign Up</Link>
