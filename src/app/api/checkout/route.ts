@@ -8,8 +8,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
-        const { productName, quantity, unitAmount, designPreference, designInstructions, stockType, cupSize } = body;
+        const { productName, quantity, unitAmount, stockType, designPreference, designInstructions, artworkUrl, cupSize } = await req.json();
+
+        if (!productName || !quantity || !unitAmount) {
+            return NextResponse.json({ error: 'Missing required product details' }, { status: 400 });
+        }
 
         // Create Checkout Session
         const session = await stripe.checkout.sessions.create({
@@ -20,8 +23,13 @@ export async function POST(req: Request) {
                         currency: 'usd',
                         product_data: {
                             name: `${productName} (${stockType} Stock, ${cupSize})`,
-                            description: `Quantity: ${quantity.toLocaleString()}. Design: ${designPreference}. Instructions: ${designInstructions}`,
+                            description: `Quantity: ${quantity.toLocaleString()}. Design: ${designPreference}. Instructions: ${designInstructions}. ${artworkUrl ? 'Artwork Attached.' : ''}`,
                             // images: ['https://example.com/cup-image.png'], // Optional: Add dynamic images later
+                            metadata: {
+                                design_preference: designPreference,
+                                design_instructions: designInstructions,
+                                artwork_url: artworkUrl || 'N/A'
+                            }
                         },
                         unit_amount: Math.round(unitAmount * 100), // Stripe expects amounts in cents
                     },

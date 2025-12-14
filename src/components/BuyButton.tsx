@@ -16,14 +16,15 @@ export default function BuyButton({ productName, quantity, unitAmount, className
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Steps: 'stock', 'size', 'design', 'instructions'
-    const [step, setStep] = useState<'stock' | 'size' | 'design' | 'instructions'>('stock');
+    // Steps: 'stock', 'size', 'design', 'instructions', 'upload'
+    const [step, setStep] = useState<'stock' | 'size' | 'design' | 'instructions' | 'upload'>('stock');
 
     // Selections
     const [stockType, setStockType] = useState<'White' | 'Craft'>('White');
     const [cupSize, setCupSize] = useState<string>('');
     const [_preference, setPreference] = useState<'upload' | 'design' | null>(null); // eslint-disable-line @typescript-eslint/no-unused-vars
     const [instructions, setInstructions] = useState('');
+    const [artworkFile, setArtworkFile] = useState<File | null>(null);
 
     const handleInitialClick = () => {
         setIsModalOpen(true);
@@ -46,8 +47,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
         if (choice === 'design') {
             setStep('instructions');
         } else {
-            // If upload, go straight to checkout
-            initiateCheckout(stockType, cupSize, 'Upload Own Artwork', '');
+            setStep('upload');
         }
     };
 
@@ -56,7 +56,38 @@ export default function BuyButton({ productName, quantity, unitAmount, className
         initiateCheckout(stockType, cupSize, 'Professional Design', instructions);
     };
 
-    const initiateCheckout = async (stock: string, size: string, designPref: string, designInstr: string) => {
+    const handleUploadSubmit = async () => {
+        if (!artworkFile) {
+            alert('Please select a file to upload.');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append('file', artworkFile);
+
+            const uploadRes = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const uploadData = await uploadRes.json();
+
+            if (!uploadData.url) {
+                throw new Error(uploadData.error || 'Upload failed');
+            }
+
+            // Proceed to checkout with URL
+            initiateCheckout(stockType, cupSize, 'Upload Own Artwork', 'See attached artwork.', uploadData.url);
+
+        } catch (error) {
+            console.error('Upload Error:', error);
+            alert('File upload failed. Please try again.');
+            setIsLoading(false);
+        }
+    };
+
+    const initiateCheckout = async (stock: string, size: string, designPref: string, designInstr: string, artworkUrl?: string) => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/checkout', {
@@ -72,6 +103,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                     cupSize: size,
                     designPreference: designPref,
                     designInstructions: designInstr,
+                    artworkUrl: artworkUrl, // Pass to backend
                 }),
             });
 
@@ -99,6 +131,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
             setCupSize('');
             setPreference(null);
             setInstructions('');
+            setArtworkFile(null);
         }, 300);
     };
 
@@ -311,7 +344,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                                         <span style={{ fontSize: '2rem' }}>📂</span>
                                         <div>
                                             <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--color-navy)' }}>I have my own artwork</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#888' }}>I will upload my logo/design after checkout.</div>
+                                            <div style={{ fontSize: '0.9rem', color: '#888' }}>Upload your logo or design file now.</div>
                                         </div>
                                     </button>
 
@@ -348,7 +381,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                             </>
                         )}
 
-                        {/* STEP 4: DESIGN INSTRUCTIONS */}
+                        {/* STEP 4: DESIGN INSTRUCTIONS (For 'Create a design for me') */}
                         {step === 'instructions' && (
                             <>
                                 <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
@@ -392,6 +425,49 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                                         </button>
                                     </div>
                                 </form>
+                            </>
+                        )}
+
+                        {/* STEP 5: UPLOAD ARTWORK (For 'I have my own artwork') */}
+                        {step === 'upload' && (
+                            <>
+                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
+                                    Upload Artwork
+                                </h2>
+                                <p style={{ marginBottom: '1.5rem', color: '#666', textAlign: 'center' }}>
+                                    Please upload your logo or design file (PNG, JPG, PDF, AI, EPS).
+                                </p>
+
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <input
+                                        type="file"
+                                        accept="image/*,.pdf,.ai,.eps"
+                                        onChange={(e) => setArtworkFile(e.target.files ? e.target.files[0] : null)}
+                                        style={{ display: 'block', width: '100%', padding: '10px', border: '1px dashed #ccc', borderRadius: '4px' }}
+                                    />
+                                    {artworkFile && (
+                                        <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: 'green' }}>Selected: {artworkFile.name}</p>
+                                    )}
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '1rem' }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setStep('design')}
+                                        className="btn"
+                                        style={{ flex: 1, background: '#f0f0f0', color: '#333' }}
+                                    >
+                                        Back
+                                    </button>
+                                    <button
+                                        onClick={handleUploadSubmit}
+                                        className="btn btn-primary"
+                                        style={{ flex: 2 }}
+                                        disabled={isLoading || !artworkFile}
+                                    >
+                                        {isLoading ? 'Uploading...' : 'Upload & Checkout'}
+                                    </button>
+                                </div>
                             </>
                         )}
 
