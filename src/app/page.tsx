@@ -62,7 +62,7 @@ export default function Home() {
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/25.png?v=3" alt="25 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                  <img src="/images/25.png?v=3" alt="25 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>25 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$50.00</div>
@@ -74,7 +74,7 @@ export default function Home() {
                 <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px' }}>MOST POPULAR</div>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/50.png?v=3" alt="50 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                  <img src="/images/50.png?v=3" alt="50 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>50 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$75.00</div>
@@ -85,7 +85,7 @@ export default function Home() {
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/100.png?v=3" alt="100 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                  <img src="/images/100.png?v=3" alt="100 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>100 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$100.00</div>
@@ -117,7 +117,7 @@ export default function Home() {
                   More Than A Vendor. <br /><span style={{ color: 'var(--color-red)' }}>A Business Partner.</span>
                 </h2>
                 <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', lineHeight: 1.8, color: '#444' }}>
-                  We don't aim to just fulfill an order; our aim is to build a long and successful business relationship.
+                  We don&apos;t aim to just fulfill an order; our aim is to build a long and successful business relationship.
                   We see our clients as true partners.
                 </p>
                 <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', lineHeight: 1.8, color: '#444' }}>
@@ -159,6 +159,7 @@ export default function Home() {
                   <img
                     src="/images/big_ds.jpg"
                     alt="Cups for weddings and parties"
+                    loading="lazy"
                     style={{ height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'bottom' }}
                   />
                 </div>

@@ -11,8 +11,8 @@ export default {
         }),
         // Placeholder for email/pass if needed later
         Credentials({
-            async authorize(credentials) {
-                return null; // TODO: Implement if needed
+            async authorize(credentials) { // eslint-disable-line @typescript-eslint/no-unused-vars
+                return null; // TODO: Implement specific logic if needed for edge compatibility
             }
         })
     ],

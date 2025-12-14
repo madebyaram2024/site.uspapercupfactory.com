@@ -73,7 +73,7 @@ export default function QCPage() {
                         AI_AGENT_V4.2 OUTPUT STREAM
                     </div>
                     <div style={{ flex: 1, overflow: 'hidden', fontSize: '0.85rem' }}>
-                        {logs.map((log: any, i) => (
+                        {logs.map((log: any, i) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
                             <div key={i} style={{ marginBottom: '0.5rem', opacity: 1 - (i * 0.05) }}>
                                 {log}
                             </div>

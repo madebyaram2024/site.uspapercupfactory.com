@@ -10,7 +10,7 @@ export default function ContactPage() {
             <main style={{ paddingBottom: '4rem' }}>
                 {/* Contact Hero */}
                 <section style={{
-                    backgroundImage: 'url("/images/contact_header.png")',
+                    backgroundImage: 'url("/images/contact_hero.jpg?v=final")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '400px',
@@ -20,12 +20,12 @@ export default function ContactPage() {
                     position: 'relative'
                 }}>
                     <div style={{
-                        background: 'rgba(10, 25, 47, 0.85)',
+                        background: 'rgba(10, 25, 47, 0.6)',
                         padding: '3rem',
                         borderRadius: 'var(--radius-md)',
                         textAlign: 'center',
                         maxWidth: '700px',
-                        backdropFilter: 'blur(5px)',
+                        backdropFilter: 'blur(5px)', // Glassmorphism blur
                         color: 'white'
                     }}>
                         <h1 className="section-title" style={{ color: 'white', marginBottom: '1rem' }}>Contact Us</h1>

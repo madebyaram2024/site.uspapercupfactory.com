@@ -3,13 +3,13 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    // apiVersion: '2024-12-18.acacia', // Removed to fix build error
+
 });
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { productName, price, quantity, unitAmount, designPreference, designInstructions, stockType, cupSize } = body;
+        const { productName, quantity, unitAmount, designPreference, designInstructions, stockType, cupSize } = body;
 
         // Create Checkout Session
         const session = await stripe.checkout.sessions.create({
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ url: session.url });
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error('Stripe Checkout Error:', err);
         return NextResponse.json({ error: err.message }, { status: 500 });
     }

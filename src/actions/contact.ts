@@ -3,7 +3,7 @@
 
 import { db } from "@/lib/db";
 
-export async function submitContact(values: any) {
+export async function submitContact(values: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const { name, email, phone, message } = values;
 
     if (!name || !email || !message) {

@@ -22,7 +22,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
     // Selections
     const [stockType, setStockType] = useState<'White' | 'Craft'>('White');
     const [cupSize, setCupSize] = useState<string>('');
-    const [preference, setPreference] = useState<'upload' | 'design' | null>(null);
+    const [_preference, setPreference] = useState<'upload' | 'design' | null>(null); // eslint-disable-line @typescript-eslint/no-unused-vars
     const [instructions, setInstructions] = useState('');
 
     const handleInitialClick = () => {
@@ -356,7 +356,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                                 </h2>
                                 <form onSubmit={handleInstructionsSubmit}>
                                     <p style={{ marginBottom: '1.5rem', color: '#666' }}>
-                                        Tell us a bit about what you need. (e.g. "Business Logo", "Happy Birthday Sarah", specific colors, etc.)
+                                        Tell us a bit about what you need. (e.g. &quot;Business Logo&quot;, &quot;Happy Birthday Sarah&quot;, specific colors, etc.)
                                     </p>
                                     <textarea
                                         value={instructions}

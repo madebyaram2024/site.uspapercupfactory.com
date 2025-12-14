@@ -2,7 +2,6 @@
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
 
@@ -20,7 +19,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 session.user.id = token.sub;
             }
             if (token.role && session.user) {
-                // @ts-ignore
+                // @ts-expect-error Fixes type mismatch in library
+
                 session.user.role = token.role;
             }
             return session;
@@ -39,7 +39,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     ...authConfig,
     providers: [
-        ...authConfig.providers.filter((p: any) => p.id !== "credentials"), // Remove placeholder
+        ...authConfig.providers.filter((p: any) => p.id !== "credentials"), // eslint-disable-line @typescript-eslint/no-explicit-any
         Credentials({
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) return null;

@@ -1,6 +1,6 @@
 
 import Navbar from '@/components/Navbar';
-import { getGalleryItems } from '@/app/actions/gallery';
+import { getGalleryItems } from '@/actions/gallery';
 
 export const dynamic = 'force-dynamic'; // Ensure we always get fresh data
 
@@ -13,7 +13,7 @@ export default async function GalleryPage() {
             <main className="container" style={{ padding: '4rem 20px' }}>
                 <h1 className="section-title">Design Gallery</h1>
                 <p style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 3rem' }}>
-                    Explore what's possible. From elegant wedding scripts to bold corporate branding,
+                    Explore what&apos;s possible. From elegant wedding scripts to bold corporate branding,
                     our gallery shows the range of our professional design capabilities.
                 </p>
 
@@ -23,7 +23,7 @@ export default async function GalleryPage() {
                     </div>
                 ) : (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                        {items.map((item: any) => (
+                        {items.map((item: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
                             <div key={item.id} style={{
                                 borderRadius: 'var(--radius-md)',
                                 overflow: 'hidden',

@@ -1,5 +1,5 @@
 
-import { addGalleryItem, deleteGalleryItem, getGalleryItems } from '@/app/actions/gallery';
+import { addGalleryItem, deleteGalleryItem, getGalleryItems } from '@/actions/gallery';
 
 export default async function GalleryAdminPage() {
     const items = await getGalleryItems();
@@ -28,7 +28,7 @@ export default async function GalleryAdminPage() {
             <h3 style={{ marginBottom: '1rem' }}>Existing Items</h3>
             <div style={{ display: 'grid', gap: '1rem' }}>
                 {items.length === 0 && <p>No items yet.</p>}
-                {items.map((item: any) => (
+                {items.map((item: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
                     <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '4px' }}>
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                             <div style={{ width: '50px', height: '50px', background: '#ccc', borderRadius: '4px', overflow: 'hidden' }}>

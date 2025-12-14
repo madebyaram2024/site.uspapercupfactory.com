@@ -1,6 +1,6 @@
 
 import Navbar from '@/components/Navbar';
-import { getBlogPost } from '@/app/actions/blog';
+import { getBlogPost } from '@/actions/blog';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 

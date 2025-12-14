@@ -30,7 +30,7 @@ export default function RegisterPage() {
                 setSuccess("Account created! Please log in.");
                 // Optional: Redirect
             }
-        } catch (err) {
+        } catch {
             setError("Something went wrong");
         } finally {
             setLoading(false);

@@ -4,7 +4,7 @@
 import { db } from "@/lib/db";
 import bcrypt from "bcryptjs";
 
-export async function register(values: any) {
+export async function register(values: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const { email, password, name } = values;
 
     if (!email || !password || !name) {

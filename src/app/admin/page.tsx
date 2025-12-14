@@ -1,5 +1,14 @@
 
-export default function AdminDashboard() {
+import { db } from "@/lib/db";
+
+export default async function AdminDashboard() {
+    // Fetch stats in parallel
+    const [ordersCount, galleryCount, usersCount] = await Promise.all([
+        db.order.count(),
+        db.galleryItem.count(),
+        db.user.count(),
+    ]);
+
     return (
         <div>
             <h1 style={{ marginBottom: '2rem' }}>Dashboard Overview</h1>
@@ -7,16 +16,19 @@ export default function AdminDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
                 {/* Stat Cards */}
                 <div style={{ padding: '1.5rem', background: 'var(--color-navy)', color: 'white', borderRadius: 'var(--radius-md)' }}>
-                    <h3>Waitling List</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>0</div>
+                    <h3>Member Sales</h3>
+                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>{usersCount}</div>
+                    <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Registered Users</div>
                 </div>
                 <div style={{ padding: '1.5rem', background: 'white', border: '1px solid var(--gray-200)', borderRadius: 'var(--radius-md)' }}>
                     <h3>Active Orders</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>0</div>
+                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>{ordersCount}</div>
+                    <div style={{ fontSize: '0.9rem', color: '#666' }}>Total Orders</div>
                 </div>
                 <div style={{ padding: '1.5rem', background: 'white', border: '1px solid var(--gray-200)', borderRadius: 'var(--radius-md)' }}>
                     <h3>Gallery Items</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>0</div>
+                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>{galleryCount}</div>
+                    <div style={{ fontSize: '0.9rem', color: '#666' }}>Inspirational Designs</div>
                 </div>
             </div>
 

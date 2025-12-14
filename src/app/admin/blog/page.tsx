@@ -1,5 +1,5 @@
 
-import { addBlogPost, deleteBlogPost, getAllBlogPosts } from '@/app/actions/blog';
+import { addBlogPost, deleteBlogPost, getAllBlogPosts } from '@/actions/blog';
 
 export default async function BlogAdminPage() {
     const posts = await getAllBlogPosts();
@@ -31,7 +31,7 @@ export default async function BlogAdminPage() {
             <h3 style={{ marginBottom: '1rem' }}>Existing Posts</h3>
             <div style={{ display: 'grid', gap: '1rem' }}>
                 {posts.length === 0 && <p>No blog posts yet.</p>}
-                {posts.map((post: any) => (
+                {posts.map((post: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
                     <div key={post.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '4px' }}>
                         <div>
                             <div style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{post.title}</div>

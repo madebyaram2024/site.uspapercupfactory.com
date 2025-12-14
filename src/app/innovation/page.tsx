@@ -44,7 +44,7 @@ export default function InnovationPage() {
                             <div style={{ flex: 1 }}>
                                 <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1.5rem' }}>Custom AI Organization</h2>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
-                                    We know our shortcomings better than anyone else. That's why we used AI to build a
+                                    We know our shortcomings better than anyone else. That&apos;s why we used AI to build a
                                     <strong style={{ color: 'var(--color-red)' }}> custom internal order processing application </strong>
                                     tailored specifically to our workflow.
                                 </p>
@@ -88,7 +88,7 @@ export default function InnovationPage() {
                             <div style={{ flex: 1 }}>
                                 <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1.5rem' }}>AI + Human Design</h2>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
-                                    We don't just use AI for logistics. Our design process leverages generative AI to spark unique ideas,
+                                    We don&apos;t just use AI for logistics. Our design process leverages generative AI to spark unique ideas,
                                     which our professional human designers then refine into print-perfect artwork.
                                     This gives you the speed of technology with the soul of an artist.
                                 </p>

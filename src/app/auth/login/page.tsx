@@ -31,7 +31,7 @@ export default function LoginPage() {
             } else {
                 window.location.href = "/dashboard";
             }
-        } catch (err) {
+        } catch {
             setError("Something went wrong");
             setLoading(false);
         }

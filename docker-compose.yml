@@ -20,6 +20,7 @@ services:
       - DATABASE_URL=file:/app/prisma/dev.db # In-container DB path
     volumes:
       - ./prisma:/app/prisma # Persist DB and migrations
+      - ./public:/app/public # Allow hot-reloading of public assets
 
   caddy:
     image: caddy:2-alpine

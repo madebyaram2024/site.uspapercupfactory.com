@@ -36,7 +36,7 @@ export default function ContactForm() {
         return (
             <div style={{ background: '#dcfce7', color: '#166534', padding: '2rem', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
                 <h3 style={{ marginBottom: '1rem' }}>Message Sent!</h3>
-                <p>We'll get back to you shortly.</p>
+                <p>We&apos;ll get back to you shortly.</p>
                 <button onClick={() => setSuccess(false)} style={{ marginTop: '1rem', background: 'transparent', border: '1px solid currentColor', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer', color: 'inherit' }}>Send Another</button>
             </div>
         );
