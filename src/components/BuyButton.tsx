@@ -80,7 +80,7 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                 window.location.href = data.url;
             } else {
                 console.error('Checkout error:', data.error);
-                alert('Something went wrong initiating checkout. Please try again.');
+                alert(`Checkout Failed: ${data.error || 'Something went wrong initiating checkout.'}`);
                 setIsLoading(false);
             }
         } catch (error) {

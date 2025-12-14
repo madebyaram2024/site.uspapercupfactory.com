@@ -44,6 +44,16 @@ export async function POST(req: Request) {
         return NextResponse.json({ url: session.url });
     } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         console.error('Stripe Checkout Error:', err);
-        return NextResponse.json({ error: err.message }, { status: 500 });
+
+        // Check for missing key specific error or generic
+        if (!process.env.STRIPE_SECRET_KEY) {
+            console.error('Missing STRIPE_SECRET_KEY in environment variables.');
+            return NextResponse.json({ error: 'Server configuration error: Missing Stripe Key' }, { status: 500 });
+        }
+
+        return NextResponse.json({
+            error: err.message || 'An error occurred during checkout setup',
+            details: err.type ? `Stripe Error Type: ${err.type}` : undefined
+        }, { status: 500 });
     }
 }
