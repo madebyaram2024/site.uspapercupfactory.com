@@ -25,7 +25,7 @@ export async function POST(req: Request) {
                         },
                         unit_amount: Math.round(unitAmount * 100), // Stripe expects amounts in cents
                     },
-                    quantity: quantity,
+                    quantity: 1, // unitAmount is the TOTAL price for the pack, so we buy 1 pack.
                 },
             ],
             mode: 'payment',
