@@ -68,4 +68,4 @@ ENV PORT 3000
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["sh", "-c", "npx prisma@5.22.0 db push --skip-generate && node server.js"]
+CMD ["sh", "-c", "npx prisma@5.22.0 db push --skip-generate && HOSTNAME=0.0.0.0 node server.js"]
