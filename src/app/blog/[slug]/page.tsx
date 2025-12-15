@@ -2,7 +2,6 @@
 import Navbar from '@/components/Navbar';
 import { getBlogPost } from '@/actions/blog';
 import { notFound } from 'next/navigation';
-import ReactMarkdown from 'react-markdown';
 
 interface Props {
     params: { slug: string }
@@ -32,9 +31,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                 )}
 
-                <div className="prose" style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
-                </div>
+                <div className="prose" style={{ fontSize: '1.15rem', lineHeight: '1.8', color: 'var(--text-secondary)' }} dangerouslySetInnerHTML={{ __html: post.content }} />
             </article>
         </>
     );
