@@ -50,3 +50,20 @@ export async function approveMockup(mockupId: string, orderId: string) {
 
     revalidatePath('/dashboard');
 }
+
+export async function getAllOrders() {
+    // In actions/admin.ts we use requireAdmin, but here we can check session role directly or rely on the caller to check
+    const session = await auth();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if ((session?.user as any)?.role !== 'ADMIN') return [];
+
+    return await prisma.order.findMany({
+        orderBy: { createdAt: 'desc' },
+        include: {
+            mockups: true,
+            user: {
+                select: { name: true, email: true }
+            }
+        }
+    })
+}

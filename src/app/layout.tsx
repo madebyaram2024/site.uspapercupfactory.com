@@ -15,14 +15,42 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "US Paper Cup Factory | Custom Printed Cups Made in USA",
+  metadataBase: new URL('https://uspapercupfactory.com'),
+  title: {
+    default: "US Paper Cup Factory | Custom Printed Cups Made in USA",
+    template: "%s | US Paper Cup Factory"
+  },
   description: "The premier American manufacturer of custom printed paper cups. Fast turnaround, high quality, and free design services. Order online today.",
   keywords: ["paper cups", "custom cups", "printed cups", "coffee cups", "branded cups", "wholesale cups", "made in USA"],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "US Paper Cup Factory",
     description: "Custom Printed Paper Cups - Made in USA with Fast Turnaround.",
+    url: 'https://uspapercupfactory.com',
     siteName: "US Paper Cup Factory",
+    locale: 'en_US',
     type: "website",
+    images: [
+      {
+        url: '/images/Websit_Logo_Final2.png', // Using our new logo as the OG image for now, or a hero image
+        width: 1200,
+        height: 630,
+        alt: 'US Paper Cup Factory',
+      },
+    ],
   },
   authors: [{ name: "US Paper Cup Factory" }],
 };

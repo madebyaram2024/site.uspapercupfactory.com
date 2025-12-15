@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Navbar() {
@@ -24,11 +25,13 @@ export default function Navbar() {
                 height: '100%'
             }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/images/Website-logo.png?v=4"
+                    <Image
+                        src="/images/Websit_Logo_Final2.png"
                         alt="US Paper Cup Factory"
+                        width={200}
+                        height={50}
                         style={{ height: '50px', width: 'auto', objectFit: 'contain' }}
+                        priority
                     />
                 </Link>
 

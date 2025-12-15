@@ -30,7 +30,8 @@ export async function POST(request: Request) {
         await writeFile(filepath, buffer);
 
         // Return public URL
-        const fileUrl = `${process.env.AUTH_URL || 'https://uspapercupfactory.com'}/uploads/${filename}`;
+        // Return public URL (Relative path)
+        const fileUrl = `/uploads/${filename}`;
 
         return NextResponse.json({ url: fileUrl });
     } catch (error) {

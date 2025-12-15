@@ -8,34 +8,64 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: Request) {
     try {
-        const { productName, quantity, unitAmount, stockType, designPreference, designInstructions, artworkUrl, cupSize } = await req.json();
+        const { productName, quantity, unitAmount, stockType,
+            designInstructions, artworkUrls, cupSize, proofingOption
+        } = await req.json();
 
         if (!productName || !quantity || !unitAmount) {
             return NextResponse.json({ error: 'Missing required product details' }, { status: 400 });
         }
 
+        const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+            {
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: `${productName} (${stockType} Stock, ${cupSize})`,
+                        description: `Quantity: ${quantity.toLocaleString()}. Instructions: ${designInstructions || 'None'}.`,
+                        metadata: {
+                            stock_type: stockType,
+                            cup_size: cupSize,
+                            design_instructions: designInstructions
+                        }
+                    },
+                    unit_amount: Math.round(unitAmount * 100),
+                },
+                quantity: 1,
+            }
+        ];
+
+        // Add Proofing Upgrades
+        if (proofingOption === 'photo') {
+            line_items.push({
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: 'Printed Cup Photo Proof',
+                        description: 'We will print one cup, take a photo, and email it to you for approval.',
+                    },
+                    unit_amount: 999, // $9.99
+                },
+                quantity: 1,
+            });
+        } else if (proofingOption === 'physical') {
+            line_items.push({
+                price_data: {
+                    currency: 'usd',
+                    product_data: {
+                        name: 'Mailed Physical Sample',
+                        description: 'We will print one cup and mail it to you for approval (includes shipping).',
+                    },
+                    unit_amount: 1999, // $19.99
+                },
+                quantity: 1,
+            });
+        }
+
         // Create Checkout Session
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            line_items: [
-                {
-                    price_data: {
-                        currency: 'usd',
-                        product_data: {
-                            name: `${productName} (${stockType} Stock, ${cupSize})`,
-                            description: `Quantity: ${quantity.toLocaleString()}. Design: ${designPreference}. Instructions: ${designInstructions}. ${artworkUrl ? 'Artwork Attached.' : ''}`,
-                            // images: ['https://example.com/cup-image.png'], // Optional: Add dynamic images later
-                            metadata: {
-                                design_preference: designPreference,
-                                design_instructions: designInstructions,
-                                artwork_url: artworkUrl || 'N/A'
-                            }
-                        },
-                        unit_amount: Math.round(unitAmount * 100), // Stripe expects amounts in cents
-                    },
-                    quantity: 1, // unitAmount is the TOTAL price for the pack, so we buy 1 pack.
-                },
-            ],
+            line_items: line_items,
             mode: 'payment',
             success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${req.headers.get('origin')}/shop`,
@@ -44,8 +74,9 @@ export async function POST(req: Request) {
                 quantity: quantity.toString(),
                 stockType: stockType || 'White',
                 cupSize: cupSize || 'Unknown',
-                designPreference, // 'Upload Own' or 'Professional Design'
-                designInstructions: designInstructions || 'N/A', // The user's text input
+                designInstructions: designInstructions || 'N/A',
+                proofingOption: proofingOption || 'digital',
+                artwork_urls: Array.isArray(artworkUrls) ? artworkUrls.join(', ').substring(0, 490) : (artworkUrls || 'N/A'),
             },
         });
 

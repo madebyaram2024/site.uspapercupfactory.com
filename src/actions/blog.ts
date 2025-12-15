@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 
 const prisma = new PrismaClient()
+import { requireAdmin } from '@/lib/admin'
 
 export async function getBlogPosts() {
     return await prisma.blogPost.findMany({
@@ -25,6 +26,7 @@ export async function getBlogPost(slug: string) {
 }
 
 export async function addBlogPost(formData: FormData) {
+    await requireAdmin();
     const title = formData.get('title') as string
     const content = formData.get('content') as string
     const imageUrl = formData.get('imageUrl') as string
@@ -44,7 +46,31 @@ export async function addBlogPost(formData: FormData) {
     revalidatePath('/admin/blog')
 }
 
+export async function updateBlogPost(id: string, formData: FormData) {
+    await requireAdmin();
+    const title = formData.get('title') as string
+    const content = formData.get('content') as string
+    const imageUrl = formData.get('imageUrl') as string
+
+    // Optional: Update slug if title changes? For now keep slug stable to preserve SEO
+
+    await prisma.blogPost.update({
+        where: { id },
+        data: {
+            title,
+            content,
+            imageUrl,
+            updatedAt: new Date()
+        }
+    })
+
+    revalidatePath('/blog')
+    revalidatePath(`/blog/${id}`) // This might be slug based, but revalidatePath works on route
+    revalidatePath('/admin/blog')
+}
+
 export async function deleteBlogPost(id: string) {
+    await requireAdmin();
     await prisma.blogPost.delete({
         where: { id }
     })

@@ -16,94 +16,97 @@ export default function BuyButton({ productName, quantity, unitAmount, className
     const [isLoading, setIsLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Steps: 'stock', 'size', 'design', 'instructions', 'upload'
-    const [step, setStep] = useState<'stock' | 'size' | 'design' | 'instructions' | 'upload'>('stock');
+    // Steps: 'stock' -> 'size' -> 'details' -> 'proofing'
+    const [step, setStep] = useState<'stock' | 'size' | 'details' | 'proofing'>('stock');
 
     // Selections
     const [stockType, setStockType] = useState<'White' | 'Craft'>('White');
     const [cupSize, setCupSize] = useState<string>('');
-    const [_preference, setPreference] = useState<'upload' | 'design' | null>(null); // eslint-disable-line @typescript-eslint/no-unused-vars
     const [instructions, setInstructions] = useState('');
-    const [artworkFile, setArtworkFile] = useState<File | null>(null);
+    const [files, setFiles] = useState<File[]>([]);
+    const [proofingOption, setProofingOption] = useState<'digital' | 'photo' | 'physical'>('digital');
 
     const handleInitialClick = () => {
         setIsModalOpen(true);
-        setStep('stock'); // Always start at stock selection
+        setStep('stock');
     };
 
     const handleStockSelect = (type: 'White' | 'Craft') => {
-        if (type === 'Craft') return; // Disabled for now
+        if (type === 'Craft') return;
         setStockType(type);
         setStep('size');
     };
 
     const handleSizeSelect = (size: string) => {
         setCupSize(size);
-        setStep('design');
+        setStep('details');
     };
 
-    const handlePreferenceSelect = (choice: 'upload' | 'design') => {
-        setPreference(choice);
-        if (choice === 'design') {
-            setStep('instructions');
-        } else {
-            setStep('upload');
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const newFiles = Array.from(e.target.files);
+            // Limit to 5 files total
+            if (files.length + newFiles.length > 5) {
+                alert('You can only upload a maximum of 5 files.');
+                return;
+            }
+            setFiles(prev => [...prev, ...newFiles]);
         }
     };
 
-    const handleInstructionsSubmit = (e: React.FormEvent) => {
+    const removeFile = (index: number) => {
+        setFiles(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const handleDetailsSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        initiateCheckout(stockType, cupSize, 'Professional Design', instructions);
+        setStep('proofing');
     };
 
-    const handleUploadSubmit = async () => {
-        if (!artworkFile) {
-            alert('Please select a file to upload.');
-            return;
-        }
-
+    const handleFinalSubmit = async () => {
         setIsLoading(true);
         try {
-            const formData = new FormData();
-            formData.append('file', artworkFile);
+            // Upload all files first
+            const uploadedUrls: string[] = [];
 
-            const uploadRes = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            const uploadData = await uploadRes.json();
+            if (files.length > 0) {
+                const uploadPromises = files.map(async (file) => {
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    const res = await fetch('/api/upload', { method: 'POST', body: formData });
+                    const data = await res.json();
+                    if (data.url) return data.url;
+                    throw new Error(data.error || 'Upload failed');
+                });
 
-            if (!uploadData.url) {
-                throw new Error(uploadData.error || 'Upload failed');
+                const results = await Promise.all(uploadPromises);
+                uploadedUrls.push(...results);
             }
 
-            // Proceed to checkout with URL
-            initiateCheckout(stockType, cupSize, 'Upload Own Artwork', 'See attached artwork.', uploadData.url);
+            // Initiate Checkout
+            initiateCheckout(stockType, cupSize, instructions, uploadedUrls, proofingOption);
 
-        } catch (error) {
-            console.error('Upload Error:', error);
-            alert('File upload failed. Please try again.');
+        } catch (error: any) {
+            console.error('Process Error:', error);
+            alert(`Failed: ${error.message || 'Something went wrong.'}`);
             setIsLoading(false);
         }
     };
 
-    const initiateCheckout = async (stock: string, size: string, designPref: string, designInstr: string, artworkUrl?: string) => {
-        setIsLoading(true);
+    const initiateCheckout = async (stock: string, size: string, designInstr: string, artworkUrls: string[], proofing: string) => {
         try {
             const res = await fetch('/api/checkout', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     productName,
                     quantity,
                     unitAmount,
                     stockType: stock,
                     cupSize: size,
-                    designPreference: designPref,
                     designInstructions: designInstr,
-                    artworkUrl: artworkUrl, // Pass to backend
+                    artworkUrls,
+                    proofingOption: proofing,
                 }),
             });
 
@@ -112,26 +115,25 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                 window.location.href = data.url;
             } else {
                 console.error('Checkout error:', data.error);
-                alert(`Checkout Failed: ${data.error || 'Something went wrong initiating checkout.'}`);
+                alert(`Checkout Failed: ${data.error || 'Something went wrong.'}`);
                 setIsLoading(false);
             }
         } catch (error) {
             console.error('Checkout error:', error);
-            alert('Something went wrong. Please check your connection.');
+            alert('Connection failed. Please try again.');
             setIsLoading(false);
         }
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
-        // Reset state for next time
         setTimeout(() => {
             setStep('stock');
             setStockType('White');
             setCupSize('');
-            setPreference(null);
             setInstructions('');
-            setArtworkFile(null);
+            setFiles([]);
+            setProofingOption('digital');
         }, 300);
     };
 
@@ -146,66 +148,36 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                 {isLoading ? 'Processing...' : (children || 'Order Now')}
             </button>
 
-            {/* Modal Overlay */}
             {isModalOpen && (
                 <div style={{
-                    position: 'fixed',
-                    top: 0, left: 0, right: 0, bottom: 0,
+                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
                     backgroundColor: 'rgba(0,0,0,0.6)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 1000,
-                    backdropFilter: 'blur(5px)'
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 1000, backdropFilter: 'blur(5px)'
                 }} onClick={closeModal}>
 
-                    {/* Modal Content */}
                     <div style={{
-                        background: 'white',
-                        padding: '2.5rem',
-                        borderRadius: 'var(--radius-md)',
-                        maxWidth: '500px',
-                        width: '90%',
-                        position: 'relative',
-                        boxShadow: 'var(--shadow-lg)'
+                        background: 'white', padding: '2.5rem', borderRadius: 'var(--radius-md)',
+                        maxWidth: '550px', width: '90%', position: 'relative',
+                        boxShadow: 'var(--shadow-lg)', maxHeight: '90vh', overflowY: 'auto'
                     }} onClick={e => e.stopPropagation()}>
 
-                        <button
-                            onClick={closeModal}
-                            style={{
-                                position: 'absolute', top: '15px', right: '15px',
-                                background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer',
-                                color: '#999'
-                            }}
-                        >
-                            &times;
-                        </button>
+                        <button onClick={closeModal} style={{
+                            position: 'absolute', top: '15px', right: '15px',
+                            background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#999'
+                        }}>&times;</button>
 
-                        {/* STEP 1: STOCK SELECTION */}
+                        {/* STEP 1: STOCK */}
                         {step === 'stock' && (
                             <>
-                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
-                                    Select Paper Type
-                                </h2>
-                                <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}>
-                                    Choose the base material for your cups.
-                                </p>
+                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--color-navy)', textAlign: 'center' }}>Select Paper Type</h2>
+                                <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}>Choose the base material for your cups.</p>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    <button
-                                        onClick={() => handleStockSelect('White')}
-                                        className="hover-border-navy"
-                                        style={{
-                                            padding: '1.5rem',
-                                            background: 'white',
-                                            border: '2px solid var(--color-navy)',
-                                            borderRadius: 'var(--radius-sm)',
-                                            cursor: 'pointer',
-                                            textAlign: 'left',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'space-between'
-                                        }}
-                                    >
+                                    <button onClick={() => handleStockSelect('White')} className="hover-border-navy" style={{
+                                        padding: '1.5rem', background: 'white', border: '2px solid var(--color-navy)',
+                                        borderRadius: 'var(--radius-sm)', cursor: 'pointer', textAlign: 'left',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'space-between'
+                                    }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                             <div style={{ width: '40px', height: '40px', background: 'white', border: '1px solid #ddd', borderRadius: '50%' }}></div>
                                             <div>
@@ -215,22 +187,11 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                                         </div>
                                         <span style={{ color: 'var(--color-navy)', fontWeight: 'bold' }}>Select &rarr;</span>
                                     </button>
-
-                                    <button
-                                        disabled
-                                        style={{
-                                            padding: '1.5rem',
-                                            background: '#f5f5f5',
-                                            border: '2px solid #ddd',
-                                            borderRadius: 'var(--radius-sm)',
-                                            cursor: 'not-allowed',
-                                            textAlign: 'left',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'space-between',
-                                            opacity: 0.7
-                                        }}
-                                    >
+                                    <button disabled style={{
+                                        padding: '1.5rem', background: '#f5f5f5', border: '2px solid #ddd',
+                                        borderRadius: 'var(--radius-sm)', cursor: 'not-allowed', textAlign: 'left',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', opacity: 0.7
+                                    }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                             <div style={{ width: '40px', height: '40px', background: '#d2b48c', borderRadius: '50%' }}></div>
                                             <div>
@@ -238,239 +199,173 @@ export default function BuyButton({ productName, quantity, unitAmount, className
                                                 <div style={{ fontSize: '0.9rem', color: '#999' }}>Eco-friendly brown paper look.</div>
                                             </div>
                                         </div>
-                                        <span style={{ color: '#666', fontWeight: 'bold', fontSize: '0.9rem', background: '#e0e0e0', padding: '4px 8px', borderRadius: '4px' }}>COMING SOON</span>
+                                        <span style={{ fontSize: '0.8rem', background: '#e0e0e0', padding: '4px 8px', borderRadius: '4px' }}>COMING SOON</span>
                                     </button>
                                 </div>
                             </>
                         )}
 
-
-                        {/* STEP 2: SIZE SELECTION */}
+                        {/* STEP 2: SIZE */}
                         {step === 'size' && (
                             <>
-                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
-                                    Select Cup Size
-                                </h2>
-                                <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#666', fontSize: '1.1rem' }}>
-                                    Selected: <strong>{stockType} Paper</strong>
+                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: 'var(--color-navy)', textAlign: 'center' }}>Select Cup Size</h2>
+                                <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#666' }}>Selected: <strong>{stockType} Paper</strong></p>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+                                    {['8oz', '10oz', '12oz', '14oz', '16oz'].map(s => {
+                                        const avail = ['8oz', '10oz', '12oz'].includes(s);
+                                        return (
+                                            <button key={s} onClick={() => avail && handleSizeSelect(s)} disabled={!avail}
+                                                className={avail ? "hover-border-navy" : ""}
+                                                style={{
+                                                    padding: '1.25rem', background: avail ? 'white' : '#f5f5f5',
+                                                    border: avail ? '2px solid #eee' : '2px solid #ddd', borderRadius: 'var(--radius-sm)',
+                                                    cursor: avail ? 'pointer' : 'not-allowed', fontSize: '1.25rem', fontWeight: 'bold',
+                                                    color: avail ? 'var(--color-navy)' : '#999', position: 'relative',
+                                                    gridColumn: s === '16oz' ? 'span 2' : 'auto'
+                                                }}>
+                                                {s} {!avail && <span style={{ display: 'block', fontSize: '0.6rem', marginTop: '4px' }}>OUT OF STOCK</span>}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <button onClick={() => setStep('stock')} style={{ marginTop: '2rem', background: 'none', border: 'none', textDecoration: 'underline', color: '#666', cursor: 'pointer', width: '100%' }}>&larr; Back</button>
+                            </>
+                        )}
+
+                        {/* STEP 3: DETAILS (New Unified Step) */}
+                        {step === 'details' && (
+                            <form onSubmit={handleDetailsSubmit}>
+                                <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>Customize Your Design</h2>
+                                <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666', fontSize: '0.9rem' }}>
+                                    Upload any digital files you may have to help us design the perfect paper cup.
                                 </p>
 
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-                                    {[
-                                        { label: '8oz', available: true },
-                                        { label: '10oz', available: true },
-                                        { label: '12oz', available: true },
-                                        { label: '14oz', available: false },
-                                        { label: '16oz', available: false },
-                                    ].map((sizeObj) => (
-                                        <button
-                                            key={sizeObj.label}
-                                            onClick={() => sizeObj.available && handleSizeSelect(sizeObj.label)}
-                                            className={sizeObj.available ? "hover-border-navy" : ""}
-                                            disabled={!sizeObj.available}
-                                            style={{
-                                                padding: '1.25rem',
-                                                background: sizeObj.available ? 'white' : '#f5f5f5',
-                                                border: sizeObj.available ? '2px solid #eee' : '2px solid #ddd',
-                                                borderRadius: 'var(--radius-sm)',
-                                                cursor: sizeObj.available ? 'pointer' : 'not-allowed',
-                                                fontSize: '1.25rem',
-                                                fontWeight: 'bold',
-                                                color: sizeObj.available ? 'var(--color-navy)' : '#999',
-                                                textAlign: 'center',
-                                                transition: 'all 0.2s',
-                                                gridColumn: sizeObj.label === '16oz' ? 'span 2' : 'auto',
-                                                position: 'relative',
-                                                overflow: 'hidden'
-                                            }}
-                                        >
-                                            {sizeObj.label}
-                                            {!sizeObj.available && (
-                                                <div style={{
-                                                    fontSize: '0.6rem',
-                                                    background: '#999',
-                                                    color: 'white',
-                                                    padding: '2px 0',
-                                                    position: 'absolute',
-                                                    bottom: 0,
-                                                    left: 0,
-                                                    width: '100%',
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: '1px'
-                                                }}>
-                                                    Coming Soon
-                                                </div>
-                                            )}
-                                        </button>
-                                    ))}
+                                {/* File Upload */}
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333' }}>
+                                        Upload Assets (Optional)
+                                    </label>
+                                    <div style={{ border: '2px dashed #ddd', padding: '1rem', borderRadius: '8px', textAlign: 'center', backgroundColor: '#fafafa' }}>
+                                        <input
+                                            type="file"
+                                            id="file-upload"
+                                            multiple
+                                            accept="image/*,.pdf,.ai,.eps,.svg"
+                                            onChange={handleFileChange}
+                                            style={{ display: 'none' }}
+                                        />
+                                        <label htmlFor="file-upload" style={{ cursor: 'pointer', color: 'var(--color-blue)', fontWeight: 'bold', display: 'block', padding: '10px' }}>
+                                            + Click to Add Files
+                                        </label>
+                                        {files.length > 0 && (
+                                            <div style={{ marginTop: '1rem', textAlign: 'left' }}>
+                                                {files.map((f, i) => (
+                                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', padding: '4px 0', borderBottom: '1px solid #eee' }}>
+                                                        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '200px' }}>{f.name}</span>
+                                                        <span onClick={() => removeFile(i)} style={{ color: 'red', cursor: 'pointer' }}>&times;</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                        <p style={{ fontSize: '0.8rem', color: '#999', marginTop: '0.5rem' }}>Max 5 files. (PDF, AI, EPS, PNG, JPG)</p>
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={() => setStep('stock')}
-                                    style={{ marginTop: '2rem', width: '100%', background: 'none', border: 'none', textDecoration: 'underline', color: '#666', cursor: 'pointer' }}
-                                >
-                                    &larr; Back to Paper Selection
-                                </button>
-                            </>
-                        )}
 
-
-                        {/* STEP 3: DESIGN PREFERENCE */}
-                        {step === 'design' && (
-                            <>
-                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
-                                    Design Options
-                                </h2>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#666', fontSize: '1.1rem' }}>
-                                        Selected: <strong>{stockType} {cupSize}</strong>
-                                    </p>
-
-                                    <button
-                                        onClick={() => handlePreferenceSelect('upload')}
-                                        className="hover-border-navy"
-                                        style={{
-                                            padding: '1.5rem',
-                                            background: 'white',
-                                            border: '2px solid #eee',
-                                            borderRadius: 'var(--radius-sm)',
-                                            cursor: 'pointer',
-                                            textAlign: 'left',
-                                            transition: 'all 0.2s',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '1rem'
-                                        }}
-                                    >
-                                        <span style={{ fontSize: '2rem' }}>📂</span>
-                                        <div>
-                                            <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--color-navy)' }}>I have my own artwork</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#888' }}>Upload your logo or design file now.</div>
-                                        </div>
-                                    </button>
-
-                                    <button
-                                        onClick={() => handlePreferenceSelect('design')}
-                                        className="hover-border-navy"
-                                        style={{
-                                            padding: '1.5rem',
-                                            background: 'white',
-                                            border: '2px solid #eee',
-                                            borderRadius: 'var(--radius-sm)',
-                                            cursor: 'pointer',
-                                            textAlign: 'left',
-                                            transition: 'all 0.2s',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '1rem'
-                                        }}
-                                    >
-                                        <span style={{ fontSize: '2rem' }}>🎨</span>
-                                        <div>
-                                            <div style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--color-navy)' }}>Create a design for me</div>
-                                            <div style={{ fontSize: '0.9rem', color: '#888' }}>Our pro designers will create it for Free.</div>
-                                        </div>
-                                    </button>
-
-                                    <button
-                                        onClick={() => setStep('size')}
-                                        style={{ marginTop: '1rem', background: 'none', border: 'none', textDecoration: 'underline', color: '#666', cursor: 'pointer' }}
-                                    >
-                                        &larr; Back to Size Selection
-                                    </button>
-                                </div>
-                            </>
-                        )}
-
-                        {/* STEP 4: DESIGN INSTRUCTIONS (For 'Create a design for me') */}
-                        {step === 'instructions' && (
-                            <>
-                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
-                                    Design Details
-                                </h2>
-                                <form onSubmit={handleInstructionsSubmit}>
-                                    <p style={{ marginBottom: '1.5rem', color: '#666' }}>
-                                        Tell us a bit about what you need. (e.g. &quot;Business Logo&quot;, &quot;Happy Birthday Sarah&quot;, specific colors, etc.)
-                                    </p>
+                                {/* Instructions */}
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#333' }}>
+                                        Design Brief / Instructions
+                                    </label>
                                     <textarea
                                         value={instructions}
                                         onChange={(e) => setInstructions(e.target.value)}
-                                        placeholder="Enter your design instructions here..."
+                                        placeholder="Describe what you want your cups to look like. Mention colors, positioning, or any specific details..."
                                         rows={4}
-                                        style={{
-                                            width: '100%',
-                                            padding: '1rem',
-                                            border: '1px solid #ccc',
-                                            borderRadius: '4px',
-                                            marginBottom: '1.5rem',
-                                            fontSize: '1rem'
-                                        }}
+                                        style={{ width: '100%', padding: '1rem', border: '1px solid #ccc', borderRadius: '4px' }}
                                         required
                                     />
-                                    <div style={{ display: 'flex', gap: '1rem' }}>
-                                        <button
-                                            type="button"
-                                            onClick={() => setStep('design')}
-                                            className="btn"
-                                            style={{ flex: 1, background: '#f0f0f0', color: '#333' }}
-                                        >
-                                            Back
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary"
-                                            style={{ flex: 2 }}
-                                            disabled={isLoading}
-                                        >
-                                            {isLoading ? 'Processing...' : 'Proceed to Checkout'}
-                                        </button>
-                                    </div>
-                                </form>
-                            </>
-                        )}
-
-                        {/* STEP 5: UPLOAD ARTWORK (For 'I have my own artwork') */}
-                        {step === 'upload' && (
-                            <>
-                                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>
-                                    Upload Artwork
-                                </h2>
-                                <p style={{ marginBottom: '1.5rem', color: '#666', textAlign: 'center' }}>
-                                    Please upload your logo or design file (PNG, JPG, PDF, AI, EPS).
-                                </p>
-
-                                <div style={{ marginBottom: '2rem' }}>
-                                    <input
-                                        type="file"
-                                        accept="image/*,.pdf,.ai,.eps"
-                                        onChange={(e) => setArtworkFile(e.target.files ? e.target.files[0] : null)}
-                                        style={{ display: 'block', width: '100%', padding: '10px', border: '1px dashed #ccc', borderRadius: '4px' }}
-                                    />
-                                    {artworkFile && (
-                                        <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: 'green' }}>Selected: {artworkFile.name}</p>
-                                    )}
                                 </div>
 
                                 <div style={{ display: 'flex', gap: '1rem' }}>
-                                    <button
-                                        type="button"
-                                        onClick={() => setStep('design')}
-                                        className="btn"
-                                        style={{ flex: 1, background: '#f0f0f0', color: '#333' }}
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        onClick={handleUploadSubmit}
-                                        className="btn btn-primary"
-                                        style={{ flex: 2 }}
-                                        disabled={isLoading || !artworkFile}
-                                    >
-                                        {isLoading ? 'Uploading...' : 'Upload & Checkout'}
-                                    </button>
+                                    <button type="button" onClick={() => setStep('size')} className="btn" style={{ flex: 1, background: '#f0f0f0', color: '#333' }}>Back</button>
+                                    <button type="submit" className="btn btn-primary" style={{ flex: 2 }}>Next: Proofing &rarr;</button>
                                 </div>
-                            </>
+                            </form>
                         )}
 
+                        {/* STEP 4: PROOFING (New Step) */}
+                        {step === 'proofing' && (
+                            <div>
+                                <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: 'var(--color-navy)', textAlign: 'center' }}>Proofing & Finalize</h2>
+                                <p style={{ textAlign: 'center', marginBottom: '1.5rem', color: '#666', fontSize: '0.9rem' }}>
+                                    Select how you would like to approve your design.
+                                </p>
+
+                                {/* Rush Order Alert */}
+                                <div style={{ background: '#fff0f0', borderLeft: '4px solid #ff4d4d', padding: '1rem', marginBottom: '1.5rem', borderRadius: '4px' }}>
+                                    <strong style={{ color: '#d32f2f' }}>Need a Rush Order?</strong>
+                                    <p style={{ fontSize: '0.85rem', color: '#555', marginTop: '0.5rem' }}>
+                                        Please contact us before ordering to confirm delivery availability.<br />
+                                        Call/Text: <strong>747.338.8959</strong> or Email: <strong>rushorders@uspapercupfactory.com</strong>
+                                    </p>
+                                </div>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
+                                    {/* Option 1: Digital */}
+                                    <label style={{
+                                        display: 'flex', alignItems: 'center', padding: '1rem',
+                                        border: proofingOption === 'digital' ? '2px solid var(--color-navy)' : '1px solid #ddd',
+                                        background: proofingOption === 'digital' ? '#f0f4ff' : 'white',
+                                        borderRadius: '8px', cursor: 'pointer'
+                                    }}>
+                                        <input type="radio" name="proofing" checked={proofingOption === 'digital'} onChange={() => setProofingOption('digital')} />
+                                        <div style={{ marginLeft: '1rem' }}>
+                                            <div style={{ fontWeight: 'bold' }}>Digital Mockup (Free)</div>
+                                            <div style={{ fontSize: '0.8rem', color: '#666' }}>High-quality PDF proof sent to your email.</div>
+                                        </div>
+                                    </label>
+
+                                    {/* Option 2: Photo */}
+                                    <label style={{
+                                        display: 'flex', alignItems: 'center', padding: '1rem',
+                                        border: proofingOption === 'photo' ? '2px solid var(--color-navy)' : '1px solid #ddd',
+                                        background: proofingOption === 'photo' ? '#f0f4ff' : 'white',
+                                        borderRadius: '8px', cursor: 'pointer'
+                                    }}>
+                                        <input type="radio" name="proofing" checked={proofingOption === 'photo'} onChange={() => setProofingOption('photo')} />
+                                        <div style={{ marginLeft: '1rem' }}>
+                                            <div style={{ fontWeight: 'bold' }}>Printed Cup Photo (+$9.99)</div>
+                                            <div style={{ fontSize: '0.8rem', color: '#666' }}>We print one cup and email you a photo.</div>
+                                        </div>
+                                    </label>
+
+                                    {/* Option 3: Physical */}
+                                    <label style={{
+                                        display: 'flex', alignItems: 'center', padding: '1rem',
+                                        border: proofingOption === 'physical' ? '2px solid var(--color-navy)' : '1px solid #ddd',
+                                        background: proofingOption === 'physical' ? '#f0f4ff' : 'white',
+                                        borderRadius: '8px', cursor: 'pointer'
+                                    }}>
+                                        <input type="radio" name="proofing" checked={proofingOption === 'physical'} onChange={() => setProofingOption('physical')} />
+                                        <div style={{ marginLeft: '1rem' }}>
+                                            <div style={{ fontWeight: 'bold' }}>Mailed Physical Sample (+$19.99)</div>
+                                            <div style={{ fontSize: '0.8rem', color: '#666' }}>Actual printed cup mailed to your address.</div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div style={{ fontSize: '0.8rem', color: '#888', marginBottom: '1.5rem', background: '#fafafa', padding: '0.5rem', borderRadius: '4px' }}>
+                                    <strong>Policy:</strong> First round of changes is free. Subsequent rounds are $19.00 each.
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '1rem' }}>
+                                    <button onClick={() => setStep('details')} className="btn" style={{ flex: 1, background: '#f0f0f0', color: '#333' }}>Back</button>
+                                    <button onClick={handleFinalSubmit} disabled={isLoading} className="btn btn-primary" style={{ flex: 2 }}>
+                                        {isLoading ? 'Processing...' : `Pay $${(quantity * (unitAmount / quantity) + (proofingOption === 'photo' ? 9.99 : proofingOption === 'physical' ? 19.99 : 0)).toFixed(2)}`}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

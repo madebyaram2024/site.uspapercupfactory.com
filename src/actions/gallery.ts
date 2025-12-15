@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 
 const prisma = new PrismaClient()
+import { requireAdmin } from '@/lib/admin'
 
 export async function getGalleryItems() {
     return await prisma.galleryItem.findMany({
@@ -12,6 +13,7 @@ export async function getGalleryItems() {
 }
 
 export async function addGalleryItem(formData: FormData) {
+    await requireAdmin();
     const title = formData.get('title') as string
     const category = formData.get('category') as string
     const imageUrl = formData.get('imageUrl') as string
@@ -33,6 +35,7 @@ export async function addGalleryItem(formData: FormData) {
 }
 
 export async function deleteGalleryItem(id: string) {
+    await requireAdmin();
     await prisma.galleryItem.delete({
         where: { id }
     })

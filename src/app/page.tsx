@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import BuyButton from '@/components/BuyButton';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
-// import Image from 'next/image'; // Assuming standard img tag for simplicity with user uploads, or Next Image if preferred
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -60,9 +60,8 @@ export default function Home() {
             <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
               {/* 25 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/25.png?v=3" alt="25 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                  <Image src="/images/25.png" width={300} height={300} alt="25 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>25 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$50.00</div>
@@ -71,10 +70,9 @@ export default function Home() {
               </div>
               {/* 50 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center', border: '2px solid var(--color-gold)', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px' }}>MOST POPULAR</div>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/50.png?v=3" alt="50 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px', zIndex: 1 }}>MOST POPULAR</div>
+                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                  <Image src="/images/50.png" width={300} height={300} alt="50 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>50 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$75.00</div>
@@ -83,9 +81,8 @@ export default function Home() {
               </div>
               {/* 100 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/100.png?v=3" alt="100 Cups" loading="lazy" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                  <Image src="/images/100.png" width={300} height={300} alt="100 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>100 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$100.00</div>
@@ -108,7 +105,7 @@ export default function Home() {
               {/* Left Image - Using 500 cups image as placeholder for 'Business' context */}
               <div style={{ flex: 1 }}>
                 <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                  <img src="/images/More-t.png" alt="Business Partnership" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                  <Image src="/images/More-t.png" alt="Business Partnership" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
               </div>
               {/* Right Text */}
@@ -155,12 +152,12 @@ export default function Home() {
               </div>
               <div style={{ flex: 1, minWidth: '300px' }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', border: '4px solid white' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="/images/big_ds.jpg"
                     alt="Cups for weddings and parties"
-                    loading="lazy"
-                    style={{ height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'bottom' }}
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'bottom' }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
               </div>

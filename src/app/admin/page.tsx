@@ -1,44 +1,34 @@
 
-import { db } from "@/lib/db";
+import { getAdminStats } from "@/actions/admin";
 
 export default async function AdminDashboard() {
-    // Fetch stats in parallel
-    const [ordersCount, galleryCount, usersCount] = await Promise.all([
-        db.order.count(),
-        db.galleryItem.count(),
-        db.user.count(),
-    ]);
+    const stats = await getAdminStats();
 
     return (
         <div>
-            <h1 style={{ marginBottom: '2rem' }}>Dashboard Overview</h1>
+            <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
-                {/* Stat Cards */}
-                <div style={{ padding: '1.5rem', background: 'var(--color-navy)', color: 'white', borderRadius: 'var(--radius-md)' }}>
-                    <h3>Member Sales</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>{usersCount}</div>
-                    <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Registered Users</div>
-                </div>
-                <div style={{ padding: '1.5rem', background: 'white', border: '1px solid var(--gray-200)', borderRadius: 'var(--radius-md)' }}>
-                    <h3>Active Orders</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>{ordersCount}</div>
-                    <div style={{ fontSize: '0.9rem', color: '#666' }}>Total Orders</div>
-                </div>
-                <div style={{ padding: '1.5rem', background: 'white', border: '1px solid var(--gray-200)', borderRadius: 'var(--radius-md)' }}>
-                    <h3>Gallery Items</h3>
-                    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--color-navy)' }}>{galleryCount}</div>
-                    <div style={{ fontSize: '0.9rem', color: '#666' }}>Inspirational Designs</div>
-                </div>
-            </div>
-
-            <div style={{ marginTop: '3rem' }}>
-                <h2>Quick Actions</h2>
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                    <button className="btn btn-primary">Add Gallery Image</button>
-                    <button className="btn btn-secondary">Write Blog Post</button>
-                </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+                <StatsCard title="Total Orders" value={stats.orders} color="#3b82f6" />
+                <StatsCard title="Registered Users" value={stats.users} color="#10b981" />
+                <StatsCard title="Blog Posts" value={stats.posts} color="#8b5cf6" />
+                <StatsCard title="Gallery Items" value={stats.gallery} color="#f59e0b" />
             </div>
         </div>
     );
+}
+
+function StatsCard({ title, value, color }: { title: string, value: number, color: string }) {
+    return (
+        <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+            borderTop: `4px solid ${color}`
+        }}>
+            <h3 style={{ color: '#666', fontSize: '0.9rem', marginBottom: '0.5rem', textTransform: 'uppercase' }}>{title}</h3>
+            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111' }}>{value}</p>
+        </div>
+    )
 }
