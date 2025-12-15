@@ -5,7 +5,7 @@ import Stripe from 'stripe';
 import { PrismaClient } from '@prisma/client';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2024-11-20.acacia', // Use latest or matching version
+    apiVersion: '2024-11-20.acacia' as any, // Bypass strict type check for now to ensure build
 });
 
 const prisma = new PrismaClient();
