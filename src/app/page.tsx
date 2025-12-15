@@ -12,7 +12,7 @@ export default function Home() {
         <section style={{
           height: '85vh', // High impact 'Splash' height
           width: '100%',
-          backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0) 100%), url("/images/hero_backdrop.jpg")',
+          backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0) 100%), url("/images/Site_hero_section.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center bottom',
           backgroundRepeat: 'no-repeat',
