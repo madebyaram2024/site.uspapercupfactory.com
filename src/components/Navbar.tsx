@@ -26,11 +26,11 @@ export default function Navbar() {
             }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
-                        src="/images/Websit_Logo_Final2.png"
+                        src="/images/US_PAPER_CUP_FACTORY_LOGO_HORIZONTAL.png"
                         alt="US Paper Cup Factory"
-                        width={200}
-                        height={50}
-                        style={{ height: '50px', width: 'auto', objectFit: 'contain' }}
+                        width={300}
+                        height={60}
+                        style={{ height: '60px', width: 'auto', objectFit: 'contain' }}
                         priority
                     />
                 </Link>
