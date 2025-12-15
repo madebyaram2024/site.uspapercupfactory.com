@@ -48,9 +48,11 @@ export default async function AdminMockupsPage() {
                                     {mockup.order?.user?.email || 'Guest'}
                                 </td>
                                 <td style={{ padding: '1rem' }}>
-                                    {mockup.approved ?
+                                    {mockup.status === 'APPROVED' ?
                                         <span style={{ color: 'green', fontWeight: 'bold' }}>Approved</span> :
-                                        <span style={{ color: 'orange', fontWeight: 'bold' }}>Pending</span>
+                                        mockup.status === 'CHANGES_REQUESTED' ?
+                                            <span style={{ color: 'red', fontWeight: 'bold' }}>Changes Req</span> :
+                                            <span style={{ color: 'orange', fontWeight: 'bold' }}>{mockup.status}</span>
                                     }
                                 </td>
                                 <td style={{ padding: '1rem' }}>

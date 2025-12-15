@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import { getAllOrders } from "@/actions/orders";
 
 export default async function AdminOrdersPage() {
@@ -22,7 +23,11 @@ export default async function AdminOrdersPage() {
                     <tbody>
                         {orders.map((order: any) => (
                             <tr key={order.id} style={{ borderBottom: '1px solid #eee' }}>
-                                <td style={{ padding: '1rem' }}>{new Date(order.createdAt).toLocaleDateString()}</td>
+                                <td style={{ padding: '1rem' }}>
+                                    <Link href={`/admin/orders/${order.id}`} style={{ color: "blue", textDecoration: "underline" }}>
+                                        {new Date(order.createdAt).toLocaleDateString()}
+                                    </Link>
+                                </td>
                                 <td style={{ padding: '1rem' }}>
                                     {order.user?.name || order.user?.email || 'Guest'}
                                     <div style={{ fontSize: '0.8rem', color: '#666' }}>{order.user?.email}</div>
@@ -33,14 +38,14 @@ export default async function AdminOrdersPage() {
                                         padding: '0.25rem 0.5rem',
                                         borderRadius: '4px',
                                         fontSize: '0.8rem',
-                                        background: order.paid ? '#e6fffa' : '#fff5f5',
-                                        color: order.paid ? '#047857' : '#c53030'
+                                        background: order.status === 'PAID' ? '#e6fffa' : '#fff5f5',
+                                        color: order.status === 'PAID' ? '#047857' : '#c53030'
                                     }}>
-                                        {order.paid ? 'Paid' : 'Unpaid'}
+                                        {order.status}
                                     </span>
                                 </td>
                                 <td style={{ padding: '1rem' }}>
-                                    ${(order.amount / 100).toFixed(2)}
+                                    ${Number(order.totalAmount).toFixed(2)}
                                 </td>
                             </tr>
                         ))}

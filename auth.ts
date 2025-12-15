@@ -4,6 +4,7 @@ import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
+import Resend from "next-auth/providers/resend";
 
 import { db } from "@/lib/db";
 
@@ -40,6 +41,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig,
     providers: [
         ...authConfig.providers.filter((p: any) => p.id !== "credentials"), // eslint-disable-line @typescript-eslint/no-explicit-any
+        Resend({
+            apiKey: process.env.RESEND_API_KEY,
+            from: "access@uspapercupfactory.com"
+        }),
         Credentials({
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) return null;

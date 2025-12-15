@@ -1,10 +1,8 @@
+import { db } from "@/lib/db";
+import { requireAdmin } from "@/lib/admin";
+import { revalidatePath } from "next/cache";
 
-'use server'
-
-import { PrismaClient } from '@prisma/client'
-import { requireAdmin } from '@/lib/admin'
-
-const prisma = new PrismaClient()
+const prisma = db;
 
 export async function getAdminStats() {
     await requireAdmin();
@@ -22,4 +20,21 @@ export async function getAdminStats() {
         posts: blogCount,
         gallery: galleryCount
     };
+}
+
+export async function addMockup(orderId: string, imageUrl: string, comment?: string) {
+    await requireAdmin();
+
+    await db.mockup.create({
+        data: {
+            orderId,
+            imageUrl,
+            adminComments: comment,
+            status: "PENDING_REVIEW"
+        }
+    });
+
+    revalidatePath(`/admin/orders/${orderId}`);
+    revalidatePath(`/admin/mockups`);
+    revalidatePath(`/portal/mockups`); // In case user is viewing list
 }
