@@ -1,15 +1,15 @@
-
+```
 import BlogPostForm from "@/components/admin/BlogPostForm";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 
-interface EditBlogPostPageProps {
+interface Props {
     params: Promise<{ id: string }>;
 }
 
-export default async function EditBlogPostPage({ params }: EditBlogPostPageProps) {
+export default async function EditPostPage({ params }: Props) {
     const { id } = await params;
-    const post = await db.blogPost.findUnique({
+    const post = await prisma.blogPost.findUnique({
         where: { id }
     });
 
