@@ -17,10 +17,21 @@ services:
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - AUTH_TRUST_HOST=true
-      - DATABASE_URL=file:/app/prisma/dev.db # In-container DB path
+      - DATABASE_URL=postgresql://postgres:papercup_secure_pass_2025@db:5432/uspapercup?schema=public
     volumes:
-      - ./prisma:/app/prisma # Persist DB and migrations
       - ./public:/app/public # Allow hot-reloading of public assets
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=papercup_secure_pass_2025
+      - POSTGRES_DB=uspapercup
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   caddy:
     image: caddy:2-alpine
@@ -39,3 +50,4 @@ services:
 volumes:
   caddy_data:
   caddy_config:
+  postgres_data:
