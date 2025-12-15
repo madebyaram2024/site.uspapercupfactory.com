@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     const email = 'admin@uspapercupfactory.com';
-    const password = 'password123';
+    const password = 'admin123';
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.upsert({
