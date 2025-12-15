@@ -3,12 +3,15 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { PrismaClient } from '@prisma/client';
+import { Resend } from 'resend';
+import { OrderConfirmationTemplate } from '@/components/emails/OrderConfirmationTemplate';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2024-11-20.acacia' as any, // Bypass strict type check for now to ensure build
 });
 
 const prisma = new PrismaClient();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
@@ -95,4 +98,23 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     });
 
     console.log(`Order ${order.id} created for user ${user.email}`);
+
+    // 3. Send Email
+    try {
+        await resend.emails.send({
+            from: 'US Paper Cup Factory <orders@uspapercupfactory.com>',
+            to: [customerEmail],
+            subject: 'Order Confirmation - US Paper Cup Factory',
+            react: OrderConfirmationTemplate({
+                customerName: customerName,
+                orderId: order.id,
+                totalAmount: totalAmount,
+                productName: meta.productName || 'Custom Cups',
+                quantity: parseInt(meta.quantity || '0', 10),
+            }) as React.ReactElement,
+        });
+        console.log(`Email sent to ${customerEmail}`);
+    } catch (emailError) {
+        console.error('Failed to send email:', emailError);
+    }
 }
