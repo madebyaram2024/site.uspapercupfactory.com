@@ -1,4 +1,3 @@
-```
 import BlogPostForm from "@/components/admin/BlogPostForm";
 import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
@@ -9,7 +8,7 @@ interface Props {
 
 export default async function EditPostPage({ params }: Props) {
     const { id } = await params;
-    const post = await prisma.blogPost.findUnique({
+    const post = await db.blogPost.findUnique({
         where: { id }
     });
 
