@@ -31,7 +31,10 @@ jobs:
                       docker-compose up -d --build --force-recreate
 
                       echo "Waiting for health..."
-                      sleep 10
+                      sleep 20
+
+                      echo "=== APPLYING ADMIN FIX ==="
+                      docker-compose exec -T web node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRU8eKHuKXH6', role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRU8eKHuKXH6', name: 'Admin', role: 'ADMIN' } }); await prisma.\$disconnect(); } main();"
 
                       echo "=== NEW STATUS ==="
                       docker ps -a
