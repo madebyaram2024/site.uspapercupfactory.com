@@ -1,0 +1,37 @@
+name: Debug Server
+
+on:
+    workflow_dispatch:
+
+jobs:
+    debug:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run Diagnostics via SSH
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      echo "================ SYSTEM INFO ================"
+                      uptime
+                      df -h
+                      free -m
+
+                      echo ""
+                      echo "================ DOCKER PROCESSES ================"
+                      docker ps -a
+
+                      echo ""
+                      echo "================ CADDY LOGS (Last 50) ================"
+                      docker logs --tail 50 caddy
+
+                      echo ""
+                      echo "================ WEB APP LOGS (Last 50) ================"
+                      docker logs --tail 50 us_paper_cup_web
+
+                      echo ""
+                      echo "================ NETWORK PORTS ================"
+                      # Handle minimal alpine/debian environments where netstat might be missing or different
+                      netstat -tulpn || ss -tulpn || echo "Netstat/SS not found"
