@@ -23,8 +23,9 @@ jobs:
                       echo "Pruning system..."
                       docker system prune -a -f
 
-                      echo "Pulling latest code..."
-                      git pull origin main
+                      echo "Forcing clean code sync..."
+                      git fetch --all
+                      git reset --hard origin/main
 
                       echo "Rebuilding and Starting..."
                       docker-compose up -d --build --force-recreate
