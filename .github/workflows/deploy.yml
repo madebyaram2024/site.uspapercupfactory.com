@@ -17,7 +17,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /root/us-paper-cup
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             echo "Auto-healing: Resetting containers..."
             docker-compose down -v --remove-orphans
             docker system prune -a -f
