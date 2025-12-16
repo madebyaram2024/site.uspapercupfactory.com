@@ -1,0 +1,22 @@
+name: Emergency Login Fix
+on:
+    push:
+        paths:
+            - ".github/workflows/emergency_login_fix.yml"
+
+jobs:
+    fix:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Force DB Update
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      echo "EXECUTING FORCE FIX..."
+                      cd /root/us-paper-cup
+                      # DIRECT DB INJECTION - NO BUILD REQUIRED
+                      # Hash for 'admin123'
+                      docker-compose exec -T web node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { console.log('Updating...'); await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRUxXgs6Ny', role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', name: 'Admin', password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRUxXgs6Ny', role: 'ADMIN' } }); console.log('Done.'); } main();"
