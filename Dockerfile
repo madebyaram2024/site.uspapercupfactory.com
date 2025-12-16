@@ -60,9 +60,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
-# Install prisma explicitly for runtime migrations
+# Install prisma and netcat explicitly for runtime migrations and health checks
 ENV NPM_CONFIG_PREFIX=/home/nextjs/.npm-global
 ENV PATH=$PATH:/home/nextjs/.npm-global/bin
+RUN apk add --no-cache netcat-openbsd
 RUN npm install -g prisma@5.22.0
 
 USER nextjs
@@ -73,4 +74,5 @@ ENV PORT 3000
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["sh", "-c", "prisma db push --skip-generate && HOSTNAME=0.0.0.0 node server.js"]
+# Wait for DB to be ready before running migrations and starting server
+CMD ["sh", "-c", "echo 'Waiting for DB...'; until nc -z -v -w30 db 5432; do echo 'Waiting for DB connection...'; sleep 5; done; echo 'DB connected!'; prisma db push --skip-generate && HOSTNAME=0.0.0.0 node server.js"]
