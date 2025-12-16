@@ -25,6 +25,6 @@ jobs:
             echo "=== CONTAINER STATUS ==="
             docker ps -a
             echo "=== WEB LOGS ==="
-            docker logs --tail 50 us_paper_cup_web
+            docker-compose logs --tail 50 web
             echo "=== CADDY LOGS ==="
             docker logs --tail 20 caddy

@@ -5,7 +5,6 @@ services:
   web:
     image: us_paper_cup_web:latest
     build: .
-    container_name: us_paper_cup_web
     restart: always
     # ports:
     #   - "3000:3000" # Not exposed directly anymore, access via Caddy

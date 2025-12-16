@@ -34,4 +34,4 @@ jobs:
 
                       echo "=== NEW STATUS ==="
                       docker ps -a
-                      docker logs --tail 20 us_paper_cup_web
+                      docker-compose logs --tail 20 web
