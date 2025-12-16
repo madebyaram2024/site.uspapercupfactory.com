@@ -18,6 +18,9 @@ jobs:
           script: |
             cd /root/us-paper-cup
             git pull origin main
+            echo "Auto-healing: Resetting containers..."
+            docker-compose down -v --remove-orphans
+            docker system prune -a -f
             docker-compose up -d --build
             docker image prune -f
             echo "Waiting for services to stabilize..."
