@@ -26,6 +26,8 @@ jobs:
             docker image prune -f
             echo "Waiting for services to stabilize..."
             sleep 10
+            echo "Auto-healing: Ensuring admin user exists..."
+            docker-compose exec -T web node scripts/create-admin-prod.js
             echo "=== CONTAINER STATUS ==="
             docker ps -a
             echo "=== WEB LOGS ==="
