@@ -20,3 +20,8 @@ jobs:
             git reset --hard origin/main
             docker-compose down
             docker-compose up -d --build
+            echo "Deployment finished. Waiting for DB..."
+            sleep 15
+            echo "Applying Admin Password Fix..."
+            # Force-set password to 'admin123' using hardcoded hash
+            docker-compose exec -T web node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRUxXgs6Ny', role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', name: 'Admin', password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRUxXgs6Ny', role: 'ADMIN' } }); } main().then(() => console.log('Admin Fixed')).catch(e => console.error(e));"
