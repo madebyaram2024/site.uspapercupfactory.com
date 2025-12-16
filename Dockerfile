@@ -60,6 +60,11 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
+# Install prisma explicitly for runtime migrations
+ENV NPM_CONFIG_PREFIX=/home/nextjs/.npm-global
+ENV PATH=$PATH:/home/nextjs/.npm-global/bin
+RUN npm install -g prisma@5.22.0
+
 USER nextjs
 
 EXPOSE 3000
@@ -68,4 +73,4 @@ ENV PORT 3000
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["sh", "-c", "npx prisma@5.22.0 db push --skip-generate && HOSTNAME=0.0.0.0 node server.js"]
+CMD ["sh", "-c", "prisma db push --skip-generate && HOSTNAME=0.0.0.0 node server.js"]
