@@ -50,3 +50,5 @@ volumes:
   caddy_data:
   caddy_config:
   postgres_data:
+  uploads_data:
+```
