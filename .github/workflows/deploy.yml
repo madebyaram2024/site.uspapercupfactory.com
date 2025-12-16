@@ -30,7 +30,7 @@ jobs:
             docker-compose exec -T web node scripts/create-admin-prod.js
             echo "Auto-healing: Fixing upload permissions..."
             docker-compose exec -u root -T web chown -R nextjs:nodejs /app/public/uploads
-            docker-compose exec -u root -T web chmod -R 755 /app/public/uploads
+            docker-compose exec -u root -T web chmod -R 777 /app/public/uploads
             echo "=== CONTAINER STATUS ==="
             docker ps -a
             echo "=== WEB LOGS ==="
