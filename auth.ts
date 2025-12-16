@@ -47,21 +47,37 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }),
         Credentials({
             async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) return null;
+                console.log("[AUTH_DEBUG] Authorize called");
+                if (!credentials?.email || !credentials?.password) {
+                    console.log("[AUTH_DEBUG] Missing credentials");
+                    return null;
+                }
 
-                const email = credentials.email as string;
+                const email = (credentials.email as string).toLowerCase();
                 const password = credentials.password as string;
+
+                console.log(`[AUTH_DEBUG] Attempting login for: ${email}`);
 
                 const user = await db.user.findUnique({
                     where: { email }
                 });
 
-                if (!user || !user.password) return null;
+                if (!user) {
+                    console.log("[AUTH_DEBUG] User not found in DB");
+                    return null;
+                }
+
+                if (!user.password) {
+                    console.log("[AUTH_DEBUG] User has no password set");
+                    return null;
+                }
 
                 const passwordsMatch = await bcrypt.compare(password, user.password);
+                console.log(`[AUTH_DEBUG] Password match result: ${passwordsMatch}`);
 
                 if (passwordsMatch) return user;
 
+                console.log("[AUTH_DEBUG] Password did not match");
                 return null;
             }
         })
