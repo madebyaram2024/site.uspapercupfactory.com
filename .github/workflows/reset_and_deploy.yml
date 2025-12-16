@@ -1,0 +1,37 @@
+name: Reset and Deploy
+
+on:
+    workflow_dispatch:
+
+jobs:
+    reset-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Reset Docker and Redeploy via SSH
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      echo "=== STARTING FULL RESET ==="
+                      cd /root/us-paper-cup
+
+                      echo "Stopping all containers..."
+                      docker-compose down -v --remove-orphans
+
+                      echo "Pruning system..."
+                      docker system prune -a -f
+
+                      echo "Pulling latest code..."
+                      git pull origin main
+
+                      echo "Rebuilding and Starting..."
+                      docker-compose up -d --build --force-recreate
+
+                      echo "Waiting for health..."
+                      sleep 10
+
+                      echo "=== NEW STATUS ==="
+                      docker ps -a
+                      docker logs --tail 20 us_paper_cup_web
