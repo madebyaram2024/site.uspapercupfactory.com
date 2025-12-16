@@ -1,0 +1,19 @@
+name: Restore Admin User
+
+on:
+    workflow_dispatch:
+
+jobs:
+    restore-admin:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Exec into container and run seed script
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: |
+                      echo "Running admin restoration script..."
+                      # Execute the node script inside the running web container
+                      docker-compose -f /root/us-paper-cup/docker-compose.yml exec -T web node scripts/create-admin-prod.js
