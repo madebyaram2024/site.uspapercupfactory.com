@@ -27,6 +27,10 @@ jobs:
             echo "Waiting for services to stabilize..."
             sleep 10
             echo "Auto-healing: Ensuring admin user exists..."
+            # Force-copy the new script into the container (in case build failed/stale)
+            WEB_CONTAINER=$(docker-compose ps -q web)
+            docker cp scripts/create-admin-prod.js $WEB_CONTAINER:/app/scripts/create-admin-prod.js
+            # Run the script with the fresh code
             docker-compose exec -T web node scripts/create-admin-prod.js
             echo "Auto-healing: Fixing upload permissions..."
             docker-compose exec -u root -T web chown -R nextjs:nodejs /app/public/uploads
