@@ -20,8 +20,6 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - AUTH_TRUST_HOST=true
       - DATABASE_URL=postgresql://postgres:papercup_secure_pass_2025@db:5432/uspapercup?schema=public
-    volumes:
-      - ./public:/app/public # Allow hot-reloading of public assets
     depends_on:
       - db
 
