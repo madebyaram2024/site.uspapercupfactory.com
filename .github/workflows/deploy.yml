@@ -21,6 +21,7 @@ jobs:
             docker-compose down
             docker-compose up -d --build
             echo "Deployment finished. Waiting for DB..."
+            docker-compose exec -T web sh -c 'date > /app/public/deploy_check.txt'
             sleep 15
             echo "Applying Admin Password Fix..."
             # Force-set password to 'admin123' using hardcoded hash
