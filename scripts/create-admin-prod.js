@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 async function main() {
     const email = 'admin@uspapercupfactory.com';
-    // Hash for 'admin123'
-    const hashedPassword = '$2b$10$6GmBqZLY.HjyvCY8SbywHeRhWRc8u7CckiJDNd/3vwcderUMi9iwW';
+    const bcrypt = require('bcryptjs');
+    const hashedPassword = await bcrypt.hash('admin123', 10);
 
     console.log('Upserting admin user...');
     try {
