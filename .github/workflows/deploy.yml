@@ -28,6 +28,8 @@ jobs:
             sleep 10
             echo "Auto-healing: Ensuring admin user exists..."
             docker-compose exec -T web node scripts/create-admin-prod.js
+            echo "Auto-healing: Fixing upload permissions..."
+            docker-compose exec -u root -T web chown -R nextjs:nodejs /app/public/uploads
             echo "=== CONTAINER STATUS ==="
             docker ps -a
             echo "=== WEB LOGS ==="
