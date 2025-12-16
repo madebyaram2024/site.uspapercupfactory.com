@@ -25,7 +25,7 @@ jobs:
 
                       echo ""
                       echo "================ CADDY LOGS (Last 50) ================"
-                      docker logs --tail 50 caddy
+                      docker-compose logs --tail 50 caddy
 
                       echo ""
                       echo "================ WEB APP LOGS (Last 50) ================"
