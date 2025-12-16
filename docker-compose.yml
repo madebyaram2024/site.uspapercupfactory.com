@@ -42,7 +42,9 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
+      - caddy_data:/data
       - caddy_config:/config
+      - uploads_data:/uploaded_files # Serve uploads directly via Caddy
     depends_on:
       - web
 

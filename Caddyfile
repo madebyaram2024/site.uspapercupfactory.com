@@ -1,3 +1,9 @@
 uspapercupfactory.com, www.uspapercupfactory.com {
+    # Serve uploads directly from the volume, bypassing Next.js
+    handle_path /uploads/* {
+        root * /uploaded_files
+        file_server
+    }
+
     reverse_proxy web:3000
 }
