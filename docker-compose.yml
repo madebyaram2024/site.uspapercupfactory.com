@@ -13,6 +13,7 @@ services:
         - AUTH_SECRET=${AUTH_SECRET}
         - AUTH_URL=https://uspapercupfactory.com
         - AUTH_TRUST_HOST=true
+        - DATABASE_URL=postgresql://postgres:papercup_secure_pass_2025@db:5432/uspapercup?schema=public
     restart: always
     # ports:
     #   - "3000:3000" # Not exposed directly anymore, access via Caddy

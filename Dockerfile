@@ -51,6 +51,9 @@ ENV AUTH_TRUST_HOST=$AUTH_TRUST_HOST
 # Increase Node memory to prevent OOM during build
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
