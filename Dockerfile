@@ -42,6 +42,15 @@ ENV GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
 ARG AUTH_SECRET
 ENV AUTH_SECRET=$AUTH_SECRET
 
+ARG AUTH_URL
+ENV AUTH_URL=$AUTH_URL
+
+ARG AUTH_TRUST_HOST
+ENV AUTH_TRUST_HOST=$AUTH_TRUST_HOST
+
+# Increase Node memory to prevent OOM during build
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
