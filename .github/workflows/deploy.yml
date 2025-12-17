@@ -27,5 +27,5 @@ jobs:
             sleep 15 && \
             docker-compose exec -T web sh -c 'date > /app/public/deploy_check.txt' && \
             echo 'Applying Admin Password Fix...' && \
-            docker-compose exec -T web node -e \"const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); const bcrypt = require('bcryptjs'); async function main() { const hash = await bcrypt.hash('admin123', 10); await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: hash, role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', password: hash, name: 'Admin', role: 'ADMIN' } }); await prisma.\$disconnect(); } main();\"
+            docker-compose exec -T web node -e \"const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); const bcrypt = require('bcryptjs'); async function main() { const hash = await bcrypt.hash('admin123', 10); await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: hash, role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', password: hash, name: 'Admin', role: 'ADMIN' } }); } main();\"
           "
