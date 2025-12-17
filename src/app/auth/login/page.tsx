@@ -29,7 +29,15 @@ export default function LoginPage() {
                 setError("Invalid email or password");
                 setLoading(false);
             } else {
-                window.location.href = "/dashboard";
+                // Check session to determine redirect
+                import('next-auth/react').then(async ({ getSession }) => {
+                    const session = await getSession();
+                    if ((session?.user as any)?.role === 'ADMIN') {
+                        window.location.href = "/admin";
+                    } else {
+                        window.location.href = "/dashboard";
+                    }
+                });
             }
         } catch {
             setError("Something went wrong");
