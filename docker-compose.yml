@@ -4,7 +4,10 @@ version: '3'
 services:
   web:
     image: us_paper_cup_web:latest
-    build: .
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
     restart: always
     # ports:
     #   - "3000:3000" # Not exposed directly anymore, access via Caddy
