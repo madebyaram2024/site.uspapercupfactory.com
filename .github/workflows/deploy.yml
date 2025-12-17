@@ -23,8 +23,8 @@ jobs:
             echo 'Rebuilding containers...' && \
             echo 'Rebuilding containers...' && \
             docker-compose down || true && \
-            docker rm -f us-paper-cup_web_1 us-paper-cup_caddy_1 || true && \
-            docker-compose up -d --build && \
+            docker rm -f $(docker ps -aq --filter name=us-paper-cup) || true && \
+            docker-compose up -d --build --remove-orphans && \
             echo 'Deployment finished. Waiting for DB...' && \
             sleep 15 && \
             docker-compose exec -T -u root web mkdir -p /app/public/uploads && \
