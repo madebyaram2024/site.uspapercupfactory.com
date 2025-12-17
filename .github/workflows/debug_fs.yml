@@ -17,6 +17,10 @@ jobs:
             cd /root/us-paper-cup && \
             echo '=== Docker Status ===' && \
             docker ps -a && \
+            echo '=== Reviving Containers ===' && \
+            docker-compose up -d && \
+            echo '=== Docker Status After Revive ===' && \
+            docker ps -a && \
             echo '=== Web Logs ===' && \
-            docker logs us-paper-cup_web_1 --tail 50
+            docker-compose logs --tail 20 web
           "
