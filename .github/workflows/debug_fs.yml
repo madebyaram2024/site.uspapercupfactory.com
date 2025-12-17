@@ -1,26 +1,20 @@
 name: Debug Filesystem
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    debug_fs:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Check FS via SSH
-              run: |
-                  mkdir -p ~/.ssh/
-                  echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-                  chmod 600 ~/.ssh/id_rsa
+  debug_fs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check FS via SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
-                  ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-                    cd /root/us-paper-cup && \
-                    echo '=== WEB: /app/public ===' && \
-                    docker-compose exec -T web ls -la /app/public && \
-                    echo '=== WEB: /app/public/uploads ===' && \
-                    docker-compose exec -T web ls -la /app/public/uploads || echo 'Uploads dir not found' && \
-                    echo '=== WEB: deploy_check.txt ===' && \
-                    docker-compose exec -T web cat /app/public/deploy_check.txt || echo 'Check file missing' && \
-                    echo '=== CADDY: /uploaded_files ===' && \
-                    docker-compose exec -T caddy ls -la /uploaded_files
-                  "
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd /root/us-paper-cup && \
+            echo '=== Testing Local Upload via Curl ===' && \
+            docker-compose exec -T -u root web sh -c 'apk add --no-cache curl && curl -v -F \"file=@/app/public/logo.png\" http://localhost:3000/api/upload'
+          "
