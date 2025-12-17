@@ -15,12 +15,8 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
             cd /root/us-paper-cup && \
-            echo '=== Echo Test ===' && \
-            docker-compose exec -T web echo "Hello from Container" && \
-            echo '=== Checking Logo ===' && \
-            docker-compose exec -T web ls -la /app/public/logo.png && \
-            echo '=== Installing Curl ===' && \
-            docker-compose exec -T -u root web apk add --no-cache curl && \
-            echo '=== Uploading ===' && \
-            docker-compose exec -T web curl -v -F "file=@/app/public/logo.png" http://localhost:3000/api/upload
+            echo '=== Docker Status ===' && \
+            docker ps -a && \
+            echo '=== Web Logs ===' && \
+            docker logs us-paper-cup_web_1 --tail 50
           "
