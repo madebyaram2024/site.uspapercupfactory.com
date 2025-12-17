@@ -89,7 +89,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 ENV NPM_CONFIG_PREFIX=/home/nextjs/.npm-global
 ENV PATH=$PATH:/home/nextjs/.npm-global/bin
 RUN apk add --no-cache netcat-openbsd
-RUN npm install -g prisma@5.22.0
+RUN npm install -g prisma@5.22.0 bcryptjs @prisma/client
+
+ENV NODE_PATH=/home/nextjs/.npm-global/lib/node_modules
 
 USER nextjs
 
