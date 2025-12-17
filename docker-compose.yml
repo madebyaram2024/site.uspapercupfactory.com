@@ -8,6 +8,9 @@ services:
       context: .
       args:
         - NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+        - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+        - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+        - AUTH_SECRET=${AUTH_SECRET}
     restart: always
     # ports:
     #   - "3000:3000" # Not exposed directly anymore, access via Caddy
