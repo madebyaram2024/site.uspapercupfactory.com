@@ -14,13 +14,15 @@ jobs:
                   username: ${{ secrets.VPS_USER }}
                   key: ${{ secrets.VPS_SSH_KEY }}
                   script: |
-                      echo "================ SYSTEM INFO ================"
+                      echo "=== SYSTEM INFO ==="
                       uptime
                       df -h
                       free -m
 
+                      cd /root/us-paper-cup
+
                       echo ""
-                      echo "================ DOCKER PROCESSES ================"
+                      echo "=== DOCKER PROCESSES ==="
                       docker ps -a
 
                       echo ""

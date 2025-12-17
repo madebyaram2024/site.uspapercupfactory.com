@@ -8,21 +8,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            cd /root/us-paper-cup
-            git fetch origin
-            git reset --hard origin/main
-            docker-compose down
-            docker-compose up -d --build
-            echo "Deployment finished. Waiting for DB..."
-            docker-compose exec -T web sh -c 'date > /app/public/deploy_check.txt'
-            sleep 15
-            echo "Applying Admin Password Fix..."
-            # Force-set password to 'admin123' using hardcoded hash
-            docker-compose exec -T web node -e "const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRU8eKHuKXH6', role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', password: '\$2b\$10\$iUbSRT5127B2Odfx.jZbA.pJeYXTRxvaPuIZ8AQJxlwRRU8eKHuKXH6', name: 'Admin', role: 'ADMIN' } }); await prisma.\$disconnect(); } main();"
+      - name: Deploy via SSH (Raw)
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          echo "=== CONNECTING TO ${{ secrets.VPS_HOST }} ==="
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd /root/us-paper-cup && \
+            echo 'Fetching latest code...' && \
+            git fetch origin && \
+            git reset --hard origin/main && \
+            echo 'Rebuilding containers...' && \
+            docker-compose down && \
+            docker-compose up -d --build && \
+            echo 'Deployment finished. Waiting for DB...' && \
+            sleep 15 && \
+            docker-compose exec -T web sh -c 'date > /app/public/deploy_check.txt' && \
+            echo 'Applying Admin Password Fix...' && \
+            docker-compose exec -T web node -e \"const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); const bcrypt = require('bcryptjs'); async function main() { const hash = await bcrypt.hash('admin123', 10); await prisma.user.upsert({ where: { email: 'admin@uspapercupfactory.com' }, update: { password: hash, role: 'ADMIN' }, create: { email: 'admin@uspapercupfactory.com', password: hash, name: 'Admin', role: 'ADMIN' } }); await prisma.\$disconnect(); } main();\"
+          "
