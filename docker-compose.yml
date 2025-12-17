@@ -17,6 +17,8 @@ services:
     restart: always
     # ports:
     #   - "3000:3000" # Not exposed directly anymore, access via Caddy
+    volumes:
+      - uploads_data:/app/public/uploads
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
