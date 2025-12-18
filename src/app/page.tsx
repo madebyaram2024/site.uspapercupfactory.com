@@ -6,22 +6,8 @@ import HeroCarousel from '@/components/HeroCarousel';
 import { getGalleryItems } from '@/actions/gallery';
 
 export default async function Home() {
-  const galleryItems = await getGalleryItems();
-
-  // Prepare 16 images for rotation (shuffled or sliced from gallery)
-  const galleryImages = galleryItems.map(item => item.imageUrl);
-
-  // Default backup images if gallery is empty
-  const defaultImages = [
-    '/images/500.png',
-    '/images/1000.png',
-    '/images/5000.png',
-    '/images/big_ds.jpg'
-  ];
-
-  const images = galleryImages.length > 0
-    ? (galleryImages.length >= 16 ? galleryImages.slice(0, 16) : [...galleryImages, ...defaultImages].slice(0, 16))
-    : defaultImages;
+  // Prepare 15 specific hero images for rotation
+  const images = Array.from({ length: 15 }, (_, i) => `/images/Hero_${i + 1}.png`);
   return (
     <>
       <Navbar />
@@ -107,7 +93,7 @@ export default async function Home() {
                 minHeight: '400px',
                 background: '#f0f0f0'
               }}>
-                <HeroCarousel images={images} />
+                <HeroCarousel images={images} interval={5000} />
               </div>
 
             </div>
