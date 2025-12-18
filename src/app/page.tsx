@@ -53,6 +53,39 @@ export default async function Home() {
 
               <div style={{ position: 'relative', zIndex: 1 }}>
                 <div className="animate-fade-in-up" style={{ animationDelay: '0.1s', display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
+                  {/* MADE IN USA BADGE - TOP SECTON */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-60px',
+                    right: '0',
+                    width: '130px',
+                    height: '130px',
+                    zIndex: 10,
+                    opacity: 0.95
+                  }} className="animate-float">
+                    <div style={{
+                      width: '100%',
+                      height: '100%',
+                      border: '2px dashed var(--color-red)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      padding: '12px',
+                      color: 'var(--color-red)',
+                      fontSize: '0.8rem',
+                      lineHeight: '1.2',
+                      fontWeight: '900',
+                      textTransform: 'uppercase',
+                      transform: 'rotate(-10deg)',
+                      background: 'white',
+                      boxShadow: '0 8px 25px rgba(214,31,31,0.1)'
+                    }}>
+                      MADE WITH <br /> PRIDE <br /> IN USA
+                    </div>
+                  </div>
+
                   <div style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -67,37 +100,7 @@ export default async function Home() {
                     border: '1px solid rgba(214,31,31,0.1)'
                   }}>
                     <span style={{ fontSize: '1.2rem' }}>★</span>
-                    PROUDLY MANUFACTURED IN USA
-                  </div>
-
-                  {/* MADE IN USA BADGE - RELOCATED */}
-                  <div style={{
-                    width: '100px',
-                    height: '100px',
-                    zIndex: 2,
-                    opacity: 0.95
-                  }} className="animate-float hide-mobile">
-                    <div style={{
-                      width: '100%',
-                      height: '100%',
-                      border: '2px dashed var(--color-red)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      padding: '10px',
-                      color: 'var(--color-red)',
-                      fontSize: '0.65rem',
-                      lineHeight: '1.2',
-                      fontWeight: '900',
-                      textTransform: 'uppercase',
-                      transform: 'rotate(-10deg)',
-                      background: 'white',
-                      boxShadow: '0 5px 15px rgba(0,0,0,0.05)'
-                    }}>
-                      MADE WITH <br /> PRIDE <br /> IN USA
-                    </div>
+                    8000 SQFT FACILITY IN HUNTINGTON BEACH, CA
                   </div>
                 </div>
 
@@ -117,8 +120,8 @@ export default async function Home() {
 
                 <div className="animate-fade-in-up" style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '2rem',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '1.5rem',
                   margin: '0 0 4rem',
                   animationDelay: '0.3s'
                 }}>
