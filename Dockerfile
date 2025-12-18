@@ -101,5 +101,8 @@ ENV PORT 3000
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
+# Set permissions for the startup script
+RUN chmod +x scripts/startup.sh
+
 # Wait for DB to be ready before running migrations and starting server
-CMD ["sh", "-c", "echo 'Waiting for DB...'; until nc -z -v -w30 db 5432; do echo 'Waiting for DB connection...'; sleep 5; done; echo 'DB connected!'; prisma db push --skip-generate --accept-data-loss && HOSTNAME=0.0.0.0 node server.js"]
+CMD ["./scripts/startup.sh"]
