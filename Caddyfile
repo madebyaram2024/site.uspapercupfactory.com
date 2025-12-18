@@ -1,7 +1,13 @@
 uspapercupfactory.com, www.uspapercupfactory.com {
-    # Serve uploads directly from the volume, bypassing Next.js
+    # Serve uploads directly from the volume
     handle_path /uploads/* {
         root * /uploaded_files
+        file_server
+    }
+
+    # Serve static images directly
+    handle_path /images/* {
+        root * /app_public/images
         file_server
     }
 

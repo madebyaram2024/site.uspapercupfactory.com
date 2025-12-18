@@ -55,6 +55,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
       - uploads_data:/uploaded_files # Serve uploads directly via Caddy
+      - ./public:/app_public # Mount public for direct image serving
     depends_on:
       - web
 
