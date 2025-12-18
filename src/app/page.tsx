@@ -12,91 +12,88 @@ export default async function Home() {
     <>
       <Navbar />
       <main>
-        {/* HERO SECTION - REDESIGNED */}
+        {/* HERO SECTION - REDESIGNED FULL-WIDTH */}
         <section style={{
           position: 'relative',
-          padding: '4rem 0',
+          padding: '0',
           background: 'white',
           overflow: 'hidden'
         }}>
-          <div className="container">
+          <div style={{
+            display: 'flex',
+            minHeight: '700px',
+            backgroundColor: 'white',
+            flexDirection: 'row',
+            width: '100%'
+          }} className="flex-col-mobile">
+
+            {/* Left Content Column */}
             <div style={{
+              flex: 1,
+              padding: 'clamp(2rem, 8vw, 6rem)',
               display: 'flex',
-              border: '2px solid black',
-              minHeight: '600px',
-              backgroundColor: 'white',
-              flexDirection: 'row'
-            }} className="flex-col-mobile">
-
-              {/* Left Content Column */}
-              <div style={{
-                flex: 1,
-                padding: '4rem 3rem',
-                borderRight: '2px solid black',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center'
-              }} className="no-border-mobile">
-                <h1 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  lineHeight: '1.1',
-                  color: 'var(--color-navy)',
-                  fontWeight: 'bold',
-                  marginBottom: '1rem',
-                  textTransform: 'uppercase'
-                }}>
-                  <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
-                  FULL COLOR PAPER<br />
-                  CUPS.
-                </h1>
-
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: '1.5rem 0 3rem',
-                  fontSize: '1.25rem',
-                  fontWeight: '600',
-                  color: 'var(--color-navy)',
-                  lineHeight: '2.2'
-                }}>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.5rem' }}>•</span> MADE IN USA
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.5rem' }}>•</span> Low MOQ, Free Design
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.5rem' }}>•</span> The Best Value for Your Brand
-                  </li>
-                </ul>
-
-                <div className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem' }}>
-                  <a href="/dashboard" className="btn btn-primary" style={{
-                    padding: '16px 32px',
-                    fontSize: '1rem',
-                    letterSpacing: '1px'
-                  }}>START YOUR PROJECT</a>
-                  <a href="/gallery" className="btn btn-secondary" style={{
-                    padding: '16px 32px',
-                    fontSize: '1rem',
-                    letterSpacing: '1px',
-                    border: '2px solid var(--color-navy)',
-                    color: 'var(--color-navy)'
-                  }}>GET INSPIRED</a>
-                </div>
-              </div>
-
-              {/* Right Image/Carousel Column */}
-              <div style={{
-                flex: 1,
-                position: 'relative',
-                minHeight: '400px',
-                background: '#f0f0f0'
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <h1 style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                lineHeight: '1.1',
+                color: 'var(--color-navy)',
+                fontWeight: 'bold',
+                marginBottom: '1rem',
+                textTransform: 'uppercase'
               }}>
-                <HeroCarousel images={images} interval={5000} />
-              </div>
+                <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
+                FULL COLOR PAPER<br />
+                CUPS.
+              </h1>
 
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: '1.5rem 0 3rem',
+                fontSize: '1.25rem',
+                fontWeight: '600',
+                color: 'var(--color-navy)',
+                lineHeight: '2.2'
+              }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '1.5rem' }}>•</span> MADE IN USA
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '1.5rem' }}>•</span> Low MOQ, Free Design
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '1.5rem' }}>•</span> The Best Value for Your Brand
+                </li>
+              </ul>
+
+              <div className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem' }}>
+                <a href="/dashboard" className="btn btn-primary" style={{
+                  padding: '18px 40px',
+                  fontSize: '1.1rem',
+                  letterSpacing: '1px'
+                }}>START YOUR PROJECT</a>
+                <a href="/gallery" className="btn btn-secondary" style={{
+                  padding: '18px 40px',
+                  fontSize: '1.1rem',
+                  letterSpacing: '1px',
+                  border: '2px solid var(--color-navy)',
+                  color: 'var(--color-navy)'
+                }}>GET INSPIRED</a>
+              </div>
             </div>
+
+            {/* Right Image/Carousel Column */}
+            <div style={{
+              flex: 1,
+              position: 'relative',
+              minHeight: '500px',
+              background: '#f8f8f8'
+            }}>
+              <HeroCarousel images={images} interval={5000} />
+            </div>
+
           </div>
         </section>
 
