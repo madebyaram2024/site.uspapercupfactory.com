@@ -56,8 +56,8 @@ export default async function Home() {
                   {/* MADE IN USA BADGE - TOP SECTON */}
                   <div style={{
                     position: 'absolute',
-                    top: '-40px',
-                    right: '20px',
+                    top: '0',
+                    right: '0',
                     width: '110px',
                     height: '110px',
                     zIndex: 10,
@@ -118,9 +118,8 @@ export default async function Home() {
                   CUPS.
                 </h1>
 
-                <div className="animate-fade-in-up" style={{
+                <div className="animate-fade-in-up grid-3-cols" style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
                   gap: '1rem',
                   margin: '0 0 3rem',
                   animationDelay: '0.3s'
