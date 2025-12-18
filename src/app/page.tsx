@@ -2,108 +2,116 @@ import Navbar from '@/components/Navbar';
 import BuyButton from '@/components/BuyButton';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 import Image from 'next/image';
+import HeroCarousel from '@/components/HeroCarousel';
+import { getGalleryItems } from '@/actions/gallery';
 
-export default function Home() {
+export default async function Home() {
+  const galleryItems = await getGalleryItems();
+
+  // Prepare 16 images for rotation (shuffled or sliced from gallery)
+  const galleryImages = galleryItems.map(item => item.imageUrl);
+
+  // Default backup images if gallery is empty
+  const defaultImages = [
+    '/images/500.png',
+    '/images/1000.png',
+    '/images/5000.png',
+    '/images/big_ds.jpg'
+  ];
+
+  const images = galleryImages.length > 0
+    ? (galleryImages.length >= 16 ? galleryImages.slice(0, 16) : [...galleryImages, ...defaultImages].slice(0, 16))
+    : defaultImages;
   return (
     <>
       <Navbar />
       <main>
-        {/* HERO SECTION */}
+        {/* HERO SECTION - REDESIGNED */}
         <section style={{
           position: 'relative',
-          height: 'min(90vh, 800px)',
-          width: '100%',
-          backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 100%), url("/images/Hero_bkg_image.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
-          display: 'flex',
-          alignItems: 'center',
+          padding: '4rem 0',
+          background: 'white',
           overflow: 'hidden'
         }}>
-          <div className="container" style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', width: '100%' }}>
-            <div className="flex-col-mobile" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '4rem' }}>
+          <div className="container">
+            <div style={{
+              display: 'flex',
+              border: '2px solid black',
+              minHeight: '600px',
+              backgroundColor: 'white',
+              flexDirection: 'row'
+            }} className="flex-col-mobile">
 
-              {/* Left Content */}
-              <div style={{ flex: 1, textAlign: 'left' }} className="animate-fade-in-up">
-                <h1 className="hero-title" style={{
+              {/* Left Content Column */}
+              <div style={{
+                flex: 1,
+                padding: '4rem 3rem',
+                borderRight: '2px solid black',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }} className="no-border-mobile">
+                <h1 style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  lineHeight: '1.1',
                   color: 'var(--color-navy)',
-                  fontSize: 'clamp(3rem, 8vw, 5rem)',
-                  marginBottom: '1.5rem',
-                  lineHeight: 1.1,
-                  textShadow: '0 2px 20px rgba(255,255,255,0.8)'
+                  fontWeight: 'bold',
+                  marginBottom: '1rem',
+                  textTransform: 'uppercase'
                 }}>
-                  CUSTOM DESIGNED,<br />
-                  <span style={{ color: 'var(--color-red)' }}>FULL COLOR PAPER CUPS.</span>
+                  <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
+                  FULL COLOR PAPER<br />
+                  CUPS.
                 </h1>
-                <p className="hero-p" style={{
-                  fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
-                  fontWeight: '500',
-                  maxWidth: '600px',
-                  marginBottom: '3rem',
-                  color: 'var(--color-navy)',
-                  opacity: 0.9
-                }}>
-                  MADE IN USA. Low MOQ, Free Design.<br />
-                  The Premiere Branding Solution for Your Business.
-                </p>
-                <div className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                  <a href="/dashboard" className="btn btn-primary btn-mobile-full" style={{ padding: '20px 48px', fontSize: '1.25rem', boxShadow: '0 8px 24px rgba(183, 28, 28, 0.3)' }}>START YOUR PROJECT</a>
-                  <a href="/gallery" className="btn btn-mobile-full" style={{ background: 'white', border: '2px solid var(--color-navy)', color: 'var(--color-navy)', padding: '20px 48px', fontSize: '1.25rem' }}>GET INSPIRED</a>
-                </div>
 
-                <div style={{ marginTop: '3rem', display: 'flex', gap: '1.5rem' }}>
-                  <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', transition: 'transform 0.3s' }}>
-                    <InstagramIcon size={24} />
-                  </a>
-                  <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', transition: 'transform 0.3s' }}>
-                    <FacebookIcon size={24} />
-                  </a>
-                  <a href="#" style={{ color: 'var(--color-navy)', padding: '10px', background: 'rgba(255,255,255,0.8)', borderRadius: '50%', display: 'flex', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', transition: 'transform 0.3s' }}>
-                    <TikTokIconClean size={24} />
-                  </a>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: '1.5rem 0 3rem',
+                  fontSize: '1.25rem',
+                  fontWeight: '600',
+                  color: 'var(--color-navy)',
+                  lineHeight: '2.2'
+                }}>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '1.5rem' }}>•</span> MADE IN USA
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '1.5rem' }}>•</span> Low MOQ, Free Design
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '1.5rem' }}>•</span> The Best Value for Your Brand
+                  </li>
+                </ul>
+
+                <div className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem' }}>
+                  <a href="/dashboard" className="btn btn-primary" style={{
+                    padding: '16px 32px',
+                    fontSize: '1rem',
+                    letterSpacing: '1px'
+                  }}>START YOUR PROJECT</a>
+                  <a href="/gallery" className="btn btn-secondary" style={{
+                    padding: '16px 32px',
+                    fontSize: '1rem',
+                    letterSpacing: '1px',
+                    border: '2px solid var(--color-navy)',
+                    color: 'var(--color-navy)'
+                  }}>GET INSPIRED</a>
                 </div>
               </div>
 
-              {/* Right Focal Point - Floating Cup */}
-              <div style={{ flex: 1, position: 'relative', display: 'flex', justifyContent: 'center' }} className="animate-fade-in-up delay-2">
-                <div className="animate-float" style={{ position: 'relative', width: '100%', maxWidth: '500px' }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '120%',
-                    height: '120%',
-                    background: 'radial-gradient(circle, rgba(183,28,28,0.1) 0%, rgba(255,255,255,0) 70%)',
-                    zIndex: -1
-                  }}></div>
-                  <Image
-                    src="/images/500.png"
-                    width={600}
-                    height={600}
-                    alt="Custom Paper Cup Showcase"
-                    priority
-                    style={{ filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.15))', width: '100%', height: 'auto' }}
-                  />
-                </div>
+              {/* Right Image/Carousel Column */}
+              <div style={{
+                flex: 1,
+                position: 'relative',
+                minHeight: '400px',
+                background: '#f0f0f0'
+              }}>
+                <HeroCarousel images={images} />
               </div>
 
             </div>
           </div>
-
-          {/* Background Decorative Element */}
-          <div style={{
-            position: 'absolute',
-            bottom: '-10%',
-            right: '-5%',
-            width: '40%',
-            height: '40%',
-            background: 'var(--color-navy)',
-            opacity: 0.03,
-            borderRadius: '50%',
-            filter: 'blur(100px)',
-            zIndex: 1
-          }}></div>
         </section>
 
         {/* TOP 3 PRODUCTS GRID */}
