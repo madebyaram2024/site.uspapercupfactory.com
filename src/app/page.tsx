@@ -50,25 +50,9 @@ export default async function Home() {
                 pointerEvents: 'none'
               }} />
 
-              {/* Decorative "QUALITY" Faded Text */}
-              <div style={{
-                position: 'absolute',
-                top: '10%',
-                left: '2rem',
-                fontSize: '10rem',
-                fontWeight: '900',
-                color: 'var(--gray-200)',
-                opacity: 0.1,
-                zIndex: 0,
-                pointerEvents: 'none',
-                userSelect: 'none',
-                letterSpacing: '10px'
-              }} className="hide-mobile">
-                QUALITY
-              </div>
 
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                <div className="animate-fade-in-up" style={{ animationDelay: '0.1s', display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
                   <div style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -79,12 +63,41 @@ export default async function Home() {
                     color: 'var(--color-red)',
                     fontSize: '0.9rem',
                     fontWeight: 'bold',
-                    marginBottom: '1.5rem',
                     letterSpacing: '1px',
                     border: '1px solid rgba(214,31,31,0.1)'
                   }}>
                     <span style={{ fontSize: '1.2rem' }}>★</span>
-                    ESTABLISHED IN LOS ANGELES
+                    PROUDLY MANUFACTURED IN USA
+                  </div>
+
+                  {/* MADE IN USA BADGE - RELOCATED */}
+                  <div style={{
+                    width: '100px',
+                    height: '100px',
+                    zIndex: 2,
+                    opacity: 0.95
+                  }} className="animate-float hide-mobile">
+                    <div style={{
+                      width: '100%',
+                      height: '100%',
+                      border: '2px dashed var(--color-red)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center',
+                      padding: '10px',
+                      color: 'var(--color-red)',
+                      fontSize: '0.65rem',
+                      lineHeight: '1.2',
+                      fontWeight: '900',
+                      textTransform: 'uppercase',
+                      transform: 'rotate(-10deg)',
+                      background: 'white',
+                      boxShadow: '0 5px 15px rgba(0,0,0,0.05)'
+                    }}>
+                      MADE WITH <br /> PRIDE <br /> IN USA
+                    </div>
                   </div>
                 </div>
 
@@ -104,19 +117,21 @@ export default async function Home() {
 
                 <div className="animate-fade-in-up" style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-                  gap: '1.5rem',
-                  margin: '0 0 3.5rem',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '2rem',
+                  margin: '0 0 4rem',
                   animationDelay: '0.3s'
                 }}>
                   {[
-                    { title: "BUSINESS OR OCCASIONS", desc: "Perfect for events of any size" },
+                    { title: "BUSINESS OR OCCASIONS", desc: "For events of any scale" },
                     { title: "ONLY 25 CUPS MINIMUM", desc: "Industry-leading low MOQ" },
-                    { title: "FREE CUSTOM DESIGN", desc: "Included with every order" },
-                    { title: "1ST ROUND OF CHANGES FREE", desc: "We ensure your vision is perfect" },
-                    { title: "FREE 3D MOCKUP", desc: "Visualize before we print" },
-                    { title: "PRINTED SAMPLES", desc: "Digital photos or physical samples" },
-                    { title: "RUSH ORDERS AVAILABLE", desc: "Need them fast? We can help" }
+                    { title: "8000 SQFT FACILITY", desc: "Huntington Beach, California" },
+                    { title: "DEDICATED EQUIPMENT", desc: "Specific machines for every size" },
+                    { title: "CANON DIGITAL TECH", desc: "High-def single pass printing" },
+                    { title: "FLEXO & DIE-CUTTING", desc: "Scale production for long runs" },
+                    { title: "FREE CUSTOM DESIGN", desc: "1st round of revisions on us" },
+                    { title: "FREE 3D MOCKUP", desc: "Visualization before production" },
+                    { title: "RUSH ORDERS", desc: "High-speed turnaround options" }
                   ].map((item, idx) => (
                     <div key={idx} style={{
                       display: 'flex',
@@ -163,38 +178,6 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* MADE IN USA BADGE - ENLARGED */}
-              <div style={{
-                position: 'absolute',
-                bottom: '4rem',
-                right: '4rem',
-                width: '180px',
-                height: '180px',
-                zIndex: 2,
-                opacity: 0.9
-              }} className="animate-float hide-mobile">
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  border: '3px dashed var(--color-red)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  padding: '20px',
-                  color: 'var(--color-red)',
-                  fontSize: '1.1rem',
-                  lineHeight: '1.2',
-                  fontWeight: '900',
-                  textTransform: 'uppercase',
-                  transform: 'rotate(-10deg)',
-                  background: 'white',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
-                }}>
-                  MADE WITH <br /> PRIDE <br /> IN USA
-                </div>
-              </div>
             </div>
 
             {/* Right Image/Carousel Column */}
