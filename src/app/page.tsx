@@ -30,7 +30,7 @@ export default async function Home() {
             {/* Left Content Column */}
             <div style={{
               flex: 1,
-              padding: 'clamp(2rem, 8vw, 6rem)',
+              padding: 'clamp(1.5rem, 5vw, 4rem)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -56,10 +56,10 @@ export default async function Home() {
                   {/* MADE IN USA BADGE - TOP SECTON */}
                   <div style={{
                     position: 'absolute',
-                    top: '-60px',
-                    right: '0',
-                    width: '130px',
-                    height: '130px',
+                    top: '-40px',
+                    right: '20px',
+                    width: '110px',
+                    height: '110px',
                     zIndex: 10,
                     opacity: 0.95
                   }} className="animate-float">
@@ -105,7 +105,7 @@ export default async function Home() {
                 </div>
 
                 <h1 className="animate-fade-in-up" style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                  fontSize: 'clamp(2rem, 4.5vw, 4rem)',
                   lineHeight: '1.1',
                   color: 'var(--color-navy)',
                   fontWeight: 'bold',
@@ -120,9 +120,9 @@ export default async function Home() {
 
                 <div className="animate-fade-in-up" style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                  gap: '1.5rem',
-                  margin: '0 0 4rem',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '1rem',
+                  margin: '0 0 3rem',
                   animationDelay: '0.3s'
                 }}>
                   {[

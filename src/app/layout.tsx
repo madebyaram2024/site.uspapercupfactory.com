@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: '/images/US_PAPER_CUP_FACTORY_LOGO_HORIZONTAL.png', // Using our new logo as the OG image for now, or a hero image
+        url: '/images/US_PAPER_CUP_FACTORY_LOGO_WB_HORIZONTAL_WB_LATEST.png', // Using our new logo as the OG image for now, or a hero image
         width: 1200,
         height: 630,
         alt: 'US Paper Cup Factory',
