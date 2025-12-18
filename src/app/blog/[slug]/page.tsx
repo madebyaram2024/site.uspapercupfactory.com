@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import { getBlogPost } from '@/actions/blog';
 import { notFound } from 'next/navigation';
+import SocialShare from '@/components/SocialShare';
 
 interface Props {
     params: Promise<{ slug: string }>
@@ -21,8 +22,15 @@ export default async function BlogPostPage({ params }: Props) {
             <article className="container" style={{ padding: '4rem 20px', maxWidth: '800px' }}>
                 <p style={{ color: 'var(--color-red)', fontWeight: 'bold', marginBottom: '1rem', textTransform: 'uppercase' }}>Allowed Blog</p>
                 <h1 style={{ fontSize: '3rem', lineHeight: '1.2', marginBottom: '1rem', color: 'var(--color-navy)' }}>{post.title}</h1>
-                <div style={{ color: '#666', marginBottom: '3rem', borderBottom: '1px solid #eee', paddingBottom: '2rem' }}>
-                    Published on {new Date(post.createdAt).toLocaleDateString()}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <div style={{ color: '#666' }}>
+                        Published on {new Date(post.createdAt).toLocaleDateString()}
+                    </div>
+                    <SocialShare
+                        url={`/blog/${post.slug}`}
+                        title={post.title}
+                        description={`Check out this article from US Paper Cup Factory: ${post.title}`}
+                    />
                 </div>
 
                 {post.imageUrl && (

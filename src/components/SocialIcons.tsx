@@ -30,3 +30,24 @@ export const TikTokIconClean = ({ size = 24, color = 'currentColor' }: { size?: 
         <path d="M21 8V2H18C16.3431 2 15 3.34315 15 5V14C15 16.7614 12.7614 19 10 19C7.23858 19 5 16.7614 5 14C5 11.2386 7.23858 9 10 9V12C8.89543 12 8 12.8954 8 14C8 15.1046 8.89543 16 10 16C11.1046 16 12 15.1046 12 14V2H15C15 3.65685 16.3431 5 18 5V8H21Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
+
+export const ShareIcon = ({ size = 24, color = 'currentColor' }: { size?: number, color?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 12V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 6L12 2L8 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 2V15" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const XIcon = ({ size = 24, color = 'currentColor' }: { size?: number, color?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4L11 12.5L3.5 21H5L12 13.5L17.5 21H21L13.5 11.5L20.5 3H19L12.5 10.5L6.5 3H4Z" fill={color} />
+    </svg>
+);
+
+export const LinkIcon = ({ size = 24, color = 'currentColor' }: { size?: number, color?: string }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);

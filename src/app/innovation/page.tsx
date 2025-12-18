@@ -40,7 +40,7 @@ export default function InnovationPage() {
                     <div className="container">
 
                         {/* 1. Custom App */}
-                        <div style={{ display: 'flex', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
+                        <div className="flex-col-mobile" style={{ display: 'flex', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
                             <div style={{ flex: 1 }}>
                                 <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1.5rem' }}>Custom AI Organization</h2>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
@@ -63,7 +63,7 @@ export default function InnovationPage() {
                         </div>
 
                         {/* 2. Quality Control */}
-                        <div style={{ display: 'flex', gap: '4rem', alignItems: 'center', flexDirection: 'row-reverse', marginBottom: '6rem' }}>
+                        <div className="flex-col-mobile" style={{ display: 'flex', gap: '4rem', alignItems: 'center', flexDirection: 'row-reverse', marginBottom: '6rem' }}>
                             <div style={{ flex: 1 }}>
                                 <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1.5rem' }}>Zero Imperfections</h2>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
@@ -84,7 +84,7 @@ export default function InnovationPage() {
                         </div>
 
                         {/* 3. Design Synergy */}
-                        <div style={{ display: 'flex', gap: '4rem', alignItems: 'center' }}>
+                        <div className="flex-col-mobile" style={{ display: 'flex', gap: '4rem', alignItems: 'center' }}>
                             <div style={{ flex: 1 }}>
                                 <h2 style={{ fontSize: '2.5rem', color: 'var(--color-navy)', marginBottom: '1.5rem' }}>AI + Human Design</h2>
                                 <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>

@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import { getBlogPosts } from '@/actions/blog';
 import Link from 'next/link';
+import SocialShare from '@/components/SocialShare';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,7 +18,7 @@ export default async function BlogListPage() {
                     Updates from the manufacturing floor, design tips for your event, and customer success stories.
                 </p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
                     {posts.length === 0 && <p style={{ textAlign: 'center', color: '#666', gridColumn: '1/-1' }}>No articles published yet.</p>}
 
                     {posts.map((post: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -45,9 +46,18 @@ export default async function BlogListPage() {
                                         </div>
                                     )}
                                 </div>
-                                <div style={{ padding: '1.5rem' }}>
-                                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', textTransform: 'none' }}>{post.title}</h3>
-                                    <div style={{ fontSize: '0.9rem', color: '#666' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
+                                <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                    <div>
+                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', textTransform: 'none' }}>{post.title}</h3>
+                                        <div style={{ fontSize: '0.9rem', color: '#666' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
+                                    </div>
+                                    <div onClick={(e) => e.preventDefault()}>
+                                        <SocialShare
+                                            url={`/blog/${post.slug}`}
+                                            title={post.title}
+                                            description={`Check out this article from US Paper Cup Factory: ${post.title}`}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </Link>

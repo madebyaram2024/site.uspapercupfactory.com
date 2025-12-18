@@ -6,7 +6,7 @@ export default function AboutPage() {
         <>
             <Navbar />
             <main className="container" style={{ padding: '6rem 20px' }}>
-                <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                <div className="grid-responsive" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
 
                     {/* Text Section */}
                     <div>
