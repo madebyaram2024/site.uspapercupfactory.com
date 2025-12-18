@@ -102,25 +102,50 @@ export default async function Home() {
                   CUPS.
                 </h1>
 
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: '1.5rem 0 3rem',
-                  fontSize: '1.25rem',
-                  fontWeight: '600',
-                  color: 'var(--color-navy)',
-                  lineHeight: '2.2'
+                <div className="animate-fade-in-up" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: '1.5rem',
+                  margin: '0 0 3.5rem',
+                  animationDelay: '0.3s'
                 }}>
-                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.3s' }}>
-                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> MADE IN USA
-                  </li>
-                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.4s' }}>
-                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> Low MOQ, Free Design
-                  </li>
-                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.5s' }}>
-                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> The Best Value for Your Brand
-                  </li>
-                </ul>
+                  {[
+                    { title: "BUSINESS OR OCCASIONS", desc: "Perfect for events of any size" },
+                    { title: "ONLY 25 CUPS MINIMUM", desc: "Industry-leading low MOQ" },
+                    { title: "FREE CUSTOM DESIGN", desc: "Included with every order" },
+                    { title: "1ST ROUND OF CHANGES FREE", desc: "We ensure your vision is perfect" },
+                    { title: "FREE 3D MOCKUP", desc: "Visualize before we print" },
+                    { title: "PRINTED SAMPLES", desc: "Digital photos or physical samples" },
+                    { title: "RUSH ORDERS AVAILABLE", desc: "Need them fast? We can help" }
+                  ].map((item, idx) => (
+                    <div key={idx} style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '4px'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '0.95rem',
+                        fontWeight: '800',
+                        color: 'var(--color-navy)',
+                        letterSpacing: '0.5px'
+                      }}>
+                        <span style={{ color: 'var(--color-red)' }}>✦</span> {item.title}
+                      </div>
+                      <div style={{
+                        fontSize: '0.8rem',
+                        color: '#666',
+                        paddingLeft: '1.5rem',
+                        fontWeight: '500',
+                        lineHeight: '1.4'
+                      }}>
+                        {item.desc}
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
                 <div className="flex-col-mobile animate-fade-in-up" style={{ display: 'flex', gap: '1.5rem', animationDelay: '0.6s' }}>
                   <a href="/dashboard" className="btn btn-primary" style={{
@@ -138,34 +163,36 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* MADE IN USA BADGE */}
+              {/* MADE IN USA BADGE - ENLARGED */}
               <div style={{
                 position: 'absolute',
-                bottom: '3rem',
-                right: '3rem',
-                width: '120px',
-                height: '120px',
+                bottom: '4rem',
+                right: '4rem',
+                width: '180px',
+                height: '180px',
                 zIndex: 2,
-                opacity: 0.8
+                opacity: 0.9
               }} className="animate-float hide-mobile">
                 <div style={{
                   width: '100%',
                   height: '100%',
-                  border: '2px dashed var(--color-red)',
+                  border: '3px dashed var(--color-red)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   textAlign: 'center',
-                  padding: '10px',
+                  padding: '20px',
                   color: 'var(--color-red)',
-                  fontSize: '0.8rem',
+                  fontSize: '1.1rem',
+                  lineHeight: '1.2',
                   fontWeight: '900',
                   textTransform: 'uppercase',
-                  transform: 'rotate(-15deg)',
-                  background: 'white'
+                  transform: 'rotate(-10deg)',
+                  background: 'white',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
                 }}>
-                  MADE WITH PRIDE <br /> IN USA
+                  MADE WITH <br /> PRIDE <br /> IN USA
                 </div>
               </div>
             </div>
