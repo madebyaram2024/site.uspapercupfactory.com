@@ -41,8 +41,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
                             overflow: 'hidden',
                             cursor: 'pointer',
                             backgroundColor: '#f8f8f8',
-                            transition: 'all 0.3s ease',
-                            group: 'true'
+                            transition: 'all 0.3s ease'
                         }}
                         className="gallery-card-container"
                     >
