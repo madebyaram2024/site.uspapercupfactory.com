@@ -51,7 +51,7 @@ export default async function BlogListPage() {
                                         <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', textTransform: 'none' }}>{post.title}</h3>
                                         <div style={{ fontSize: '0.9rem', color: '#666' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
                                     </div>
-                                    <div onClick={(e) => e.preventDefault()}>
+                                    <div>
                                         <SocialShare
                                             url={`/blog/${post.slug}`}
                                             title={post.title}

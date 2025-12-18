@@ -33,54 +33,140 @@ export default async function Home() {
               padding: 'clamp(2rem, 8vw, 6rem)',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              position: 'relative'
             }}>
-              <h1 style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-                lineHeight: '1.1',
-                color: 'var(--color-navy)',
-                fontWeight: 'bold',
-                marginBottom: '1rem',
-                textTransform: 'uppercase'
-              }}>
-                <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
-                FULL COLOR PAPER<br />
-                CUPS.
-              </h1>
+              {/* Background Decorative Grid */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundImage: `radial-gradient(var(--gray-200) 1px, transparent 1px)`,
+                backgroundSize: '30px 30px',
+                opacity: 0.3,
+                zIndex: 0,
+                pointerEvents: 'none'
+              }} />
 
-              <ul style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: '1.5rem 0 3rem',
-                fontSize: '1.25rem',
-                fontWeight: '600',
-                color: 'var(--color-navy)',
-                lineHeight: '2.2'
-              }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '1.5rem' }}>•</span> MADE IN USA
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '1.5rem' }}>•</span> Low MOQ, Free Design
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '1.5rem' }}>•</span> The Best Value for Your Brand
-                </li>
-              </ul>
+              {/* Decorative "QUALITY" Faded Text */}
+              <div style={{
+                position: 'absolute',
+                top: '10%',
+                left: '2rem',
+                fontSize: '10rem',
+                fontWeight: '900',
+                color: 'var(--gray-200)',
+                opacity: 0.1,
+                zIndex: 0,
+                pointerEvents: 'none',
+                userSelect: 'none',
+                letterSpacing: '10px'
+              }} className="hide-mobile">
+                QUALITY
+              </div>
 
-              <div className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem' }}>
-                <a href="/dashboard" className="btn btn-primary" style={{
-                  padding: '18px 40px',
-                  fontSize: '1.1rem',
-                  letterSpacing: '1px'
-                }}>START YOUR PROJECT</a>
-                <a href="/gallery" className="btn btn-secondary" style={{
-                  padding: '18px 40px',
-                  fontSize: '1.1rem',
-                  letterSpacing: '1px',
-                  border: '2px solid var(--color-navy)',
-                  color: 'var(--color-navy)'
-                }}>GET INSPIRED</a>
+              <div style={{ position: 'relative', zIndex: 1 }}>
+                <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 16px',
+                    backgroundColor: 'rgba(214,31,31,0.05)',
+                    borderRadius: '50px',
+                    color: 'var(--color-red)',
+                    fontSize: '0.9rem',
+                    fontWeight: 'bold',
+                    marginBottom: '1.5rem',
+                    letterSpacing: '1px',
+                    border: '1px solid rgba(214,31,31,0.1)'
+                  }}>
+                    <span style={{ fontSize: '1.2rem' }}>★</span>
+                    ESTABLISHED IN LOS ANGELES
+                  </div>
+                </div>
+
+                <h1 className="animate-fade-in-up" style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                  lineHeight: '1.1',
+                  color: 'var(--color-navy)',
+                  fontWeight: 'bold',
+                  marginBottom: '1rem',
+                  textTransform: 'uppercase',
+                  animationDelay: '0.2s'
+                }}>
+                  <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
+                  FULL COLOR PAPER<br />
+                  CUPS.
+                </h1>
+
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: '1.5rem 0 3rem',
+                  fontSize: '1.25rem',
+                  fontWeight: '600',
+                  color: 'var(--color-navy)',
+                  lineHeight: '2.2'
+                }}>
+                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.3s' }}>
+                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> MADE IN USA
+                  </li>
+                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.4s' }}>
+                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> Low MOQ, Free Design
+                  </li>
+                  <li className="animate-fade-in-up" style={{ display: 'flex', alignItems: 'center', gap: '12px', animationDelay: '0.5s' }}>
+                    <span style={{ color: 'var(--color-red)', fontSize: '1.5rem' }}>✓</span> The Best Value for Your Brand
+                  </li>
+                </ul>
+
+                <div className="flex-col-mobile animate-fade-in-up" style={{ display: 'flex', gap: '1.5rem', animationDelay: '0.6s' }}>
+                  <a href="/dashboard" className="btn btn-primary" style={{
+                    padding: '18px 40px',
+                    fontSize: '1.1rem',
+                    letterSpacing: '1px'
+                  }}>START YOUR PROJECT</a>
+                  <a href="/gallery" className="btn btn-secondary" style={{
+                    padding: '18px 40px',
+                    fontSize: '1.1rem',
+                    letterSpacing: '1px',
+                    border: '2px solid var(--color-navy)',
+                    color: 'var(--color-navy)'
+                  }}>GET INSPIRED</a>
+                </div>
+              </div>
+
+              {/* MADE IN USA BADGE */}
+              <div style={{
+                position: 'absolute',
+                bottom: '3rem',
+                right: '3rem',
+                width: '120px',
+                height: '120px',
+                zIndex: 2,
+                opacity: 0.8
+              }} className="animate-float hide-mobile">
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  border: '2px dashed var(--color-red)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  padding: '10px',
+                  color: 'var(--color-red)',
+                  fontSize: '0.8rem',
+                  fontWeight: '900',
+                  textTransform: 'uppercase',
+                  transform: 'rotate(-15deg)',
+                  background: 'white'
+                }}>
+                  MADE WITH PRIDE <br /> IN USA
+                </div>
               </div>
             </div>
 
