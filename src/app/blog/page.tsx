@@ -18,37 +18,25 @@ export default async function BlogListPage() {
                     Updates from the manufacturing floor, design tips for your event, and customer success stories.
                 </p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
-                    {posts.length === 0 && <p style={{ textAlign: 'center', color: '#666', gridColumn: '1/-1' }}>No articles published yet.</p>}
+                <div className="blog-list-container">
+                    {posts.length === 0 && <p style={{ textAlign: 'center', color: '#666' }}>No articles published yet.</p>}
 
                     {posts.map((post: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
-                        <Link href={`/blog/${post.slug}`} key={post.id} style={{ display: 'block' }}>
-                            <div style={{
-                                borderRadius: 'var(--radius-md)',
-                                overflow: 'hidden',
-                                boxShadow: 'var(--shadow-sm)',
-                                background: 'white',
-                                height: '100%',
-                                transition: 'transform 0.2s',
-                                // Note: Inline hover doesn't work, standard CSS needed for animation
-                            }} className="blog-card">
-                                <div style={{
-                                    height: '200px',
-                                    background: 'var(--gray-200)',
-                                    position: 'relative'
-                                }}>
-                                    {post.imageUrl ? (
-                                        <img src={post.imageUrl} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                                    ) : (
-                                        <div style={{ width: '100%', height: '100%', background: 'var(--color-navy)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            US PAPER CUP
-                                        </div>
-                                    )}
-                                </div>
-                                <div style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                        <Link href={`/blog/${post.slug}`} key={post.id} className="blog-card-horizontal">
+                            <div className="blog-card-image-wrap">
+                                {post.imageUrl ? (
+                                    <img src={post.imageUrl} alt={post.title} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                                ) : (
+                                    <div style={{ width: '100%', height: '100%', background: 'var(--color-navy)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        US PAPER CUP
+                                    </div>
+                                )}
+                            </div>
+                            <div className="blog-card-content">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                     <div>
-                                        <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', textTransform: 'none' }}>{post.title}</h3>
-                                        <div style={{ fontSize: '0.9rem', color: '#666' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
+                                        <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', textTransform: 'none', lineHeight: '1.2' }}>{post.title}</h3>
+                                        <div style={{ fontSize: '0.95rem', color: '#666', marginBottom: '1.5rem' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
                                     </div>
                                     <div>
                                         <SocialShare
@@ -57,6 +45,10 @@ export default async function BlogListPage() {
                                             description={`Check out this article from US Paper Cup Factory: ${post.title}`}
                                         />
                                     </div>
+                                </div>
+                                <div style={{ marginTop: 'auto', color: 'var(--color-navy)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    Read Article
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                                 </div>
                             </div>
                         </Link>
