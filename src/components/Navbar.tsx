@@ -26,11 +26,11 @@ export default function Navbar() {
             }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
-                        src="/images/US_PAPER_CUP_FACTORY_LOGO_WB_HORIZONTAL_WB_LATEST.png"
+                        src="/images/products/US_PAPER_CUP_FACTORY_LOGOv9.png"
                         alt="US Paper Cup Factory"
                         width={300}
                         height={60}
-                        style={{ height: '60px', width: 'auto', objectFit: 'contain' }}
+                        style={{ height: '76px', width: 'auto', maxWidth: '354px', objectFit: 'contain' }}
                         priority
                     />
                 </Link>
