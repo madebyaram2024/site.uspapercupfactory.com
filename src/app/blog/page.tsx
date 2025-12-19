@@ -38,8 +38,7 @@ export default async function BlogListPage() {
                                     position: 'relative'
                                 }}>
                                     {post.imageUrl ? (
-                                        // eslint-disable-next-line @next/next/no-img-element
-                                        <img src={post.imageUrl} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <img src={post.imageUrl} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                                     ) : (
                                         <div style={{ width: '100%', height: '100%', background: 'var(--color-navy)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                             US PAPER CUP

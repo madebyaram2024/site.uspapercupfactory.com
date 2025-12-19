@@ -34,9 +34,27 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
 
                 {post.imageUrl && (
-                    <div style={{ marginBottom: '3rem', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+                    <div style={{
+                        marginBottom: '3rem',
+                        borderRadius: 'var(--radius-md)',
+                        overflow: 'hidden',
+                        background: '#f8f9fa',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        maxHeight: '600px'
+                    }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={post.imageUrl} alt={post.title} style={{ width: '100%', height: 'auto' }} />
+                        <img
+                            src={post.imageUrl}
+                            alt={post.title}
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '600px',
+                                height: 'auto',
+                                objectFit: 'contain'
+                            }}
+                        />
                     </div>
                 )}
 
