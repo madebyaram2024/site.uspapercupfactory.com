@@ -8,7 +8,7 @@ import { getGalleryItems } from '@/actions/gallery';
 
 export default async function Home() {
   // Prepare 15 specific hero images for rotation
-  const images = Array.from({ length: 15 }, (_, i) => `/images/Hero_${i + 1}.png`);
+  const images = Array.from({ length: 15 }, (_, i) => `/images/custom-printed-paper-cups-hero-${i + 1}.png`);
   return (
     <>
       <Navbar />
@@ -211,7 +211,7 @@ export default async function Home() {
               {/* 25 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/25.png" width={300} height={300} alt="25 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
+                  <Image src="/images/order-quantity-25-custom-cups.png" width={300} height={300} alt="25 Custom Printed Paper Cups - Minimum Order" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>25 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$50.00</div>
@@ -222,7 +222,7 @@ export default async function Home() {
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center', border: '2px solid var(--color-gold)', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px', zIndex: 1 }}>MOST POPULAR</div>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/50.png" width={300} height={300} alt="50 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
+                  <Image src="/images/order-quantity-50-custom-cups.png" width={300} height={300} alt="50 Custom Printed Paper Cups - Most Popular Tier" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>50 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$75.00</div>
@@ -232,7 +232,7 @@ export default async function Home() {
               {/* 100 Cups */}
               <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                 <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/100.png" width={300} height={300} alt="100 Custom Paper Cups" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
+                  <Image src="/images/order-quantity-100-custom-cups.png" width={300} height={300} alt="100 Custom Printed Paper Cups - Small Business Tier" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
                 </div>
                 <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>100 Cups</h3>
                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$100.00</div>
@@ -255,7 +255,7 @@ export default async function Home() {
               {/* Left Image - Using 500 cups image as placeholder for 'Business' context */}
               <div style={{ flex: 1 }}>
                 <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                  <Image src="/images/More-t.png" alt="Business Partnership" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                  <Image src="/images/more-custom-cup-styles-options.png" alt="Diverse Custom Paper Cup Styles and Branding Options" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
               </div>
               {/* Right Text */}
@@ -303,8 +303,8 @@ export default async function Home() {
               <div style={{ flex: 1, minWidth: '300px' }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', border: '4px solid white' }}>
                   <Image
-                    src="/images/big_ds.jpg"
-                    alt="Cups for weddings and parties"
+                    src="/images/large-cup-stack-display.jpg"
+                    alt="Stack of custom printed paper cups for weddings and large events"
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'bottom' }}
                     sizes="(max-width: 768px) 100vw, 50vw"

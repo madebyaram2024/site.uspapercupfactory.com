@@ -21,7 +21,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/25.png?v=3" alt="25 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-25-custom-cups.png" alt="25 Custom Printed Paper Cups - Low MOQ Branding" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>25 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$50.00</div>
@@ -33,7 +33,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/50.png?v=3" alt="50 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-50-custom-cups.png" alt="50 Custom Printed Paper Cups - Preferred for Small Businesses" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>50 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$75.00</div>
@@ -45,7 +45,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/100.png?v=3" alt="100 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-100-custom-cups.png" alt="100 Custom Printed Paper Cups - Perfect for Events" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>100 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$100.00</div>
@@ -57,7 +57,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/250.png?v=3" alt="250 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-250-custom-cups.png" alt="250 Custom Printed Paper Cups - Professional Branding Tier" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>250 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$187.50</div>
@@ -70,7 +70,7 @@ export default function ShopPage() {
                             <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px' }}>MOST POPULAR</div>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/500.png?v=3" alt="500 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-500-custom-cups.png" alt="500 Custom Printed Paper Cups - Bulk Order Savings" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>500 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$250.00</div>
@@ -82,7 +82,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/1000.png?v=3" alt="1000 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-1000-custom-cups.png" alt="1,000 Custom Printed Paper Cups - High Volume Solutions" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>1,000 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$200.00</div>
@@ -94,7 +94,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/5000.png?v=3" alt="5000 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-5000-custom-cups.png" alt="5,000 Custom Printed Paper Cups - Industrial Scale Production" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>5,000 Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$750.00</div>
@@ -107,7 +107,7 @@ export default function ShopPage() {
                         <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
                             <div style={{ height: '220px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/10000.png?v=3" alt="10000 Cups" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+                                <img src="/images/order-quantity-10000-custom-cups.png" alt="10,000+ Custom Printed Paper Cups - Enterprise Wholesale" style={{ maxHeight: '100%', maxWidth: '100%' }} />
                             </div>
                             <h3 style={{ fontSize: '1.75rem', color: 'var(--color-navy)' }}>10,000+ Cups</h3>
                             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>From $1,000</div>

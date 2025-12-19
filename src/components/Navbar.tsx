@@ -26,7 +26,7 @@ export default function Navbar() {
             }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
-                        src="/images/products/US_PAPER_CUP_FACTORY_LOGOv9.png"
+                        src="/images/products/us-paper-cup-factory-main-logo.png"
                         alt="US Paper Cup Factory"
                         width={300}
                         height={60}

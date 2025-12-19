@@ -15,7 +15,7 @@ const industries = [
             "Food Trucks & Breweries"
         ],
         // Image placeholder: 16:9 aspect ratio
-        image: "/images/industries/hospitality.jpg"
+        image: "/images/industries/custom-printed-cups-hospitality-food-service.jpg"
     },
     {
         title: "Automotive & Service Centers",
@@ -27,7 +27,7 @@ const industries = [
             "Tire Centers",
             "Motorcycle Dealers"
         ],
-        image: "/images/industries/automotive.jpg"
+        image: "/images/industries/custom-printed-cups-automotive-service-centers.jpg"
     },
     {
         title: "Professional Services",
@@ -39,7 +39,7 @@ const industries = [
             "Medical & Dental Offices",
             "Co-working Spaces"
         ],
-        image: "/images/industries/professional.jpg"
+        image: "/images/industries/custom-printed-cups-professional-services.jpg"
     },
     {
         title: "Retail & Lifestyle",
@@ -51,7 +51,7 @@ const industries = [
             "Boutique Retailers",
             "Gyms & Fitness Centers"
         ],
-        image: "/images/industries/retail.jpg"
+        image: "/images/industries/custom-printed-cups-retail-lifestyle.jpg"
     },
     {
         title: "Events & Promotions",
@@ -63,7 +63,7 @@ const industries = [
             "Corporate Conferences",
             "Festivals & Pop-ups"
         ],
-        image: "/images/industries/events.jpg"
+        image: "/images/industries/custom-printed-cups-events-promotions.jpg"
     },
     {
         title: "Partners & Wholesale",
@@ -74,7 +74,7 @@ const industries = [
             "Restaurant Supply (Cash & Carry)",
             "Event Caterers"
         ],
-        image: "/images/industries/wholesale.jpg"
+        image: "/images/industries/custom-printed-cups-partners-wholesale.jpg"
     }
 ];
 

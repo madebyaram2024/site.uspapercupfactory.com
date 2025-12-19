@@ -10,7 +10,7 @@ export default function InnovationPage() {
                 {/* HERO */}
                 <section style={{
                     height: '600px',
-                    backgroundImage: 'url("/images/how_we_use_ai.jpg")',
+                    backgroundImage: 'url("/images/how-we-use-ai-in-cup-manufacturing.jpg")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     display: 'flex',
@@ -58,7 +58,7 @@ export default function InnovationPage() {
                             {/* AI App Image */}
                             <div style={{ flex: 1, height: '350px', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/internal_app.jpg" alt="Custom AI Application Interface" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src="/images/us-paper-cup-internal-order-application.jpg" alt="US Paper Cup proprietary internal application for order processing and AI organization" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@ export default function InnovationPage() {
                             {/* QC Camera Image */}
                             <div style={{ flex: 1, height: '350px', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/internal_ai_check.jpg" alt="AI Quality Control Cameras" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src="/images/internal-ai-quality-control-check.jpg" alt="AI-powered camera systems providing real-time quality control on the cup production line" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
 
@@ -98,7 +98,7 @@ export default function InnovationPage() {
                             {/* Design Synergy Image */}
                             <div style={{ flex: 1, height: '350px', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="/images/magic_ai.jpg" alt="Generative AI Design Process" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <img src="/images/magic-ai-design-assistant-tool.jpg" alt="The synergy of generative AI and human expertise in creating custom cup designs" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>
 

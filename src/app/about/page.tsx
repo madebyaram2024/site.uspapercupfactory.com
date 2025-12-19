@@ -22,7 +22,7 @@ export default function AboutPage() {
                     {/* Image Section */}
                     <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/images/abous_us.jpg" alt="US Paper Cup Factory Team/Facility" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                        <img src="/images/about-us-paper-cup-factory-team.jpg" alt="Our manufacturing team at US Paper Cup Factory providing quality custom printed cups" style={{ width: '100%', height: 'auto', display: 'block' }} />
                     </div>
 
                 </div>
