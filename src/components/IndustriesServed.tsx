@@ -80,11 +80,11 @@ const industries = [
 
 export default function IndustriesServed() {
     return (
-        <section id="industries" style={{ padding: '6rem 0', background: 'white' }}>
+        <section id="industries" style={{ padding: '6rem 0', background: 'var(--color-navy)', color: 'white' }}>
             <div className="container">
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 className="section-title">Industries We Serve</h2>
-                    <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: '#666' }}>
+                    <h2 className="section-title" style={{ color: 'white' }}>Industries We Serve</h2>
+                    <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)' }}>
                         We provide custom branded solutions tailored for businesses across all sectors.
                     </p>
                 </div>
@@ -101,9 +101,9 @@ export default function IndustriesServed() {
                                 background: 'white',
                                 borderRadius: '16px',
                                 overflow: 'hidden',
-                                boxShadow: 'var(--shadow-sm)',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
                                 transition: 'all 0.3s ease',
-                                border: '1px solid #f0f0f0',
+                                border: '1px solid rgba(255,255,255,0.1)',
                                 display: 'flex',
                                 flexDirection: 'column'
                             }}
@@ -111,10 +111,6 @@ export default function IndustriesServed() {
                         >
                             {/* Image Placeholder */}
                             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#f8f9fa' }}>
-                                {/* 
-                  IMAGE ASSET TIP: Replace the src below with high-quality photos 
-                  of custom cups for this specific industry.
-                */}
                                 <div style={{
                                     width: '100%',
                                     height: '100%',
@@ -123,27 +119,21 @@ export default function IndustriesServed() {
                                     justifyContent: 'center',
                                     color: '#ccc',
                                     fontSize: '0.9rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    textAlign: 'center',
+                                    padding: '20px'
                                 }}>
                                     {industry.title} Showcase Image
                                 </div>
-                                {/* 
-                <Image 
-                  src={industry.image} 
-                  alt={industry.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                /> 
-                */}
                             </div>
 
                             <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                <h3 style={{ fontSize: '1.5rem', color: 'var(--color-navy)', marginBottom: '0.5rem' }}>
+                                <h3 style={{ fontSize: '1.5rem', color: 'var(--color-navy)', marginBottom: '0.5rem', textTransform: 'none' }}>
                                     {industry.title}
                                 </h3>
                                 <p style={{
                                     fontSize: '1rem',
-                                    fontWeight: '500',
+                                    fontWeight: '600',
                                     color: 'var(--color-red)',
                                     marginBottom: '1.5rem',
                                     lineHeight: '1.4'
@@ -164,7 +154,7 @@ export default function IndustriesServed() {
                                             gap: '10px',
                                             marginBottom: '0.6rem',
                                             fontSize: '0.95rem',
-                                            color: '#444'
+                                            color: 'var(--text-secondary)'
                                         }}>
                                             <span style={{ color: 'var(--color-red)', fontWeight: 'bold' }}>✓</span>
                                             {item}
@@ -179,9 +169,11 @@ export default function IndustriesServed() {
 
             <style jsx>{`
         .industry-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0,32,74,0.08);
-          border-color: rgba(214,31,31,0.2);
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .section-title::after {
+          background-color: var(--color-gold) !important;
         }
         @media (max-width: 768px) {
           .grid-responsive {
