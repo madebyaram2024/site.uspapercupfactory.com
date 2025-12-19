@@ -3,6 +3,7 @@ import BuyButton from '@/components/BuyButton';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
+import IndustriesServed from '@/components/IndustriesServed';
 import { getGalleryItems } from '@/actions/gallery';
 
 export default async function Home() {
@@ -194,6 +195,9 @@ export default async function Home() {
 
           </div>
         </section>
+
+        {/* INDUSTRIES WE SERVE - NEW SECTION */}
+        <IndustriesServed />
 
         {/* TOP 3 PRODUCTS GRID */}
         <section style={{ padding: '6rem 0', background: '#f8f9fa' }}>
