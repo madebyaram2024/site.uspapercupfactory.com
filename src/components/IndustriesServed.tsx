@@ -14,8 +14,8 @@ const industries = [
             "Bakeries & Donut Shops",
             "Food Trucks & Breweries"
         ],
-        // Image placeholder: 16:9 aspect ratio
-        image: "/images/industries/custom-printed-cups-hospitality-food-service.jpg"
+        // Image: 16:9 aspect ratio
+        image: "/images/food_industy_cups.png"
     },
     {
         title: "Automotive & Service Centers",
@@ -27,7 +27,7 @@ const industries = [
             "Tire Centers",
             "Motorcycle Dealers"
         ],
-        image: "/images/industries/custom-printed-cups-automotive-service-centers.jpg"
+        image: ""
     },
     {
         title: "Professional Services",
@@ -39,7 +39,7 @@ const industries = [
             "Medical & Dental Offices",
             "Co-working Spaces"
         ],
-        image: "/images/industries/custom-printed-cups-professional-services.jpg"
+        image: ""
     },
     {
         title: "Retail & Lifestyle",
@@ -51,7 +51,7 @@ const industries = [
             "Boutique Retailers",
             "Gyms & Fitness Centers"
         ],
-        image: "/images/industries/custom-printed-cups-retail-lifestyle.jpg"
+        image: ""
     },
     {
         title: "Events & Promotions",
@@ -63,7 +63,7 @@ const industries = [
             "Corporate Conferences",
             "Festivals & Pop-ups"
         ],
-        image: "/images/industries/custom-printed-cups-events-promotions.jpg"
+        image: ""
     },
     {
         title: "Partners & Wholesale",
@@ -74,7 +74,7 @@ const industries = [
             "Restaurant Supply (Cash & Carry)",
             "Event Caterers"
         ],
-        image: "/images/industries/custom-printed-cups-partners-wholesale.jpg"
+        image: ""
     }
 ];
 
@@ -109,22 +109,32 @@ export default function IndustriesServed() {
                             }}
                             className="industry-card"
                         >
-                            {/* Image Placeholder */}
-                            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#f8f9fa' }}>
-                                <div style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: '#ccc',
-                                    fontSize: '0.9rem',
-                                    fontWeight: '500',
-                                    textAlign: 'center',
-                                    padding: '20px'
-                                }}>
-                                    {industry.title} Showcase Image
-                                </div>
+                            {/* Image Container */}
+                            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#f8f9fa', overflow: 'hidden' }}>
+                                {industry.image ? (
+                                    <Image
+                                        src={industry.image}
+                                        alt={`${industry.title} Showcase`}
+                                        fill
+                                        style={{ objectFit: 'cover' }}
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                    />
+                                ) : (
+                                    <div style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#ccc',
+                                        fontSize: '0.9rem',
+                                        fontWeight: '500',
+                                        textAlign: 'center',
+                                        padding: '20px'
+                                    }}>
+                                        {industry.title} Showcase Image
+                                    </div>
+                                )}
                             </div>
 
                             <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
