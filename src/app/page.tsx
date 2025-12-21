@@ -30,7 +30,7 @@ export default async function Home() {
 
             {/* Left Content Column */}
             <div style={{
-              flex: 0.9, /* Given more space to images */
+              flex: 1,
               padding: 'clamp(1.5rem, 5vw, 4rem)',
               display: 'flex',
               flexDirection: 'column',
@@ -180,9 +180,9 @@ export default async function Home() {
 
             {/* Right Image/Carousel Column */}
             <div className="hero-carousel-wrapper" style={{
-              flex: 1.1, /* Bigger image area */
+              flex: 1,
               position: 'relative',
-              minHeight: '500px',
+              minHeight: '750px',
               background: '#f8f8f8'
             }}>
               <HeroCarousel images={images} interval={5000} />
