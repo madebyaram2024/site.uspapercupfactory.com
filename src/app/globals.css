@@ -151,11 +151,6 @@ a {
   display: inline-block;
 }
 
-.logo-img {
-  height: 76px;
-  width: auto;
-  max-width: 100%;
-}
 
 /* Responsive Helpers */
 @media (min-width: 769px) {
@@ -266,8 +261,6 @@ a {
     flex-direction: row !important;
     align-items: center !important;
     gap: 0 !important;
-    margin-top: 4rem !important;
-    /* Make room for the floating badge */
     margin-bottom: 2rem !important;
     position: relative !important;
   }

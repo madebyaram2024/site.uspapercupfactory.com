@@ -30,7 +30,7 @@ export default function Navbar() {
                         width={354}
                         height={76}
                         className="logo-img"
-                        style={{ height: '76px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                        style={{ height: '76px', width: 'auto', maxWidth: '354px', objectFit: 'contain' }}
                         priority
                     />
                 </Link>
