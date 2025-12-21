@@ -54,14 +54,14 @@ const industries = [
         image: "/images/frame4.png"
     },
     {
-        title: "Events & Promotions",
-        tagline: "Make a memorable impact at trade shows, weddings, and campaigns.",
+        title: "One Love LA OC",
+        tagline: "Doing our part to help the homeless community in Los Angeles and Orange County.",
         items: [
-            "Trade Show Exhibitors",
-            "Political Campaigns",
-            "Weddings & Event Planners",
-            "Corporate Conferences",
-            "Festivals & Pop-ups"
+            "We Organize Food Drives",
+            "Apparel Donation & Distribution",
+            "Direct Skid Row Outreach",
+            "Volunteer with Us",
+            "Contact: onelove@uspapercupfactory.com"
         ],
         image: "/images/frame5.png"
     },
