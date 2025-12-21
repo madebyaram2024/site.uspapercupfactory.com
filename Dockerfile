@@ -93,16 +93,16 @@ RUN npm install -g prisma@5.22.0 bcryptjs @prisma/client
 
 ENV NODE_PATH=/home/nextjs/.npm-global/lib/node_modules
 
+# Set permissions for the startup script
+RUN chmod +x scripts/startup.sh
+
 USER nextjs
 
 EXPOSE 3000
 
 ENV PORT 3000
 # set hostname to localhost
-ENV HOSTNAME "0.0.0.0"
-
-# Set permissions for the startup script
-RUN chmod +x scripts/startup.sh
+ENV HOSTNAME="0.0.0.0"
 
 # Wait for DB to be ready before running migrations and starting server
-CMD ["./scripts/startup.sh"]
+CMD ["sh", "./scripts/startup.sh"]
