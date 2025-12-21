@@ -22,7 +22,7 @@ export default async function Home() {
         }}>
           <div style={{
             display: 'flex',
-            minHeight: '600px', /* Reduced from 700px to fix image cropping */
+            minHeight: '750px', /* Increased to reveal bottom logo */
             backgroundColor: 'white',
             flexDirection: 'row',
             width: '100%'
