@@ -23,7 +23,7 @@ export default function Navbar() {
                 alignItems: 'center',
                 height: '100%'
             }}>
-                <Link href="/" style={{ display: 'flex', alignItems: 'center', maxWidth: '70%' }}>
+                <Link href="/" className="logo-link" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
                         src="/images/US_PAPER_CUP_FACTORY_LOGOv100.png"
                         alt="US Paper Cup Factory"

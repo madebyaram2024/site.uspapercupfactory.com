@@ -179,7 +179,7 @@ export default async function Home() {
 
 
             {/* Right Image/Carousel Column */}
-            <div style={{
+            <div className="hero-carousel-wrapper" style={{
               flex: 1,
               position: 'relative',
               minHeight: '500px',

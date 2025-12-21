@@ -165,6 +165,17 @@ a {
 }
 
 @media (max-width: 768px) {
+  .logo-link {
+    max-width: 65% !important;
+  }
+
+  .hero-carousel-wrapper {
+    min-height: 400px !important;
+    height: 400px !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
   .desktop-only {
     display: none !important;
   }
