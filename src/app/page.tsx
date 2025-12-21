@@ -175,46 +175,6 @@ export default async function Home() {
 
             </div>
 
-            <style jsx>{`
-              @media (max-width: 768px) {
-                .made-usa-badge {
-                  width: 85px !important;
-                  height: 85px !important;
-                }
-                .made-usa-badge-inner {
-                  font-size: 0.65rem !important;
-                  padding: 8px !important;
-                }
-                .sqft-badge {
-                  font-size: 0.75rem !important;
-                  padding: 6px 12px !important;
-                }
-                .star-icon {
-                  font-size: 1rem !important;
-                }
-                .hero-custom-part {
-                  font-size: 0.85em !important;
-                }
-                .bullet-grid {
-                  grid-template-columns: repeat(2, 1fr) !important;
-                  gap: 0.75rem !important;
-                }
-                .bullet-title {
-                  font-size: 0.8rem !important;
-                }
-                .bullet-desc {
-                  font-size: 0.7rem !important;
-                  padding-left: 20px !important;
-                }
-                .hero-btn {
-                  padding: 14px 24px !important;
-                  font-size: 0.95rem !important;
-                }
-                .hero-btns {
-                   gap: 1rem !important;
-                }
-              }
-            `}</style>
 
             {/* Right Image/Carousel Column */}
             <div style={{
