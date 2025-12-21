@@ -29,9 +29,20 @@ export default function Navbar() {
                         alt="US Paper Cup Factory"
                         width={300}
                         height={60}
-                        style={{ height: '76px', width: 'auto', maxWidth: '354px', objectFit: 'contain' }}
+                        className="logo-img"
+                        style={{ width: 'auto', maxWidth: '354px', objectFit: 'contain' }}
                         priority
                     />
+                    <style jsx>{`
+                        .logo-img {
+                            height: 76px;
+                        }
+                        @media (max-width: 768px) {
+                            .logo-img {
+                                height: 68px;
+                            }
+                        }
+                    `}</style>
                 </Link>
 
                 {/* Desktop Nav */}

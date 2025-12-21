@@ -59,11 +59,9 @@ export default async function Home() {
                     position: 'absolute',
                     top: '0',
                     right: '0',
-                    width: '110px',
-                    height: '110px',
                     zIndex: 10,
                     opacity: 0.95
-                  }} className="animate-float">
+                  }} className="animate-float made-usa-badge">
                     <div style={{
                       width: '100%',
                       height: '100%',
@@ -82,12 +80,12 @@ export default async function Home() {
                       transform: 'rotate(-10deg)',
                       background: 'white',
                       boxShadow: '0 8px 25px rgba(214,31,31,0.1)'
-                    }}>
+                    }} className="made-usa-badge-inner">
                       MADE WITH <br /> PRIDE <br /> IN USA
                     </div>
                   </div>
 
-                  <div style={{
+                  <div className="sqft-badge" style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '8px',
@@ -95,12 +93,11 @@ export default async function Home() {
                     backgroundColor: 'rgba(214,31,31,0.05)',
                     borderRadius: '50px',
                     color: 'var(--color-red)',
-                    fontSize: '0.9rem',
                     fontWeight: 'bold',
                     letterSpacing: '1px',
                     border: '1px solid rgba(214,31,31,0.1)'
                   }}>
-                    <span style={{ fontSize: '1.2rem' }}>★</span>
+                    <span className="star-icon">★</span>
                     8000 SQFT FACILITY IN HUNTINGTON BEACH, CA
                   </div>
                 </div>
@@ -114,12 +111,12 @@ export default async function Home() {
                   textTransform: 'uppercase',
                   animationDelay: '0.2s'
                 }}>
-                  <span style={{ color: 'var(--color-red)' }}>CUSTOM DESIGNED,</span><br />
+                  <span style={{ color: 'var(--color-red)' }} className="hero-custom-part">CUSTOM DESIGNED,</span><br />
                   FULL COLOR PAPER<br />
                   CUPS.
                 </h1>
 
-                <div className="animate-fade-in-up grid-3-cols" style={{
+                <div className="animate-fade-in-up bullet-grid" style={{
                   display: 'grid',
                   gap: '1rem',
                   margin: '0 0 3rem',
@@ -145,33 +142,28 @@ export default async function Home() {
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px',
-                        fontSize: '0.95rem',
                         fontWeight: '800',
                         color: 'var(--color-navy)',
                         letterSpacing: '0.5px'
-                      }}>
+                      }} className="bullet-title">
                         <span style={{ color: 'var(--color-red)' }}>✦</span> {item.title}
                       </div>
-                      <div style={{
-                        fontSize: '0.8rem',
-                        color: '#666',
-                        paddingLeft: '1.5rem',
-                        fontWeight: '500',
-                        lineHeight: '1.4'
-                      }}>
-                        {item.desc}
+                      <div className="bullet-desc-wrap">
+                        <p className="bullet-desc" style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', paddingLeft: '28px' }}>
+                          {item.desc}
+                        </p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex-col-mobile animate-fade-in-up" style={{ display: 'flex', gap: '1.5rem', animationDelay: '0.6s' }}>
-                  <a href="/dashboard" className="btn btn-primary" style={{
+                <div className="flex-col-mobile animate-fade-in-up hero-btns" style={{ display: 'flex', gap: '1.5rem', animationDelay: '0.6s' }}>
+                  <a href="/dashboard" className="btn btn-primary hero-btn" style={{
                     padding: '18px 40px',
                     fontSize: '1.1rem',
                     letterSpacing: '1px'
                   }}>START YOUR PROJECT</a>
-                  <a href="/gallery" className="btn btn-secondary" style={{
+                  <a href="/gallery" className="btn btn-secondary hero-btn" style={{
                     padding: '18px 40px',
                     fontSize: '1.1rem',
                     letterSpacing: '1px',
@@ -182,6 +174,47 @@ export default async function Home() {
               </div>
 
             </div>
+
+            <style jsx>{`
+              @media (max-width: 768px) {
+                .made-usa-badge {
+                  width: 85px !important;
+                  height: 85px !important;
+                }
+                .made-usa-badge-inner {
+                  font-size: 0.65rem !important;
+                  padding: 8px !important;
+                }
+                .sqft-badge {
+                  font-size: 0.75rem !important;
+                  padding: 6px 12px !important;
+                }
+                .star-icon {
+                  font-size: 1rem !important;
+                }
+                .hero-custom-part {
+                  font-size: 0.85em !important;
+                }
+                .bullet-grid {
+                  grid-template-columns: repeat(2, 1fr) !important;
+                  gap: 0.75rem !important;
+                }
+                .bullet-title {
+                  font-size: 0.8rem !important;
+                }
+                .bullet-desc {
+                  font-size: 0.7rem !important;
+                  padding-left: 20px !important;
+                }
+                .hero-btn {
+                  padding: 14px 24px !important;
+                  font-size: 0.95rem !important;
+                }
+                .hero-btns {
+                   gap: 1rem !important;
+                }
+              }
+            `}</style>
 
             {/* Right Image/Carousel Column */}
             <div style={{

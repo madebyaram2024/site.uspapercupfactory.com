@@ -189,6 +189,9 @@ export default function IndustriesServed() {
           .grid-responsive {
             grid-template-columns: 1fr !important;
           }
+          .industry-card {
+            flex-direction: column-reverse !important;
+          }
         }
       `}</style>
         </section>
