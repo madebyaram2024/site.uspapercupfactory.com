@@ -44,7 +44,7 @@ export default function HeroCarousel({ images, interval = 4000 }: HeroCarouselPr
                         alt={`Gallery Inspiration ${index + 1}`}
                         fill
                         priority={index === 0}
-                        style={{ objectFit: 'cover', objectPosition: 'bottom right' }}
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
                         sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </div>

@@ -22,7 +22,7 @@ export default async function Home() {
         }}>
           <div style={{
             display: 'flex',
-            minHeight: '700px',
+            minHeight: '600px', /* Reduced from 700px to fix image cropping */
             backgroundColor: 'white',
             flexDirection: 'row',
             width: '100%'
@@ -30,7 +30,7 @@ export default async function Home() {
 
             {/* Left Content Column */}
             <div style={{
-              flex: 1,
+              flex: 0.9, /* Given more space to images */
               padding: 'clamp(1.5rem, 5vw, 4rem)',
               display: 'flex',
               flexDirection: 'column',
@@ -180,7 +180,7 @@ export default async function Home() {
 
             {/* Right Image/Carousel Column */}
             <div className="hero-carousel-wrapper" style={{
-              flex: 1,
+              flex: 1.1, /* Bigger image area */
               position: 'relative',
               minHeight: '500px',
               background: '#f8f8f8'
