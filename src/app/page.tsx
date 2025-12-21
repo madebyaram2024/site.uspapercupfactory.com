@@ -26,7 +26,7 @@ export default async function Home() {
             backgroundColor: 'white',
             flexDirection: 'row',
             width: '100%'
-          }} className="flex-col-mobile">
+          }} className="flex-col-reverse-mobile">
 
             {/* Left Content Column */}
             <div style={{
@@ -53,11 +53,11 @@ export default async function Home() {
 
 
               <div style={{ position: 'relative', zIndex: 1 }}>
-                <div className="animate-fade-in-up" style={{ animationDelay: '0.1s', display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
+                <div className="animate-fade-in-up hero-badges-wrapper" style={{ animationDelay: '0.1s', display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem', position: 'relative' }}>
                   {/* MADE IN USA BADGE - TOP SECTON */}
                   <div style={{
                     position: 'absolute',
-                    top: '0',
+                    top: '-20px',
                     right: '0',
                     zIndex: 10,
                     opacity: 0.95
@@ -95,7 +95,9 @@ export default async function Home() {
                     color: 'var(--color-red)',
                     fontWeight: 'bold',
                     letterSpacing: '1px',
-                    border: '1px solid rgba(214,31,31,0.1)'
+                    border: '1px solid rgba(214,31,31,0.1)',
+                    position: 'relative',
+                    zIndex: 5
                   }}>
                     <span className="star-icon">★</span>
                     8000 SQFT FACILITY IN HUNTINGTON BEACH, CA

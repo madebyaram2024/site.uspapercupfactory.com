@@ -121,6 +121,7 @@ a {
 .made-usa-badge {
   width: 110px !important;
   height: 110px !important;
+  transition: all 0.3s ease;
 }
 
 .made-usa-badge-inner {
@@ -130,6 +131,7 @@ a {
 
 .sqft-badge {
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .bullet-grid {
@@ -151,6 +153,8 @@ a {
 
 .logo-img {
   height: 76px;
+  width: auto;
+  max-width: 100%;
 }
 
 /* Responsive Helpers */
@@ -179,7 +183,18 @@ a {
 
   .flex-col-mobile {
     flex-direction: column !important;
-    gap: 2rem !important;
+    gap: 1.5rem !important;
+  }
+
+  .flex-col-reverse-mobile {
+    flex-direction: column-reverse !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Prevent Body Overflow */
+  body {
+    width: 100vw;
+    overflow-x: hidden;
   }
 
   .grid-responsive {
@@ -202,22 +217,36 @@ a {
   }
 
   .logo-img {
-    height: 68px !important;
+    height: 54px !important;
+    max-width: 240px !important;
   }
 
   .made-usa-badge {
-    width: 85px !important;
-    height: 85px !important;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 0 auto 1rem !important;
+    width: 90px !important;
+    height: 90px !important;
   }
 
   .made-usa-badge-inner {
-    font-size: 0.65rem !important;
+    font-size: 0.7rem !important;
     padding: 8px !important;
   }
 
   .sqft-badge {
-    font-size: 0.75rem !important;
-    padding: 6px 12px !important;
+    font-size: 0.65rem !important;
+    padding: 4px 10px !important;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-badges-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
   }
 
   .star-icon {
@@ -230,25 +259,43 @@ a {
 
   .bullet-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
+    gap: 0.5rem !important;
   }
 
   .bullet-title {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
   }
 
   .bullet-desc {
-    font-size: 0.7rem !important;
-    padding-left: 20px !important;
+    font-size: 0.65rem !important;
+    padding-left: 18px !important;
   }
 
   .hero-btn {
-    padding: 14px 24px !important;
-    font-size: 0.95rem !important;
+    padding: 12px 20px !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
   }
 
   .hero-btns {
-    gap: 1rem !important;
+    gap: 0.75rem !important;
+    padding: 0 1rem;
+  }
+}
+
+/* Extreme Mobile Fixes (320px) */
+@media (max-width: 340px) {
+  .logo-img {
+    height: 48px !important;
+    max-width: 200px !important;
+  }
+
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+
+  .bullet-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

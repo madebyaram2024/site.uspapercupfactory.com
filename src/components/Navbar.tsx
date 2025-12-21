@@ -23,14 +23,14 @@ export default function Navbar() {
                 alignItems: 'center',
                 height: '100%'
             }}>
-                <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                <Link href="/" style={{ display: 'flex', alignItems: 'center', maxWidth: '70%' }}>
                     <Image
                         src="/images/US_PAPER_CUP_FACTORY_LOGOv100.png"
                         alt="US Paper Cup Factory"
                         width={354}
                         height={76}
                         className="logo-img"
-                        style={{ height: '76px', width: 'auto', maxWidth: '354px', objectFit: 'contain' }}
+                        style={{ height: '76px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                         priority
                     />
                 </Link>
