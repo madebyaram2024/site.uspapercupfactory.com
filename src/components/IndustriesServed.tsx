@@ -15,7 +15,7 @@ const industries = [
             "Food Trucks & Breweries"
         ],
         // Image: 16:9 aspect ratio
-        image: "/images/food_industy_cups.png"
+        image: "/images/frame1.png"
     },
     {
         title: "Automotive & Service Centers",
@@ -27,7 +27,7 @@ const industries = [
             "Tire Centers",
             "Motorcycle Dealers"
         ],
-        image: ""
+        image: "/images/frame2.png"
     },
     {
         title: "Professional Services",
@@ -39,7 +39,7 @@ const industries = [
             "Medical & Dental Offices",
             "Co-working Spaces"
         ],
-        image: ""
+        image: "/images/frame3.png"
     },
     {
         title: "Retail & Lifestyle",
@@ -51,7 +51,7 @@ const industries = [
             "Boutique Retailers",
             "Gyms & Fitness Centers"
         ],
-        image: ""
+        image: "/images/frame4.png"
     },
     {
         title: "Events & Promotions",
@@ -63,7 +63,7 @@ const industries = [
             "Corporate Conferences",
             "Festivals & Pop-ups"
         ],
-        image: ""
+        image: "/images/frame5.png"
     },
     {
         title: "Partners & Wholesale",
@@ -74,7 +74,7 @@ const industries = [
             "Restaurant Supply (Cash & Carry)",
             "Event Caterers"
         ],
-        image: ""
+        image: "/images/frame6.png"
     }
 ];
 
