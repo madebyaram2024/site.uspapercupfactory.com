@@ -239,8 +239,8 @@ a {
 
   .made-usa-badge {
     position: absolute !important;
-    top: -95px !important;
-    /* Move fully above the sqft badge */
+    top: 60px !important;
+    /* Move down to the H1 area */
     right: 0 !important;
     margin: 0 !important;
     width: 80px !important;
