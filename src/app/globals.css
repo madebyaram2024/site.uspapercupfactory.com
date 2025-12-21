@@ -117,6 +117,42 @@ a {
   margin: 10px auto 0;
 }
 
+/* Base styles for Hero & Components (Desktop Default) */
+.made-usa-badge {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+.made-usa-badge-inner {
+  font-size: 0.8rem;
+  padding: 12px;
+}
+
+.sqft-badge {
+  font-size: 0.9rem;
+}
+
+.bullet-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bullet-title {
+  font-size: 0.95rem;
+}
+
+.bullet-desc {
+  font-size: 0.85rem;
+}
+
+.hero-btn {
+  /* Default handled by .btn */
+  display: inline-block;
+}
+
+.logo-img {
+  height: 76px;
+}
+
 /* Responsive Helpers */
 @media (min-width: 769px) {
   .mobile-only {
@@ -163,6 +199,10 @@ a {
   /* Hide elements if needed or adjust alignment */
   .text-center-mobile {
     text-align: center !important;
+  }
+
+  .logo-img {
+    height: 68px !important;
   }
 
   .made-usa-badge {
