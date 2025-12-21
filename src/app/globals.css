@@ -239,12 +239,14 @@ a {
 
   .made-usa-badge {
     position: absolute !important;
-    top: -30px !important;
+    top: -95px !important;
+    /* Move fully above the sqft badge */
     right: 0 !important;
     margin: 0 !important;
     width: 80px !important;
     height: 80px !important;
     transform: rotate(15deg) !important;
+    z-index: 20 !important;
   }
 
   .made-usa-badge-inner {
@@ -262,12 +264,12 @@ a {
 
   .hero-badges-wrapper {
     flex-direction: row !important;
-    /* Restore row layout */
     align-items: center !important;
     gap: 0 !important;
-    /* Badge is absolute, so gap matters less */
-    margin-bottom: 2.5rem !important;
-    /* Add space for the floating badge */
+    margin-top: 4rem !important;
+    /* Make room for the floating badge */
+    margin-bottom: 2rem !important;
+    position: relative !important;
   }
 
   .star-icon {
