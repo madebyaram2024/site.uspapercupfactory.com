@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -26,7 +25,7 @@ export default function Navbar() {
             }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
-                        src="/images/products/us-paper-cup-factory-main-logo.png"
+                        src="/images/products/US_PAPER_CUP_FACTORY_LOGOv12.png"
                         alt="US Paper Cup Factory"
                         width={300}
                         height={60}
