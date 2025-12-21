@@ -184,7 +184,12 @@ a {
 /* Mobile Responsiveness & Utilities */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.8rem !important;
+    font-size: 2.2rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero-custom-part {
+    font-size: 1.4rem !important;
   }
 
   .hero-p {
@@ -233,12 +238,13 @@ a {
   }
 
   .made-usa-badge {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    margin: 0 auto 1rem !important;
-    width: 90px !important;
-    height: 90px !important;
+    position: absolute !important;
+    top: -30px !important;
+    right: 0 !important;
+    margin: 0 !important;
+    width: 80px !important;
+    height: 80px !important;
+    transform: rotate(15deg) !important;
   }
 
   .made-usa-badge-inner {
@@ -255,9 +261,13 @@ a {
   }
 
   .hero-badges-wrapper {
-    flex-direction: column !important;
+    flex-direction: row !important;
+    /* Restore row layout */
     align-items: center !important;
-    gap: 0.5rem !important;
+    gap: 0 !important;
+    /* Badge is absolute, so gap matters less */
+    margin-bottom: 2.5rem !important;
+    /* Add space for the floating badge */
   }
 
   .star-icon {

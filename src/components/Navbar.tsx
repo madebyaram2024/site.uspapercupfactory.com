@@ -15,7 +15,7 @@ export default function Navbar() {
             boxShadow: 'var(--shadow-sm)',
             position: 'sticky',
             top: 0,
-            zIndex: 100
+            zIndex: 9999
         }}>
             <div className="container" style={{
                 display: 'flex',
