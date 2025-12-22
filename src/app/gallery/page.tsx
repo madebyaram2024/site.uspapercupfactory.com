@@ -1,6 +1,15 @@
 import Navbar from '@/components/Navbar';
 import { getGalleryItems } from '@/actions/gallery';
 import GalleryGrid from '@/components/GalleryGrid';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Gallery | Custom Printed Paper Cup Examples",
+    description: "Browse our gallery of custom printed paper cups. See examples of our high-quality printing and design work for various brands and events.",
+    alternates: {
+        canonical: '/gallery',
+    },
+};
 
 export const dynamic = 'force-dynamic'; // Ensure we always get fresh data
 

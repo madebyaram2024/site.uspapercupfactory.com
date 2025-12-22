@@ -5,6 +5,13 @@ import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
 import IndustriesServed from '@/components/IndustriesServed';
 import { getGalleryItems } from '@/actions/gallery';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default async function Home() {
   // Prepare 15 specific hero images for rotation

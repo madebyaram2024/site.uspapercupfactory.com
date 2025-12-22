@@ -6,6 +6,9 @@ import BuyButton from '@/components/BuyButton';
 export const metadata: Metadata = {
     title: "Shop Custom Paper Cups | Low MOQ (25+) | US Paper Cup Factory",
     description: "Order high-quality custom printed paper cups starting at just 25 units. Includes 1 free professional design, 1 free revision, and a free 3D mockup with every order.",
+    alternates: {
+        canonical: '/shop',
+    },
 };
 
 const products = [
@@ -19,8 +22,33 @@ const products = [
 ];
 
 export default function ShopPage() {
+    const productSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: products.map((product, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@type': 'Product',
+                name: `Custom Printed Paper Cups - ${product.qty}`,
+                image: `https://uspapercupfactory.com${product.img}`,
+                description: product.alt,
+                offers: {
+                    '@type': 'Offer',
+                    price: product.price,
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                },
+            },
+        })),
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+            />
             <Navbar />
             <main style={{ padding: '6rem 0' }} className="animate-fade-in-up">
                 <div className="container">

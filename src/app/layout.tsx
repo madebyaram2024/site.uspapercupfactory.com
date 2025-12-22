@@ -57,6 +57,12 @@ export const metadata: Metadata = {
     icon: '/images/favicon.png',
     apple: '/images/favicon.png',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'US Paper Cup Factory | Custom Full‑Color Paper Cups',
+    description: 'Premium custom printed paper cups made in the USA. Low MOQ (25), free design & 3D mockup.',
+    images: ['/images/us-paper-cup-factory-logo.png'],
+  },
 };
 
 export default function RootLayout({
@@ -64,8 +70,33 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'US Paper Cup Factory',
+    url: 'https://uspapercupfactory.com',
+    logo: 'https://uspapercupfactory.com/images/us-paper-cup-factory-logo.png',
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61585209849866',
+      'https://www.instagram.com/us_paper_cup_factory/',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-747-338-8959',
+      contactType: 'customer service',
+      areaServed: 'US',
+      availableLanguage: 'en',
+    },
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
         <Footer />

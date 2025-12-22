@@ -2,6 +2,15 @@
 import Navbar from '@/components/Navbar';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 import ContactForm from '@/components/ContactForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Contact Us | US Paper Cup Factory",
+    description: "Get in touch with US Paper Cup Factory for questions about custom orders, designs, or sample requests. We're here to help you create the perfect cup.",
+    alternates: {
+        canonical: '/contact',
+    },
+};
 
 export default function ContactPage() {
     return (

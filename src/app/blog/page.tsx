@@ -3,6 +3,15 @@ import Navbar from '@/components/Navbar';
 import { getBlogPosts } from '@/actions/blog';
 import Link from 'next/link';
 import SocialShare from '@/components/SocialShare';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Blog | Custom Paper Cup Industry News & Tips",
+    description: "Stay updated with the latest news, design tips, and manufacturing insights from the US Paper Cup Factory.",
+    alternates: {
+        canonical: '/blog',
+    },
+};
 
 export const dynamic = 'force-dynamic';
 
@@ -35,7 +44,7 @@ export default async function BlogListPage() {
                             <div className="blog-card-content">
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                     <div>
-                                        <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', textTransform: 'none', lineHeight: '1.2' }}>{post.title}</h3>
+                                        <h2 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', textTransform: 'none', lineHeight: '1.2' }}>{post.title}</h2>
                                         <div style={{ fontSize: '0.95rem', color: '#666', marginBottom: '1.5rem' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
                                     </div>
                                     <div>

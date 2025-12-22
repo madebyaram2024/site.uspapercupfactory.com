@@ -1,6 +1,15 @@
 
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "About Us | US Paper Cup Factory",
+    description: "Learn about US Paper Cup Factory, your premier American manufacturer of high-quality, custom-printed paper cups in Huntington Beach, California.",
+    alternates: {
+        canonical: '/about',
+    },
+};
 
 export default function AboutPage() {
     return (
