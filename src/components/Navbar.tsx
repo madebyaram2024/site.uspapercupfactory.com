@@ -25,8 +25,8 @@ export default function Navbar() {
             }}>
                 <Link href="/" className="logo-link" style={{ display: 'flex', alignItems: 'center' }}>
                     <Image
-                        src="/images/US_PAPER_CUP_FACTORY_LOGOv100.png"
-                        alt="US Paper Cup Factory"
+                        src="/images/us-paper-cup-factory-logo.png"
+                        alt="US Paper Cup Factory - Premier Custom Printed Paper Cup Manufacturer"
                         width={354}
                         height={76}
                         className="logo-img"

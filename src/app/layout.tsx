@@ -45,17 +45,17 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: '/images/products/us-paper-cup-factory-main-logo.png', // Using our new logo as the OG image
+        url: '/images/us-paper-cup-factory-logo.png',
         width: 1200,
         height: 630,
-        alt: 'US Paper Cup Factory',
+        alt: 'US Paper Cup Factory - Custom Printed Paper Cups Made in USA',
       },
     ],
   },
   authors: [{ name: "US Paper Cup Factory" }],
   icons: {
-    icon: '/images/fav.png',
-    apple: '/images/fav.png',
+    icon: '/images/favicon.png',
+    apple: '/images/favicon.png',
   },
 };
 

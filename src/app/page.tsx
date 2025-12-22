@@ -250,7 +250,7 @@ export default async function Home() {
               {/* Left Image - Using 500 cups image as placeholder for 'Business' context */}
               <div style={{ flex: 1 }}>
                 <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                  <Image src="/images/more-custom-cup-styles-options.png" alt="Diverse Custom Paper Cup Styles and Branding Options" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                  <Image src="/images/custom-paper-cup-styles-branding.png" alt="Diverse Custom Paper Cup Styles and Branding Options" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
               </div>
               {/* Right Text */}

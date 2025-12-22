@@ -14,8 +14,8 @@ const industries = [
             "Bakeries & Donut Shops",
             "Food Trucks & Breweries"
         ],
-        // Image: 16:9 aspect ratio
-        image: "/images/frame1.png"
+        image: "/images/hospitality-food-service-custom-cups.png",
+        alt: "Custom branded paper cups for hospitality and food service businesses"
     },
     {
         title: "Automotive & Service Centers",
@@ -27,7 +27,8 @@ const industries = [
             "Tire Centers",
             "Motorcycle Dealers"
         ],
-        image: "/images/frame2.png"
+        image: "/images/automotive-service-custom-cups.png",
+        alt: "Premium branded paper cups for automotive dealership customer waiting rooms"
     },
     {
         title: "Professional Services",
@@ -39,7 +40,8 @@ const industries = [
             "Medical & Dental Offices",
             "Co-working Spaces"
         ],
-        image: "/images/frame3.png"
+        image: "/images/professional-services-custom-cups.png",
+        alt: "Elegant custom paper cups for law firms and professional service offices"
     },
     {
         title: "Retail & Lifestyle",
@@ -51,7 +53,8 @@ const industries = [
             "Boutique Retailers",
             "Gyms & Fitness Centers"
         ],
-        image: "/images/frame4.png"
+        image: "/images/retail-lifestyle-custom-cups.png",
+        alt: "Customized paper cups for boutique retail and lifestyle brand marketing"
     },
     {
         title: "One Love LA OC",
@@ -63,7 +66,8 @@ const industries = [
             "Volunteer with Us",
             "Contact: onelove@uspapercupfactory.com"
         ],
-        image: "/images/frame5.png"
+        image: "/images/community-outreach-one-love-la-oc.png",
+        alt: "US Paper Cup Factory community outreach and charity efforts in LA and OC"
     },
     {
         title: "Partners & Wholesale",
@@ -74,7 +78,8 @@ const industries = [
             "Restaurant Supply (Cash & Carry)",
             "Event Caterers"
         ],
-        image: "/images/frame6.png"
+        image: "/images/wholesale-partners-custom-cups.png",
+        alt: "Wholesale custom paper cup production for print brokers and marketing agencies"
     }
 ];
 
@@ -114,7 +119,7 @@ export default function IndustriesServed() {
                                 {industry.image ? (
                                     <Image
                                         src={industry.image}
-                                        alt={`${industry.title} Showcase`}
+                                        alt={industry.alt || `${industry.title} Showcase`}
                                         fill
                                         style={{ objectFit: 'cover' }}
                                         sizes="(max-width: 768px) 100vw, 33vw"

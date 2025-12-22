@@ -1,5 +1,6 @@
 
 import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 
 export default function AboutPage() {
     return (
@@ -21,20 +22,22 @@ export default function AboutPage() {
 
                     {/* Image Section */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src="/images/us_papercupexterior.png"
-                                alt="US Paper Cup Factory exterior view of high-quality custom printed paper cups"
-                                style={{ width: '100%', height: 'auto', display: 'block' }}
+                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+                            <Image
+                                src="/images/us-paper-cup-factory-exterior.png"
+                                alt="US Paper Cup Factory - Exterior view of our American manufacturing facility in Huntington Beach, CA"
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
-                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src="/images/us_papercup_interior.png"
-                                alt="US Paper Cup Factory interior view showcasing the quality and craftsmanship of our paper cups"
-                                style={{ width: '100%', height: 'auto', display: 'block' }}
+                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+                            <Image
+                                src="/images/us-paper-cup-factory-interior.png"
+                                alt="Inside the US Paper Cup Factory - Advanced digital printing and manufacturing for custom paper cups"
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
                     </div>
