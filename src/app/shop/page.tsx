@@ -5,17 +5,17 @@ import BuyButton from '@/components/BuyButton';
 
 export const metadata: Metadata = {
     title: "Shop Custom Paper Cups | Low MOQ (25+) | US Paper Cup Factory",
-    description: "Order high-quality custom printed paper cups starting at just 25 units. Free design services, 3D mockups, and fast US shipping included with every order.",
+    description: "Order high-quality custom printed paper cups starting at just 25 units. Includes 1 free professional design, 1 free revision, and a free 3D mockup with every order.",
 };
 
 const products = [
-    { qty: "25 Cups", price: 50.00, perCup: "$2.00", img: "/images/order-quantity-25-custom-cups.png", alt: "25 Custom Printed Paper Cups - Starter Pack", features: ["Perfect for Small Events", "Free 3D Mockup", "1 Design Revision"] },
-    { qty: "50 Cups", price: 75.00, perCup: "$1.50", img: "/images/order-quantity-50-custom-cups.png", alt: "50 Custom Printed Paper Cups - Preferred for Small Businesses", features: ["Most Requested Tier", "Fast Domestic Ship", "Free 3D Mockup"] },
-    { qty: "100 Cups", price: 100.00, perCup: "$1.00", img: "/images/order-quantity-100-custom-cups.png", alt: "100 Custom Printed Paper Cups - Perfect for Events", features: ["Best Value for Events", "Pro Design Session", "Free 3D Mockup"] },
-    { qty: "250 Cups", price: 187.50, perCup: "$0.75", img: "/images/order-quantity-250-custom-cups.png", alt: "250 Custom Printed Paper Cups - Professional Branding Tier", features: ["High-Impact Branding", "Scalable Fulfillment", "Free 3D Mockup"] },
-    { qty: "500 Cups", price: 250.00, perCup: "$0.50", img: "/images/order-quantity-500-custom-cups.png", alt: "500 Custom Printed Paper Cups - Bulk Order Savings", features: ["Bulk Production", "Priority Service", "Free 3D Mockup"], isPopular: true },
-    { qty: "1,000 Cups", price: 200.00, perCup: "$0.20", img: "/images/order-quantity-1000-custom-cups.png", alt: "1,000 Custom Printed Paper Cups - High Volume Solutions", features: ["Industrial Capacity", "Low Unit Cost", "Free 3D Mockup"] },
-    { qty: "5,000 Cups", price: 750.00, perCup: "$0.15", img: "/images/order-quantity-5000-custom-cups.png", alt: "5,000 Custom Printed Paper Cups - Industrial Scale Production", features: ["Enterprise Scale", "Flexo Printing", "Free 3D Mockup"] },
+    { qty: "25 Cups", price: 50.00, perCup: "$2.00", img: "/images/order-quantity-25-custom-cups.png", alt: "25 Custom Printed Paper Cups - Starter Pack", features: ["1 Free Professional Design", "1 Free Revision"] },
+    { qty: "50 Cups", price: 75.00, perCup: "$1.50", img: "/images/order-quantity-50-custom-cups.png", alt: "50 Custom Printed Paper Cups - Preferred for Small Businesses", features: ["1 Free Professional Design", "1 Free Revision"] },
+    { qty: "100 Cups", price: 100.00, perCup: "$1.00", img: "/images/order-quantity-100-custom-cups.png", alt: "100 Custom Printed Paper Cups - Perfect for Events", features: ["1 Free Professional Design", "1 Free Revision"] },
+    { qty: "250 Cups", price: 187.50, perCup: "$0.75", img: "/images/order-quantity-250-custom-cups.png", alt: "250 Custom Printed Paper Cups - Professional Branding Tier", features: ["1 Free Professional Design", "1 Free Revision"] },
+    { qty: "500 Cups", price: 250.00, perCup: "$0.50", img: "/images/order-quantity-500-custom-cups.png", alt: "500 Custom Printed Paper Cups - Bulk Order Savings", features: ["1 Free Professional Design", "1 Free Revision"], isPopular: true },
+    { qty: "1,000 Cups", price: 200.00, perCup: "$0.20", img: "/images/order-quantity-1000-custom-cups.png", alt: "1,000 Custom Printed Paper Cups - High Volume Solutions", features: ["1 Free Professional Design", "1 Free Revision"] },
+    { qty: "5,000 Cups", price: 750.00, perCup: "$0.15", img: "/images/order-quantity-5000-custom-cups.png", alt: "5,000 Custom Printed Paper Cups - Industrial Scale Production", features: ["1 Free Professional Design", "1 Free Revision"] },
 ];
 
 export default function ShopPage() {
@@ -30,7 +30,7 @@ export default function ShopPage() {
                             Premium Custom Paper Cups
                         </h1>
                         <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-                            Transform your brand with professional, USA-made custom cups. Ordering starts at just <strong>25 units</strong> with free professional design support and 3D mockups included in every tier.
+                            Transform your brand with professional, USA-made custom cups. Ordering starts at just <strong>25 units</strong>. Every order includes a free professional design, one free revision, and a 3D mockup.
                         </p>
                     </div>
 
@@ -139,9 +139,9 @@ export default function ShopPage() {
                             </p>
                             <div className="grid-3-cols" style={{ gap: '3rem' }}>
                                 {[
-                                    { title: "Universal Design", desc: "Our in-house design team ensures your logo looks perfect on every curve. Unlimited revisions until you're 100% satisfied." },
-                                    { title: "No Hidden Fees", desc: "What you see is what you pay. Zero setup costs, zero film fees, and transparent unit pricing." },
-                                    { title: "Fast Turnaround", desc: "Proudly manufactured in Huntington Beach, CA. Domestic shipping means no customs delays and predictable arrival." }
+                                    { title: "Universal Design", desc: "Our in-house design team ensures your logo looks perfect on every curve. 1 free design and 1 free revision included with every order." },
+                                    { title: "No Hidden Fees", desc: "What you see is what you pay. Zero setup costs, zero film fees, and transparent unit pricing across all tiers." },
+                                    { title: "Domestic Shipping", desc: "Proudly manufactured in Huntington Beach, CA. We offer various shipping options at checkout to ensure your order arrives exactly when you need it." }
                                 ].map((item, i) => (
                                     <div key={i}>
                                         <h4 style={{ color: 'var(--color-gold)', fontSize: '1.3rem', marginBottom: '1rem' }}>{item.title}</h4>

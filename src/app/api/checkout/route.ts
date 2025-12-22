@@ -67,6 +67,44 @@ export async function POST(req: Request) {
             payment_method_types: ['card'],
             line_items: line_items,
             mode: 'payment',
+            shipping_address_collection: {
+                allowed_countries: ['US'],
+            },
+            shipping_options: [
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: { amount: 1499, currency: 'usd' },
+                        display_name: 'Standard Ground Shipping',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 5 },
+                            maximum: { unit: 'business_day', value: 7 },
+                        },
+                    },
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: { amount: 3500, currency: 'usd' },
+                        display_name: 'Expedited Shipping',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 2 },
+                            maximum: { unit: 'business_day', value: 3 },
+                        },
+                    },
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: { amount: 6500, currency: 'usd' },
+                        display_name: 'Overnight Shipping',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 1 },
+                            maximum: { unit: 'business_day', value: 1 },
+                        },
+                    },
+                },
+            ],
             success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${req.headers.get('origin')}/shop`,
             metadata: {
