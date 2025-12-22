@@ -53,6 +53,10 @@ export const metadata: Metadata = {
     ],
   },
   authors: [{ name: "US Paper Cup Factory" }],
+  icons: {
+    icon: '/images/fav.png',
+    apple: '/images/fav.png',
+  },
 };
 
 export default function RootLayout({
