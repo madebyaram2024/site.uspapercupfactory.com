@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://uspapercupfactory.com'),
   title: {
-    default: "US Paper Cup Factory | Custom Printed Cups Made in USA",
+    default: "Custom Paper Cups — From 25 Units | Made in USA",
     template: "%s | US Paper Cup Factory"
   },
-  description: "The premier American manufacturer of custom printed paper cups. Fast turnaround, high quality, and free design services. Order online today.",
-  keywords: ["paper cups", "custom cups", "printed cups", "coffee cups", "branded cups", "wholesale cups", "made in USA"],
+  description: "High-quality custom paper cups made in Huntington Beach. Low MOQ (25), free design & 3D mockup, rush options available. Get a free mockup today.",
+  keywords: ["custom paper cups", "full-color paper cups 25 minimum", "branded paper cups made in USA", "small order custom coffee cups", "printed paper cups for events", "wholesale custom paper cups"],
   robots: {
     index: true,
     follow: true,
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "US Paper Cup Factory",
-    description: "Custom Printed Paper Cups - Made in USA with Fast Turnaround.",
+    title: "US Paper Cup Factory | Custom Full‑Color Paper Cups",
+    description: "Custom Printed Paper Cups - Made in USA with Fast Turnaround. Starts at just 25 units.",
     url: 'https://uspapercupfactory.com',
     siteName: "US Paper Cup Factory",
     locale: 'en_US',

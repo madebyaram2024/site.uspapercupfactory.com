@@ -88,9 +88,9 @@ export default function IndustriesServed() {
         <section id="industries" style={{ padding: '6rem 0', background: 'var(--color-navy)', color: 'white' }}>
             <div className="container">
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 className="section-title" style={{ color: 'white' }}>Industries We Serve</h2>
+                    <h2 className="section-title" style={{ color: 'white' }}>Industries We Serve — High-Impact Branding</h2>
                     <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)' }}>
-                        We provide custom branded solutions tailored for businesses across all sectors.
+                        Turn every to-go order into a "walking billboard." We provide custom branded solutions tailored for businesses across all sectors.
                     </p>
                 </div>
 
