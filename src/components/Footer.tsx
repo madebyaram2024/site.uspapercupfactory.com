@@ -62,10 +62,10 @@ export default function Footer() {
                         </ul>
 
                         <div style={{ display: 'flex', gap: '1rem' }}>
-                            <a href="#" aria-label="Instagram" style={{ color: 'white', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', transition: 'background 0.2s' }}>
+                            <a href="https://www.instagram.com/us_paper_cup_factory/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ color: 'white', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', transition: 'background 0.2s' }}>
                                 <InstagramIcon size={20} />
                             </a>
-                            <a href="#" aria-label="Facebook" style={{ color: 'white', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', transition: 'background 0.2s' }}>
+                            <a href="https://www.facebook.com/profile.php?id=61585209849866" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{ color: 'white', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', transition: 'background 0.2s' }}>
                                 <FacebookIcon size={20} />
                             </a>
                             <a href="#" aria-label="TikTok" style={{ color: 'white', background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '50%', display: 'flex', transition: 'background 0.2s' }}>
