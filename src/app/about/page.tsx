@@ -20,9 +20,23 @@ export default function AboutPage() {
                     </div>
 
                     {/* Image Section */}
-                    <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/images/about-us-paper-cup-factory-team.jpg" alt="Our manufacturing team at US Paper Cup Factory providing quality custom printed cups" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/images/us_papercupexterior.png"
+                                alt="US Paper Cup Factory exterior view of high-quality custom printed paper cups"
+                                style={{ width: '100%', height: 'auto', display: 'block' }}
+                            />
+                        </div>
+                        <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/images/us_papercup_interior.png"
+                                alt="US Paper Cup Factory interior view showcasing the quality and craftsmanship of our paper cups"
+                                style={{ width: '100%', height: 'auto', display: 'block' }}
+                            />
+                        </div>
                     </div>
 
                 </div>
