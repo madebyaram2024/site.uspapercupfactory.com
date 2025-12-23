@@ -598,3 +598,118 @@ a {
     gap: 4rem;
   }
 }
+/* CONCIERGE DESIGN SECTION */
+.design-section {
+  padding: 8rem 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.design-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.design-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(214, 31, 31, 0.05);
+  color: var(--color-red);
+  font-weight: 800;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.25rem;
+}
+
+.feature-box {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-red);
+  margin-top: 2.5rem;
+}
+
+.feature-box h3 {
+  color: var(--color-navy);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ink-badge {
+  background: var(--color-navy);
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  font-weight: 800;
+}
+
+.example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.example-card {
+  background: white;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  max-width: 180px;
+}
+
+.example-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.example-content {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.example-content h4 {
+  font-size: 0.75rem;
+  color: var(--color-red);
+  margin-bottom: 0.25rem;
+  font-weight: 800;
+}
+
+.example-content p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 992px) {
+  .design-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .example-grid {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .example-grid {
+    grid-template-columns: 1fr;
+    max-width: 240px;
+  }
+}
