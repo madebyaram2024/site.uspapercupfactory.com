@@ -268,6 +268,97 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* NEW CONCIERGE DESIGN SECTION */}
+        <section className="design-section">
+          <div className="container">
+            <div className="design-grid">
+
+              {/* Left Content */}
+              <div>
+                <span className="design-tag">CONCIERGE DESIGN SERVICE</span>
+                <h2 className="section-title" style={{ textAlign: 'left', fontSize: '2.5rem', marginBottom: '1.5rem' }}>
+                  Why We Don&apos;t Use <br /> <span style={{ color: 'var(--color-red)' }}>&quot;Drag-and-Drop&quot;</span>
+                </h2>
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+                  You aren&apos;t a graphic designer, and you shouldn&apos;t have to be. Instead of giving you a clumsy generic builder tool, we offer a <strong>Concierge Design Team</strong> to ensure your cups look professional and function perfectly.
+                </p>
+
+                <div className="feature-box">
+                  <h3>
+                    <span className="star-icon" style={{ color: 'var(--color-red)' }}>★</span>
+                    Optimize Your Logo for Real-World Use
+                    <span className="ink-badge">PIGMENT INKS</span>
+                  </h3>
+                  <p style={{ fontSize: '1rem', lineHeight: '1.7', color: '#444' }}>
+                    Printing on a curved paper cup is different than printing on a flat sheet of paper. We use Pigment-Based Inks—the industry gold standard for safety and durability.
+                  </p>
+                  <ul style={{ listStyle: 'none', padding: 0, marginTop: '1.5rem', display: 'grid', gap: '1rem' }}>
+                    <li style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                      <span style={{ color: 'var(--color-red)', fontWeight: 'bold' }}>✓</span>
+                      <div>
+                        <strong>The Science of Safety:</strong> Unlike cheap dye inks, our pigment ink is 100% waterproof and dried in 2 seconds. Hot coffee or ice-cold cocktail—it stays on the cup.
+                      </div>
+                    </li>
+                    <li style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                      <span style={{ color: 'var(--color-red)', fontWeight: 'bold' }}>✓</span>
+                      <div>
+                        <strong>Color Correction:</strong> Our designers manually adjust saturation and brightness to compensate for the safe pigment ink, ensuring vibrant, color-accurate results.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Right Vision Examples */}
+              <div style={{ background: '#fcfcfc', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.02)' }}>
+                <h3 style={{ fontSize: '1.6rem', color: 'var(--color-navy)', marginBottom: '1rem' }}>No Logo? No Problem.</h3>
+                <p style={{ marginBottom: '2rem', color: '#666' }}>Just tell us your vision in plain English, and our team (assisted by advanced Generative Design tech) will build it for you.</p>
+
+                <div className="example-grid">
+                  {/* BBQ Example */}
+                  <div className="example-card">
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1' }}>
+                      <Image
+                        src="/images/bbq-burger-custom-cup-design.jpg"
+                        alt="Char Broiled Burger BBQ Custom Cup Design"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="example-content">
+                      <h4>VISION A: BBQ THEME</h4>
+                      <p>&quot;Rugged, western-style branding for a new Texas burger joint.&quot;</p>
+                    </div>
+                  </div>
+
+                  {/* Lego Example */}
+                  <div className="example-card">
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1' }}>
+                      <Image
+                        src="/images/lego-birthday-custom-cup-design.jpg"
+                        alt="Timmy's 5th Birthday Lego Custom Cup Design"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="example-content">
+                      <h4>VISION B: BIRTHDAYS</h4>
+                      <p>&quot;Vibrant Lego block theme for Timmy&apos;s 5th birthday party.&quot;</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+                  <p style={{ fontWeight: 'bold', color: 'var(--color-navy)', fontSize: '1.1rem' }}>
+                    We go the extra mile, even for 25 cups.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
 
         {/* BUSINESS PARTNER SECTION */}
         <section style={{ padding: '6rem 0', background: 'white' }}>
