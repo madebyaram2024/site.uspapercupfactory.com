@@ -397,32 +397,6 @@ export default async function Home() {
         </section>
 
 
-        {/* BUSINESS PARTNER SECTION */}
-        <section style={{ padding: '6rem 0', background: 'white' }}>
-          <div className="container">
-            <div className="flex-col-mobile" style={{ display: 'flex', alignItems: 'center', gap: '5rem' }}>
-              {/* Left Image - Using 500 cups image as placeholder for 'Business' context */}
-              <div style={{ flex: 1 }}>
-                <div style={{ position: 'relative', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                  <Image src="/images/custom-paper-cup-styles-branding.png" alt="Diverse Custom Paper Cup Styles and Branding Options" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                </div>
-              </div>
-              {/* Right Text */}
-              <div style={{ flex: 1 }}>
-                <h2 style={{ fontSize: '3rem', color: 'var(--color-navy)', marginBottom: '2rem', lineHeight: 1.2 }}>
-                  More Than A Vendor. <br /><span style={{ color: 'var(--color-red)' }}>A Business Partner.</span>
-                </h2>
-                <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem', lineHeight: 1.8, color: '#444' }}>
-                  We don&apos;t just fulfill orders; we build long-term successful business relationships. We see our clients as true partners, and your custom cups as <strong>walking billboards</strong> for your local marketing.
-                </p>
-                <p style={{ fontSize: '1.1rem', marginBottom: '2rem', lineHeight: 1.8, color: '#444' }}>
-                  Just as you invest in your showroom, signage, and digital advertising, your custom cups deserve the same level of care and high-impact design to maximize your ROI.
-                </p>
-                <a href="/about" className="btn btn-primary">Learn About Our Process</a>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* EVENTS SECTION - Refined */}
         <section style={{ padding: '6rem 0', background: 'var(--color-navy)', color: 'white' }}>
