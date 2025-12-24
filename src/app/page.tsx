@@ -4,6 +4,7 @@ import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/Socia
 import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
 import IndustriesServed from '@/components/IndustriesServed';
+import ScrollVideo from '@/components/ScrollVideo';
 import { getGalleryItems } from '@/actions/gallery';
 import { Metadata } from 'next';
 
@@ -225,17 +226,11 @@ export default async function Home() {
 
               {/* Right Column: Video Container */}
               <div className="split-video-container">
-                <video
+                <ScrollVideo
+                  src="/images/Edited Bilboard.mp4"
                   className="split-video"
-                  autoPlay
-                  muted
-                  playsInline
-                  preload="metadata"
                   style={{ borderRadius: '8px' }}
-                >
-                  <source src="/images/Edited Bilboard.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                />
               </div>
 
             </div>
