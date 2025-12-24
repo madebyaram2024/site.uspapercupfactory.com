@@ -60,8 +60,9 @@ export default function ContactPage() {
 
                             <div style={{ marginBottom: '2rem' }}>
                                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-red)' }}>Sales & Support</h3>
+                                <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}><strong>Address:</strong> 11185 Condor Ave, Huntington Beach, CA 92708</p>
                                 <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}><strong>Email:</strong> sales@uspapercupfactory.com</p>
-                                <p style={{ fontSize: '1.1rem' }}><strong>Phone:</strong> +1 (747) 338-8959</p>
+                                <p style={{ fontSize: '1.1rem' }}><strong>Phone:</strong> (714) 594-9573</p>
                                 <p style={{ color: '#666', fontSize: '0.9rem', marginTop: '0.5rem' }}>Mon-Fri, 9am - 5pm</p>
                             </div>
 

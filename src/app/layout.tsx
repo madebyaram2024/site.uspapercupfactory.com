@@ -82,10 +82,18 @@ export default function RootLayout({
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-747-338-8959',
+      telephone: '+1-714-594-9573',
       contactType: 'customer service',
       areaServed: 'US',
       availableLanguage: 'en',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '11185 Condor Ave',
+      addressLocality: 'Huntington Beach',
+      addressRegion: 'CA',
+      postalCode: '92708',
+      addressCountry: 'US',
     },
   };
 

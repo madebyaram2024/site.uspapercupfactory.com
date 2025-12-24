@@ -53,11 +53,14 @@ export default function Footer() {
                     <div>
                         <h4 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>Get in Touch</h4>
                         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+                            <li style={{ display: 'flex', gap: '15px', alignItems: 'flex-start', fontSize: '1.1rem' }}>
+                                <span style={{ color: 'var(--color-red)' }}>📍</span> <span>11185 Condor Ave, Huntington Beach, CA 92708</span>
+                            </li>
                             <li style={{ display: 'flex', gap: '15px', alignItems: 'center', fontSize: '1.1rem' }}>
                                 <span style={{ color: 'var(--color-red)' }}>✉️</span> <a href="mailto:sales@uspapercupfactory.com" style={{ color: 'inherit', textDecoration: 'none' }}>sales@uspapercupfactory.com</a>
                             </li>
                             <li style={{ display: 'flex', gap: '15px', alignItems: 'center', fontSize: '1.1rem' }}>
-                                <span style={{ color: 'var(--color-red)' }}>📞</span> <a href="tel:+17473388959" style={{ color: 'inherit', textDecoration: 'none' }}>+1 (747) 338-8959</a>
+                                <span style={{ color: 'var(--color-red)' }}>📞</span> <a href="tel:+17145949573" style={{ color: 'inherit', textDecoration: 'none' }}>(714) 594-9573</a>
                             </li>
                         </ul>
 
