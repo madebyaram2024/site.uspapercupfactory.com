@@ -205,6 +205,43 @@ export default async function Home() {
         {/* INDUSTRIES WE SERVE - NEW SECTION */}
         <IndustriesServed />
 
+        {/* BRAND VIDEO SPLIT SECTION */}
+        <section className="split-section">
+          <div className="container">
+            <div className="split-grid">
+
+              {/* Left Column: Text Content */}
+              <div className="split-content">
+                <h2 className="split-headline">YOUR CUP IS <br /><span style={{ color: 'var(--color-red)' }}>GOING PLACES.</span></h2>
+                <h3 className="split-subheadline">Make sure it represents your brand.</h3>
+                <p className="split-body">
+                  Your logo doesn&apos;t stay on a shelf. It walks into meetings, sits on conference tables, and travels through the city.
+                  Don&apos;t trust your reputation to a cheap, flimsy cup. Make sure the quality of the cup matches the quality of your business.
+                </p>
+                <div>
+                  <a href="/shop" className="btn btn-primary" style={{ padding: '18px 40px', fontSize: '1.1rem' }}>START YOUR ORDER</a>
+                </div>
+              </div>
+
+              {/* Right Column: Video Container */}
+              <div className="split-video-container">
+                <video
+                  className="split-video"
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="metadata"
+                  style={{ borderRadius: '8px' }}
+                >
+                  <source src="/images/Edited Bilboard.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* TOP 3 PRODUCTS GRID */}
         <section style={{ padding: '6rem 0', background: '#f8f9fa' }}>
           <div className="container">
