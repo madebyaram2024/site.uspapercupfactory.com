@@ -16,8 +16,31 @@ export const dynamic = 'force-dynamic'; // Ensure we always get fresh data
 export default async function GalleryPage() {
     const items = await getGalleryItems();
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://uspapercupfactory.com',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Gallery',
+                item: 'https://uspapercupfactory.com/gallery',
+            },
+        ],
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navbar />
             <main style={{ padding: '6rem 0' }}>
                 <div className="container">

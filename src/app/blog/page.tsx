@@ -18,8 +18,31 @@ export const dynamic = 'force-dynamic';
 export default async function BlogListPage() {
     const posts = await getBlogPosts();
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://uspapercupfactory.com',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://uspapercupfactory.com/blog',
+            },
+        ],
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navbar />
             <main className="container" style={{ padding: '4rem 20px' }}>
                 <h1 className="section-title">Latest News & Tips</h1>

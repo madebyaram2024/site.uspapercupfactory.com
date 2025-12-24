@@ -22,6 +22,64 @@ const products = [
 ];
 
 export default function ShopPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://uspapercupfactory.com',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Shop',
+                item: 'https://uspapercupfactory.com/shop',
+            },
+        ],
+    };
+
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+            {
+                '@type': 'Question',
+                name: 'What is the minimum order quantity for custom paper cups?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Our minimum order quantity (MOQ) is just 25 units, making professional branded cups accessible for small events and businesses.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Does ordering include professional design services?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes! Every order includes one free professional design and one free revision to ensure your cups look exactly how you envisioned.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Where are your paper cups manufactured?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'All our cups are proudly manufactured in our Huntington Beach, California facility using food-safe, American-made materials.',
+                },
+            },
+            {
+                '@type': 'Question',
+                name: 'Do you offer bulk discounts for enterprise orders?',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Absolutely. We provide custom quotes and dedicated support for orders of 10,000 units or more. Contact our sales team for white-label solutions.',
+                },
+            },
+        ],
+    };
+
     const productSchema = {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
@@ -33,11 +91,17 @@ export default function ShopPage() {
                 name: `Custom Printed Paper Cups - ${product.qty}`,
                 image: `https://uspapercupfactory.com${product.img}`,
                 description: product.alt,
+                brand: {
+                    '@type': 'Brand',
+                    name: 'US Paper Cup Factory',
+                },
                 offers: {
                     '@type': 'Offer',
                     price: product.price,
                     priceCurrency: 'USD',
                     availability: 'https://schema.org/InStock',
+                    url: 'https://uspapercupfactory.com/shop',
+                    priceValidUntil: '2026-12-31',
                 },
             },
         })),
@@ -45,6 +109,14 @@ export default function ShopPage() {
 
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}

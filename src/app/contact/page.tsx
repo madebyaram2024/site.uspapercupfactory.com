@@ -1,5 +1,6 @@
 
 import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 import ContactForm from '@/components/ContactForm';
 import { Metadata } from 'next';
@@ -13,21 +14,50 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://uspapercupfactory.com',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Contact',
+                item: 'https://uspapercupfactory.com/contact',
+            },
+        ],
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navbar />
             <main style={{ paddingBottom: '4rem' }}>
                 {/* Contact Hero */}
                 <section style={{
-                    backgroundImage: 'url("/images/contact_hero.jpg?v=final")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
                     height: '400px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    position: 'relative'
+                    position: 'relative',
+                    overflow: 'hidden'
                 }}>
+                    <Image
+                        src="/images/contact_hero.jpg?v=final"
+                        alt="Contact US Paper Cup Factory"
+                        fill
+                        priority
+                        style={{ objectFit: 'cover' }}
+                        sizes="100vw"
+                    />
                     <div style={{
                         background: 'rgba(10, 25, 47, 0.6)',
                         padding: '3rem',
@@ -35,7 +65,9 @@ export default function ContactPage() {
                         textAlign: 'center',
                         maxWidth: '700px',
                         backdropFilter: 'blur(5px)', // Glassmorphism blur
-                        color: 'white'
+                        color: 'white',
+                        position: 'relative',
+                        zIndex: 1
                     }}>
                         <h1 className="section-title" style={{ color: 'white', marginBottom: '1rem' }}>Contact Us</h1>
                         <p style={{ fontSize: '1.2rem', opacity: 0.95, lineHeight: 1.6 }}>

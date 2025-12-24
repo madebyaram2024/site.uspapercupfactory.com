@@ -12,8 +12,31 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://uspapercupfactory.com',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'About',
+                item: 'https://uspapercupfactory.com/about',
+            },
+        ],
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <Navbar />
             <main className="container" style={{ padding: '6rem 20px' }}>
                 <div className="grid-responsive" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>

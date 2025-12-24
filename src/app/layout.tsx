@@ -72,21 +72,16 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'LocalBusiness',
+    '@id': 'https://uspapercupfactory.com/#organization',
     name: 'US Paper Cup Factory',
     url: 'https://uspapercupfactory.com',
     logo: 'https://uspapercupfactory.com/images/us-paper-cup-factory-logo.png',
-    sameAs: [
-      'https://www.facebook.com/profile.php?id=61585209849866',
-      'https://www.instagram.com/us_paper_cup_factory/',
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+1-714-594-9573',
-      contactType: 'customer service',
-      areaServed: 'US',
-      availableLanguage: 'en',
-    },
+    image: 'https://uspapercupfactory.com/images/us_papercupexterior.png',
+    description: 'Premier USA-based manufacturer of custom full-color paper cups. Low minimums, fast turnaround, and eco-friendly pigment inks.',
+    telephone: '+1-714-594-9573',
+    email: 'sales@uspapercupfactory.com',
+    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '11185 Condor Ave',
@@ -95,6 +90,34 @@ export default function RootLayout({
       postalCode: '92708',
       addressCountry: 'US',
     },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 33.7056,
+      longitude: -117.9385,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday'
+        ],
+        opens: '09:00',
+        closes: '17:00'
+      }
+    ],
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61585209849866',
+      'https://www.instagram.com/us_paper_cup_factory/',
+    ],
+    areaServed: {
+      '@type': 'Country',
+      name: 'US'
+    },
+    keywords: 'custom paper cups, printed paper cups, branded paper cups, coffee cups, made in usa, low minimum'
   };
 
   return (
