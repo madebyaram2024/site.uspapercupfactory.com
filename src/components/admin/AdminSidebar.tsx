@@ -25,6 +25,7 @@ export default function AdminSidebar() {
                     <li><Link href="/admin/gallery" style={{ display: 'block', padding: '0.5rem', borderRadius: '4px' }} className="hover:bg-white/10">Gallery</Link></li>
                     <li><Link href="/admin/orders" style={{ display: 'block', padding: '0.5rem', borderRadius: '4px' }} className="hover:bg-white/10">Orders</Link></li>
                     <li><Link href="/admin/mockups" style={{ display: 'block', padding: '0.5rem', borderRadius: '4px' }} className="hover:bg-white/10">Mockups</Link></li>
+                    <li><Link href="/admin/settings" style={{ display: 'block', padding: '0.5rem', borderRadius: '4px' }} className="hover:bg-white/10">Settings</Link></li>
                 </ul>
             </nav>
 

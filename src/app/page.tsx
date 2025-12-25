@@ -5,7 +5,9 @@ import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
 import IndustriesServed from '@/components/IndustriesServed';
 import ScrollVideo from '@/components/ScrollVideo';
+import FeaturedInsight from '@/components/FeaturedInsight';
 import { getGalleryItems } from '@/actions/gallery';
+import { getFeaturedBlogPost } from '@/actions/blog';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  const featuredPost = await getFeaturedBlogPost();
   // Prepare 15 specific hero images for rotation
   const images = Array.from({ length: 15 }, (_, i) => `/images/custom-printed-paper-cups-hero-${i + 1}.png`);
   return (
@@ -390,6 +393,11 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* FEATURED STORY SECTION */}
+        {featuredPost && (
+          <FeaturedInsight post={featuredPost} />
+        )}
 
 
 

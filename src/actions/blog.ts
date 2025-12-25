@@ -19,6 +19,13 @@ export async function getAllBlogPosts() {
     })
 }
 
+export async function getFeaturedBlogPost() {
+    return await prisma.blogPost.findFirst({
+        where: { isFeatured: true, published: true },
+        orderBy: { updatedAt: 'desc' }
+    })
+}
+
 export async function getBlogPost(slug: string) {
     return await prisma.blogPost.findUnique({
         where: { slug }
@@ -30,7 +37,16 @@ export async function addBlogPost(formData: FormData) {
     const title = formData.get('title') as string
     const content = formData.get('content') as string
     const imageUrl = formData.get('imageUrl') as string
+    const isFeatured = formData.get('isFeatured') === 'true'
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+
+    if (isFeatured) {
+        // Unmark other featured posts
+        await prisma.blogPost.updateMany({
+            where: { isFeatured: true },
+            data: { isFeatured: false }
+        })
+    }
 
     await prisma.blogPost.create({
         data: {
@@ -38,10 +54,12 @@ export async function addBlogPost(formData: FormData) {
             slug,
             content,
             imageUrl,
-            published: true // Auto publish for MVP
+            published: true, // Auto publish for MVP
+            isFeatured
         }
     })
 
+    revalidatePath('/')
     revalidatePath('/blog')
     revalidatePath('/admin/blog')
 }
@@ -51,8 +69,15 @@ export async function updateBlogPost(id: string, formData: FormData) {
     const title = formData.get('title') as string
     const content = formData.get('content') as string
     const imageUrl = formData.get('imageUrl') as string
+    const isFeatured = formData.get('isFeatured') === 'true'
 
-    // Optional: Update slug if title changes? For now keep slug stable to preserve SEO
+    if (isFeatured) {
+        // Unmark other featured posts
+        await prisma.blogPost.updateMany({
+            where: { isFeatured: true, id: { not: id } },
+            data: { isFeatured: false }
+        })
+    }
 
     await prisma.blogPost.update({
         where: { id },
@@ -60,12 +85,14 @@ export async function updateBlogPost(id: string, formData: FormData) {
             title,
             content,
             imageUrl,
+            isFeatured,
             updatedAt: new Date()
         }
     })
 
+    revalidatePath('/')
     revalidatePath('/blog')
-    revalidatePath(`/blog/${id}`) // This might be slug based, but revalidatePath works on route
+    revalidatePath(`/blog/${id}`)
     revalidatePath('/admin/blog')
 }
 

@@ -22,7 +22,8 @@ export default async function AdminBlogPage() {
                     <thead style={{ background: '#f9f9f9', borderBottom: '1px solid #eee' }}>
                         <tr>
                             <th style={{ padding: '1rem', textAlign: 'left' }}>Title</th>
-                            <th style={{ padding: '1rem', textAlign: 'left' }}>Published</th>
+                            <th style={{ padding: '1rem', textAlign: 'left' }}>Status</th>
+                            <th style={{ padding: '1rem', textAlign: 'left' }}>Featured</th>
                             <th style={{ padding: '1rem', textAlign: 'left' }}>Date</th>
                             <th style={{ padding: '1rem', textAlign: 'right' }}>Actions</th>
                         </tr>
@@ -41,6 +42,20 @@ export default async function AdminBlogPage() {
                                     }}>
                                         {post.published ? 'Published' : 'Draft'}
                                     </span>
+                                </td>
+                                <td style={{ padding: '1rem' }}>
+                                    {post.isFeatured && (
+                                        <span style={{
+                                            padding: '0.25rem 0.5rem',
+                                            borderRadius: '4px',
+                                            fontSize: '0.75rem',
+                                            background: 'var(--color-navy)',
+                                            color: 'white',
+                                            fontWeight: 'bold'
+                                        }}>
+                                            FEATURED
+                                        </span>
+                                    )}
                                 </td>
                                 <td style={{ padding: '1rem', fontSize: '0.9rem', color: '#666' }}>
                                     {new Date(post.createdAt).toLocaleDateString()}

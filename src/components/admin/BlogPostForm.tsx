@@ -13,6 +13,7 @@ interface BlogPostFormProps {
         title: string
         content: string
         imageUrl: string | null
+        isFeatured: boolean
     }
 }
 
@@ -20,12 +21,14 @@ export default function BlogPostForm({ initialData }: BlogPostFormProps) {
     const router = useRouter();
     const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '');
     const [content, setContent] = useState(initialData?.content || '');
+    const [isFeatured, setIsFeatured] = useState(initialData?.isFeatured || false);
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(formData: FormData) {
         setLoading(true);
         formData.set('content', content);
         formData.set('imageUrl', imageUrl);
+        formData.set('isFeatured', isFeatured.toString());
 
         try {
             if (initialData?.id) {
@@ -67,6 +70,19 @@ export default function BlogPostForm({ initialData }: BlogPostFormProps) {
                 <div style={{ marginBottom: '1.5rem' }}>
                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Content</label>
                     <RichTextEditor content={content} onChange={setContent} />
+                </div>
+
+                <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <input
+                        type="checkbox"
+                        id="isFeatured"
+                        checked={isFeatured}
+                        onChange={(e) => setIsFeatured(e.target.checked)}
+                        style={{ width: '20px', height: '20px', cursor: 'pointer' }}
+                    />
+                    <label htmlFor="isFeatured" style={{ fontWeight: 'bold', cursor: 'pointer' }}>
+                        Mark as Featured Story (Highlights this post on the Homepage)
+                    </label>
                 </div>
 
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>

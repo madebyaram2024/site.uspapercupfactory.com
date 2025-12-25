@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -67,7 +67,7 @@ model Order {
   userId      String
   user        User        @relation(fields: [userId], references: [id])
   status      String      @default("PENDING") // Was Enum OrderStatus
-  totalAmount Decimal     @default(0.00)
+  totalAmount Float       @default(0.00)
   quantity    Int         @default(25) // Minimum order
   details     String?
   createdAt   DateTime    @default(now())
@@ -103,6 +103,7 @@ model BlogPost {
   content     String
   imageUrl    String?
   published   Boolean  @default(false)
+  isFeatured  Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
