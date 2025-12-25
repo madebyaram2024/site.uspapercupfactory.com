@@ -1,33 +1,31 @@
 'use server'
 
-import { PrismaClient } from '@prisma/client'
+import { db } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
-
-const prisma = new PrismaClient()
 import { requireAdmin } from '@/lib/admin'
 
 export async function getBlogPosts() {
-    return await prisma.blogPost.findMany({
+    return await db.blogPost.findMany({
         orderBy: { createdAt: 'desc' },
         where: { published: true }
     })
 }
 
 export async function getAllBlogPosts() {
-    return await prisma.blogPost.findMany({
+    return await db.blogPost.findMany({
         orderBy: { createdAt: 'desc' }
     })
 }
 
 export async function getFeaturedBlogPost() {
-    return await prisma.blogPost.findFirst({
+    return await db.blogPost.findFirst({
         where: { isFeatured: true, published: true },
         orderBy: { updatedAt: 'desc' }
     })
 }
 
 export async function getBlogPost(slug: string) {
-    return await prisma.blogPost.findUnique({
+    return await db.blogPost.findUnique({
         where: { slug }
     })
 }
@@ -42,13 +40,13 @@ export async function addBlogPost(formData: FormData) {
 
     if (isFeatured) {
         // Unmark other featured posts
-        await prisma.blogPost.updateMany({
+        await db.blogPost.updateMany({
             where: { isFeatured: true },
             data: { isFeatured: false }
         })
     }
 
-    await prisma.blogPost.create({
+    await db.blogPost.create({
         data: {
             title,
             slug,
@@ -73,13 +71,13 @@ export async function updateBlogPost(id: string, formData: FormData) {
 
     if (isFeatured) {
         // Unmark other featured posts
-        await prisma.blogPost.updateMany({
+        await db.blogPost.updateMany({
             where: { isFeatured: true, id: { not: id } },
             data: { isFeatured: false }
         })
     }
 
-    await prisma.blogPost.update({
+    await db.blogPost.update({
         where: { id },
         data: {
             title,
@@ -98,7 +96,7 @@ export async function updateBlogPost(id: string, formData: FormData) {
 
 export async function deleteBlogPost(id: string) {
     await requireAdmin();
-    await prisma.blogPost.delete({
+    await db.blogPost.delete({
         where: { id }
     })
 

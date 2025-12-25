@@ -1,7 +1,6 @@
-
 'use server'
 
-import { prisma } from "@/lib/db";
+import { db } from "@/lib/db";
 import { requireAdmin } from "@/lib/admin";
 import { hash, compare } from "bcryptjs";
 import { revalidatePath } from "next/cache";
@@ -20,8 +19,12 @@ export async function updateAdminPassword(formData: FormData) {
         throw new Error("Password must be at least 8 characters long");
     }
 
-    const admin = await prisma.user.findUnique({
-        where: { email: session.user?.email as string }
+    if (!session?.user?.email) {
+        throw new Error("Unauthorized: Email missing from session");
+    }
+
+    const admin = await db.user.findUnique({
+        where: { email: session.user.email }
     });
 
     if (!admin || !admin.password) {
@@ -33,11 +36,11 @@ export async function updateAdminPassword(formData: FormData) {
         throw new Error("Current password is incorrect");
     }
 
-    const hashedWorld = await hash(newPassword, 12);
+    const hashedPassword = await hash(newPassword, 12);
 
-    await prisma.user.update({
+    await db.user.update({
         where: { id: admin.id },
-        data: { password: hashedWorld }
+        data: { password: hashedPassword }
     });
 
     revalidatePath('/admin/settings');
