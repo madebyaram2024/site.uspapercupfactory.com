@@ -28,7 +28,13 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN npx prisma generate
+# Set database environment for build-time (Prisma needs this during next build prerendering)
+ENV DATABASE_URL="file:./prisma/dev.db"
+
+# Ensure the prisma directory exists and a dummy DB file is created/initialized
+RUN mkdir -p ./prisma && touch ./prisma/dev.db
+
+RUN npx prisma generate && npx prisma db push --skip-generate
 
 ARG NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY
 ENV NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY=$NEXT_PUBLIC_Stripe_PUBLISHABLE_KEY
@@ -51,6 +57,7 @@ ENV AUTH_TRUST_HOST=$AUTH_TRUST_HOST
 # Increase Node memory to prevent OOM during build
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
+# Keep ARG/ENV for runtime overrides if needed, but build already has what it needs above
 ARG DATABASE_URL="file:./prisma/dev.db"
 ENV DATABASE_URL=$DATABASE_URL
 
