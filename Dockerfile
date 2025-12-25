@@ -51,7 +51,7 @@ ENV AUTH_TRUST_HOST=$AUTH_TRUST_HOST
 # Increase Node memory to prevent OOM during build
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-ARG DATABASE_URL
+ARG DATABASE_URL="file:./prisma/dev.db"
 ENV DATABASE_URL=$DATABASE_URL
 
 RUN \

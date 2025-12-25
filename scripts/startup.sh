@@ -1,12 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "Waiting for DB..."
-until nc -z -v -w30 db 5432; do
-  echo "Waiting for DB connection..."
-  sleep 5
-done
-echo "DB connected!"
+echo "SQLite database detected, skipping network wait..."
 
 echo "Syncing database schema..."
 prisma db push --skip-generate --accept-data-loss
