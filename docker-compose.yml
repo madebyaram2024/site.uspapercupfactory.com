@@ -46,6 +46,7 @@ services:
       - coolify
     labels:
       - traefik.enable=true
+      - traefik.docker.network=coolify
       - traefik.http.routers.us-paper-cup-caddy.rule=Host(`uspapercupfactory.com`) || Host(`www.uspapercupfactory.com`)
       - traefik.http.routers.us-paper-cup-caddy.entrypoints=http,https
       - traefik.http.routers.us-paper-cup-caddy.tls=true
