@@ -24,6 +24,14 @@ const sizes = [
     { id: '16oz', label: '16oz', available: false }
 ];
 
+const paperAvailability: Record<string, { White: boolean; Craft: boolean }> = {
+    '8oz': { White: true, Craft: false },
+    '10oz': { White: true, Craft: false },
+    '12oz': { White: true, Craft: false },
+    '14oz': { White: true, Craft: true },
+    '16oz': { White: false, Craft: false },
+};
+
 export default function OrderConfigurator() {
     const [selectedSize, setSelectedSize] = useState('12oz');
     const [selectedPaper, setSelectedPaper] = useState('White');
@@ -33,6 +41,14 @@ export default function OrderConfigurator() {
     const [designOption, setDesignOption] = useState<'upload' | 'request' | 'reorder'>('upload');
     const [proofingOption, setProofingOption] = useState<'digital' | 'photo' | 'physical'>('digital');
     const [isLoading, setIsLoading] = useState(false);
+
+    // Reset paper selection if the newly selected size doesn't support the current paper
+    useEffect(() => {
+        const available = paperAvailability[selectedSize];
+        if (selectedPaper === 'Craft' && !available.Craft) {
+            setSelectedPaper('White');
+        }
+    }, [selectedSize, selectedPaper]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -142,11 +158,12 @@ export default function OrderConfigurator() {
                                     <span>Premium White</span>
                                 </button>
                                 <button
-                                    onClick={() => setSelectedPaper('Craft')}
-                                    className={`paper-btn ${selectedPaper === 'Craft' ? 'active' : ''}`}
+                                    onClick={() => paperAvailability[selectedSize].Craft && setSelectedPaper('Craft')}
+                                    className={`paper-btn ${selectedPaper === 'Craft' ? 'active' : ''} ${!paperAvailability[selectedSize].Craft ? 'disabled' : ''}`}
                                 >
                                     <div className="paper-swatch craft"></div>
                                     <span>Eco Kraft</span>
+                                    {!paperAvailability[selectedSize].Craft && <span className="status-tag">Coming Soon</span>}
                                 </button>
                             </div>
                         </div>
