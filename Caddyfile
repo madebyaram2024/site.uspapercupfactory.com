@@ -1,3 +1,10 @@
+:80 {
+    handle_path /uploads/* {
+        root * /uploaded_files
+        file_server
+    }
+}
+
 uspapercupfactory.com, www.uspapercupfactory.com {
     # Serve uploads directly from the volume
     handle_path /uploads/* {
