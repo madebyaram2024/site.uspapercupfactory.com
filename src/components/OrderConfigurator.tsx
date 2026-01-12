@@ -11,7 +11,8 @@ const quantities = [
     { qty: 250, price: 187.50, perCup: '$0.75' },
     { qty: 500, price: 250.00, perCup: '$0.50' },
     { qty: 1000, price: 200.00, perCup: '$0.20' }, // Bulk pricing drop
-    { qty: 5000, price: 750.00, perCup: '$0.15' }
+    { qty: 5000, price: 750.00, perCup: '$0.15' },
+    { qty: 10000, price: 1000.00, perCup: '$0.10', isPlus: true }
 ];
 
 const sizes = [
@@ -159,7 +160,7 @@ export default function OrderConfigurator() {
                                         onClick={() => setSelectedQty(q)}
                                         className={`qty-btn ${selectedQty.qty === q.qty ? 'active' : ''}`}
                                     >
-                                        <span className="qty-val">{q.qty.toLocaleString()}</span>
+                                        <span className="qty-val">{q.qty.toLocaleString()}{(q as any).isPlus ? '+' : ''}</span>
                                         <span className="qty-per-cup">{q.perCup}/ea</span>
                                     </button>
                                 ))}
@@ -241,7 +242,7 @@ export default function OrderConfigurator() {
                             <div className="summary-details">
                                 <div className="summary-item">
                                     <span>Product:</span>
-                                    <strong>{selectedQty.qty.toLocaleString()} Custom Paper Cups</strong>
+                                    <strong>{selectedQty.qty.toLocaleString()}{(selectedQty as any).isPlus ? '+' : ''} Custom Paper Cups</strong>
                                 </div>
                                 <div className="summary-item">
                                     <span>Size:</span>
