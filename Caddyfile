@@ -1,22 +1,16 @@
 :80 {
-    handle_path /uploads/* {
-        root * /uploaded_files
-        file_server
-    }
-}
-
-uspapercupfactory.com, www.uspapercupfactory.com {
     # Serve uploads directly from the volume
     handle_path /uploads/* {
         root * /uploaded_files
         file_server
     }
 
-    # Serve static images directly
+    # Serve static images directly from the app's public folder
     handle_path /images/* {
         root * /app_public/images
         file_server
     }
 
+    # Proxy all other requests to the Next.js web container
     reverse_proxy web:3000
 }

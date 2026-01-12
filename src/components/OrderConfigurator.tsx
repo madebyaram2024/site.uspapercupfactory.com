@@ -18,7 +18,7 @@ const sizes = [
     { id: '8oz', label: '8oz', available: true },
     { id: '10oz', label: '10oz', available: true },
     { id: '12oz', label: '12oz', available: true },
-    { id: '14oz', label: '14oz', available: false },
+    { id: '14oz', label: '14oz', available: true },
     { id: '16oz', label: '16oz', available: false }
 ];
 
@@ -140,13 +140,11 @@ export default function OrderConfigurator() {
                                     <span>Premium White</span>
                                 </button>
                                 <button
-                                    disabled
-                                    className="paper-btn disabled"
-                                    title="Coming soon"
+                                    onClick={() => setSelectedPaper('Craft')}
+                                    className={`paper-btn ${selectedPaper === 'Craft' ? 'active' : ''}`}
                                 >
                                     <div className="paper-swatch craft"></div>
-                                    <span>Eco Craft</span>
-                                    <span className="status-tag">Coming Soon</span>
+                                    <span>Eco Kraft</span>
                                 </button>
                             </div>
                         </div>
