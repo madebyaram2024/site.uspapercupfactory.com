@@ -33,7 +33,7 @@ export default function Footer() {
                         <h4 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>Explore</h4>
                         <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                             <li><Link href="/" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Home</Link></li>
-                            <li><Link href="/shop" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Shop Custom Cups</Link></li>
+                            <li><Link href="/#order" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Shop Custom Cups</Link></li>
                             <li><Link href="/blog" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Blog</Link></li>
                             <li><Link href="/innovation" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Our Innovation</Link></li>
                             <li><Link href="/gallery" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s', fontSize: '1.1rem' }}>Design Gallery</Link></li>

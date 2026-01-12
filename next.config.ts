@@ -4,7 +4,16 @@ const nextConfig: NextConfig = {
   output: "standalone",
 
   images: {
-    unoptimized: true, // Useful for simple local image handling if needed, or stick to standard.
+    unoptimized: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/shop',
+        destination: '/#order',
+        permanent: true,
+      },
+    ];
   },
 };
 

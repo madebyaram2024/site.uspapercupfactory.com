@@ -9,7 +9,7 @@ export default async function DashboardPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '2rem' }}>My Orders</h1>
                 {/* Simple Create Order Form Trigger */}
-                <Link href="/shop" className="btn btn-primary" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                <Link href="/#order" className="btn btn-primary" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                     New Order (+)
                 </Link>
             </div>

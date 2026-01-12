@@ -1,16 +1,18 @@
 import Navbar from '@/components/Navbar';
-import BuyButton from '@/components/BuyButton';
 import { FacebookIcon, InstagramIcon, TikTokIconClean } from '@/components/SocialIcons';
 import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
 import IndustriesServed from '@/components/IndustriesServed';
 import ScrollVideo from '@/components/ScrollVideo';
 import FeaturedInsight from '@/components/FeaturedInsight';
+import OrderConfigurator from '@/components/OrderConfigurator';
 import { getGalleryItems } from '@/actions/gallery';
 import { getFeaturedBlogPost } from '@/actions/blog';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  title: "US Paper Cup Factory | Custom Printed Paper Cups | Low MOQ 25+",
+  description: "Premier manufacturer of custom printed paper cups in Huntington Beach, CA. Order as few as 25 units. Free professional design and 3D mockup included.",
   alternates: {
     canonical: '/',
   },
@@ -18,10 +20,82 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const featuredPost = await getFeaturedBlogPost();
+
+  const productsForSchema = [
+    { qty: "25 Cups", price: 50.00, img: "/images/order-quantity-25-custom-cups.png" },
+    { qty: "50 Cups", price: 75.00, img: "/images/order-quantity-50-custom-cups.png" },
+    { qty: "100 Cups", price: 100.00, img: "/images/order-quantity-100-custom-cups.png" },
+    { qty: "250 Cups", price: 187.50, img: "/images/order-quantity-250-custom-cups.png" },
+    { qty: "500 Cups", price: 250.00, img: "/images/order-quantity-500-custom-cups.png" },
+    { qty: "1,000 Cups", price: 200.00, img: "/images/order-quantity-1000-custom-cups.png" },
+    { qty: "5,000 Cups", price: 750.00, img: "/images/order-quantity-5000-custom-cups.png" },
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the minimum order quantity for custom paper cups?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Our minimum order quantity (MOQ) is just 25 units, making professional branded cups accessible for small events and businesses.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does ordering include professional design services?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! Every order includes one free professional design and one free revision to ensure your cups look exactly how you envisioned.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where are your paper cups manufactured?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'All our cups are proudly manufactured in our Huntington Beach, California facility using food-safe, American-made materials.',
+        },
+      },
+    ],
+  };
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: productsForSchema.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: `Custom Printed Paper Cups - ${product.qty}`,
+        image: `https://uspapercupfactory.com${product.img}`,
+        brand: { '@type': 'Brand', name: 'US Paper Cup Factory' },
+        offers: {
+          '@type': 'Offer',
+          price: product.price,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          url: 'https://uspapercupfactory.com/#order',
+        },
+      },
+    })),
+  };
+
   // Prepare 15 specific hero images for rotation
   const images = Array.from({ length: 15 }, (_, i) => `/images/custom-printed-paper-cups-hero-${i + 1}.png`);
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <Navbar />
       <main>
         {/* HERO SECTION - REDESIGNED FULL-WIDTH */}
@@ -175,12 +249,12 @@ export default async function Home() {
                 </div>
 
                 <div className="flex-col-mobile animate-fade-in-up hero-btns" style={{ display: 'flex', gap: '1.5rem', animationDelay: '0.6s' }}>
-                  <a href="/dashboard" className="btn btn-primary hero-btn" style={{
+                  <a href="/#order" className="btn btn-primary hero-btn" style={{
                     padding: '18px 40px',
                     fontSize: '1.1rem',
                     letterSpacing: '1px'
                   }}>GET A FREE MOCKUP</a>
-                  <a href="/shop" className="btn btn-secondary hero-btn" style={{
+                  <a href="/#order" className="btn btn-secondary hero-btn" style={{
                     padding: '18px 40px',
                     fontSize: '1.1rem',
                     letterSpacing: '1px',
@@ -223,7 +297,7 @@ export default async function Home() {
                   Don&apos;t trust your reputation to a cheap, flimsy cup. Make sure the quality of the cup matches the quality of your business.
                 </p>
                 <div>
-                  <a href="/shop" className="btn btn-primary" style={{ padding: '18px 40px', fontSize: '1.1rem' }}>START YOUR ORDER</a>
+                  <a href="/#order" className="btn btn-primary" style={{ padding: '18px 40px', fontSize: '1.1rem' }}>START YOUR ORDER</a>
                 </div>
               </div>
 
@@ -240,68 +314,12 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* TOP 3 PRODUCTS GRID */}
-        <section style={{ padding: '6rem 0', background: '#f8f9fa' }}>
-          <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-              <h2 className="section-title">Our Best Sellers</h2>
-              <p>Simple pricing, premium quality. All tiers include free custom design and a 3D mockup.</p>
-            </div>
+        {/* ORDER CONFIGURATOR SECTION */}
+        <OrderConfigurator />
 
-            <div className="grid-responsive" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-              {/* 25 Cups */}
-              <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/order-quantity-25-custom-cups.png" width={300} height={300} alt="25 Custom Printed Paper Cups - Minimum Order" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
-                </div>
-                <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>Starter: 25 Cups</h3>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$50.00</div>
-                <p style={{ color: '#666', marginBottom: '1.5rem' }}>$2.00 / cup</p>
-                <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', fontSize: '0.9rem', color: '#666' }}>
-                  <li>✓ Free 3D Mockup</li>
-                  <li>✓ Full Color Print</li>
-                  <li>✓ Best for Small Events</li>
-                </ul>
-                <BuyButton productName="25 Cups" quantity={25} unitAmount={50.00} className="btn btn-primary" style={{ width: '100%' }}>Order Now</BuyButton>
-              </div>
-              {/* 50 Cups */}
-              <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center', border: '2px solid var(--color-gold)', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '-15px', left: '50%', transform: 'translateX(-50%)', background: 'var(--color-gold)', color: 'white', padding: '4px 12px', fontSize: '0.9rem', fontWeight: 'bold', borderRadius: '20px', zIndex: 1 }}>MOST POPULAR</div>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/order-quantity-50-custom-cups.png" width={300} height={300} alt="50 Custom Printed Paper Cups - Most Popular Tier" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
-                </div>
-                <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>Popular: 50 Cups</h3>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$75.00</div>
-                <p style={{ color: '#666', marginBottom: '1.5rem' }}>$1.50 / cup</p>
-                <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', fontSize: '0.9rem', color: '#666' }}>
-                  <li>✓ Free 3D Mockup</li>
-                  <li>✓ Full Color Print</li>
-                  <li>✓ Most Requested Tier</li>
-                </ul>
-                <BuyButton productName="50 Cups" quantity={50} unitAmount={75.00} className="btn btn-primary" style={{ width: '100%' }}>Order Now</BuyButton>
-              </div>
-              {/* 100 Cups */}
-              <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-sm)', textAlign: 'center' }}>
-                <div style={{ height: '250px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                  <Image src="/images/order-quantity-100-custom-cups.png" width={300} height={300} alt="100 Custom Printed Paper Cups - Small Business Tier" style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto' }} />
-                </div>
-                <h3 style={{ fontSize: '2rem', color: 'var(--color-navy)' }}>Value: 100 Cups</h3>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-red)', marginBottom: '1rem' }}>$100.00</div>
-                <p style={{ color: '#666', marginBottom: '1.5rem' }}>$1.00 / cup</p>
-                <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', fontSize: '0.9rem', color: '#666' }}>
-                  <li>✓ Free 3D Mockup</li>
-                  <li>✓ Full Color Print</li>
-                  <li>✓ Best ROI for Business</li>
-                </ul>
-                <BuyButton productName="100 Cups" quantity={100} unitAmount={100.00} className="btn btn-primary" style={{ width: '100%' }}>Order Now</BuyButton>
-              </div>
-            </div>
-
-            <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-              <a href="/shop" className="btn btn-secondary" style={{ padding: '16px 40px' }}>VIEW FULL CATALOG & BULK PRICING</a>
-            </div>
-          </div>
-        </section>
+        <div style={{ textAlign: 'center', marginTop: '-4rem', marginBottom: '6rem' }}>
+          <p style={{ color: 'var(--text-secondary)' }}>Need volume pricing or white-label solutions? <a href="/contact" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>Get a custom quote</a></p>
+        </div>
 
         {/* NEW CONCIERGE DESIGN SECTION */}
         <section className="design-section">
@@ -418,7 +436,7 @@ export default async function Home() {
                     </div>
                   ))}
                 </div>
-                <a href="/shop" className="btn btn-primary">START YOUR PARTY ORDER</a>
+                <a href="/#order" className="btn btn-primary">START YOUR PARTY ORDER</a>
               </div>
               <div style={{ flex: 1, minWidth: '300px' }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.3)', border: '4px solid white' }}>

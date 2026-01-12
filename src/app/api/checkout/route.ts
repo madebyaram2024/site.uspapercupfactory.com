@@ -106,7 +106,7 @@ export async function POST(req: Request) {
                 },
             ],
             success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${req.headers.get('origin')}/shop`,
+            cancel_url: `${req.headers.get('origin')}/#order`,
             metadata: {
                 productName,
                 quantity: quantity.toString(),

@@ -37,7 +37,7 @@ export default function Navbar() {
 
                 {/* Desktop Nav */}
                 <nav className="desktop-only" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                    <Link href="/shop" style={{ fontWeight: 500 }}>Shop</Link>
+                    <Link href="/#order" style={{ fontWeight: 500 }}>Shop</Link>
                     <Link href="/innovation" style={{ fontWeight: 500 }}>Innovation</Link>
                     <Link href="/gallery" style={{ fontWeight: 500 }}>Gallery</Link>
                     <Link href="/about" style={{ fontWeight: 500 }}>About Us</Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
                     gap: '1.5rem',
                     borderTop: '1px solid #eee'
                 }}>
-                    <Link href="/shop" onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem', fontWeight: 500 }}>Shop</Link>
+                    <Link href="/#order" onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem', fontWeight: 500 }}>Shop</Link>
                     <Link href="/innovation" onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem', fontWeight: 500 }}>Innovation</Link>
                     <Link href="/gallery" onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem', fontWeight: 500 }}>Gallery</Link>
                     <Link href="/about" onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem', fontWeight: 500 }}>About Us</Link>
