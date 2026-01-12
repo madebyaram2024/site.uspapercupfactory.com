@@ -6,13 +6,14 @@ import Image from 'next/image';
 
 const quantities = [
     { qty: 25, price: 50.00, perCup: '$2.00' },
-    { qty: 50, price: 75.00, perCup: '$1.50' },
-    { qty: 100, price: 100.00, perCup: '$1.00' },
-    { qty: 250, price: 187.50, perCup: '$0.75' },
+    { qty: 50, price: 87.50, perCup: '$1.75' },
+    { qty: 100, price: 150.00, perCup: '$1.50' },
+    { qty: 250, price: 250.00, perCup: '$1.00' },
     { qty: 500, price: 250.00, perCup: '$0.50' },
-    { qty: 1000, price: 200.00, perCup: '$0.20' }, // Bulk pricing drop
-    { qty: 5000, price: 750.00, perCup: '$0.15' },
-    { qty: 10000, price: 1000.00, perCup: '$0.10', isPlus: true }
+    { qty: 1000, price: 250.00, perCup: '$0.25' },
+    { qty: 5000, price: 1000.00, perCup: '$0.20' },
+    { qty: 10000, price: 1500.00, perCup: '$0.15' },
+    { qty: 50000, price: 5000.00, perCup: '$0.10', isPlus: true }
 ];
 
 const sizes = [
