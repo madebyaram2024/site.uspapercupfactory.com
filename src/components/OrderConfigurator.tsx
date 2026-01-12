@@ -12,8 +12,7 @@ const quantities = [
     { qty: 500, price: 250.00, perCup: '$0.50' },
     { qty: 1000, price: 250.00, perCup: '$0.25' },
     { qty: 5000, price: 1000.00, perCup: '$0.20' },
-    { qty: 10000, price: 1500.00, perCup: '$0.15' },
-    { qty: 50000, price: 5000.00, perCup: '$0.10', isPlus: true }
+    { qty: 10000, price: 1500.00, perCup: '$0.15', isPlus: true }
 ];
 
 const sizes = [
