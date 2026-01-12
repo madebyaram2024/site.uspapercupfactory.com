@@ -3,6 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { validateRefCode } from '@/actions/design-ref';
+import { getLastOrders } from '@/actions/order-history';
 
 const quantities = [
     { qty: 25, price: 50.00, perCup: '$2.00' },
@@ -37,9 +39,18 @@ export default function OrderConfigurator() {
     const [selectedQty, setSelectedQty] = useState(quantities[2]); // Default 100
     const [instructions, setInstructions] = useState('');
     const [files, setFiles] = useState<File[]>([]);
-    const [designOption, setDesignOption] = useState<'upload' | 'request' | 'reorder'>('upload');
+    const [designOption, setDesignOption] = useState<'upload' | 'request' | 'reorder' | 'ref_code'>('upload');
     const [proofingOption, setProofingOption] = useState<'digital' | 'photo' | 'physical'>('digital');
     const [isLoading, setIsLoading] = useState(false);
+
+    // PRFRN State
+    const [refCode, setRefCode] = useState('');
+    const [refCodeError, setRefCodeError] = useState('');
+    const [refCodeSuccess, setRefCodeSuccess] = useState('');
+
+    // Order History State
+    const [pastOrders, setPastOrders] = useState<any[]>([]);
+    const [isLoadingOrders, setIsLoadingOrders] = useState(false);
 
     // Reset paper selection if the newly selected size doesn't support the current paper
     useEffect(() => {
@@ -58,6 +69,56 @@ export default function OrderConfigurator() {
             }
             setFiles(prev => [...prev, ...newFiles]);
         }
+    };
+
+    const handleRefCodeSubmit = async () => {
+        setRefCodeError('');
+        setRefCodeSuccess('');
+
+        if (refCode.length !== 7) {
+            setRefCodeError('Code must be 7 digits.');
+            return;
+        }
+
+        const res = await validateRefCode(refCode);
+        if (res.success) {
+            setRefCodeSuccess(`Code Validated! File loaded.`);
+            // In a real app we might want to show the file name or thumbnail
+        } else {
+            setRefCodeError(res.error || 'Invalid code.');
+        }
+    };
+
+    const fetchPastOrders = async () => {
+        setIsLoadingOrders(true);
+        try {
+            const orders = await getLastOrders();
+            setPastOrders(orders);
+        } catch (error) {
+            console.error('Failed to fetch orders', error);
+        } finally {
+            setIsLoadingOrders(false);
+        }
+    };
+
+    useEffect(() => {
+        if (designOption === 'reorder') {
+            fetchPastOrders();
+        }
+    }, [designOption]);
+
+    const handleReorderSelect = (order: any) => {
+        // Auto-select size and quantity based on past order
+        // Note: Logic depends on how strictly we want to match legacy data
+        if (order.details?.includes('8oz')) setSelectedSize('8oz');
+        if (order.details?.includes('10oz')) setSelectedSize('10oz');
+        // ... simplistic matching, can be improved
+
+        // Use a rough match for quantity
+        const qtyMatch = quantities.find(q => q.qty === order.quantity);
+        if (qtyMatch) setSelectedQty(qtyMatch);
+
+        alert(`Loaded specs from Order #${order.id.slice(-6)}`);
     };
 
     const removeFile = (index: number) => {
@@ -97,7 +158,7 @@ export default function OrderConfigurator() {
                     unitAmount: selectedQty.price,
                     stockType: selectedPaper,
                     cupSize: selectedSize,
-                    designInstructions: instructions || `Design Option: ${designOption}`,
+                    designInstructions: instructions || `Design Option: ${designOption} ${refCode ? `(Ref: ${refCode})` : ''}`,
                     artworkUrls: uploadedUrls,
                     proofingOption: proofingOption,
                 }),
@@ -218,7 +279,55 @@ export default function OrderConfigurator() {
                                         <p>Use my last design</p>
                                     </div>
                                 </button>
+                                <button
+                                    onClick={() => setDesignOption('ref_code')}
+                                    className={`design-opt-btn ${designOption === 'ref_code' ? 'active' : ''}`}
+                                >
+                                    <span className="opt-icon">🔢</span>
+                                    <div className="opt-text">
+                                        <strong>Ref. Code</strong>
+                                        <p>Enter 7-digit PRFRN</p>
+                                    </div>
+                                </button>
                             </div>
+
+                            {designOption === 'ref_code' && (
+                                <div className="ref-code-area animate-fade-in">
+                                    <div className="ref-input-group">
+                                        <input
+                                            type="text"
+                                            placeholder="Enter 7-digit code (e.g. 1234567)"
+                                            value={refCode}
+                                            onChange={(e) => setRefCode(e.target.value.replace(/\D/g, '').slice(0, 7))}
+                                            className="ref-input"
+                                        />
+                                        <button onClick={handleRefCodeSubmit} className="btn-verify">Verify</button>
+                                    </div>
+                                    {refCodeError && <p className="ref-error">{refCodeError}</p>}
+                                    {refCodeSuccess && <p className="ref-success">{refCodeSuccess}</p>}
+                                </div>
+                            )}
+
+                            {designOption === 'reorder' && (
+                                <div className="reorder-area animate-fade-in">
+                                    {isLoadingOrders ? (
+                                        <p>Loading your past orders...</p>
+                                    ) : pastOrders.length > 0 ? (
+                                        <div className="past-orders-list">
+                                            {pastOrders.map(order => (
+                                                <div key={order.id} className="past-order-item" onClick={() => handleReorderSelect(order)}>
+                                                    <strong>#{order.id.slice(-6)}</strong>
+                                                    <span>{new Date(order.date).toLocaleDateString()}</span>
+                                                    <span>{order.quantity} cups</span>
+                                                    <span>${order.total.toFixed(2)}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p>No recent orders found. Please ensure you are logged in.</p>
+                                    )}
+                                </div>
+                            )}
 
                             {designOption === 'upload' && (
                                 <div className="file-upload-area animate-fade-in">
@@ -471,7 +580,7 @@ export default function OrderConfigurator() {
                 /* Design Options */
                 .design-options-grid {
                     display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(2, 1fr);
                     gap: 1rem;
                     margin-bottom: 1.5rem;
                 }
@@ -643,6 +752,60 @@ export default function OrderConfigurator() {
                     .paper-grid { grid-template-columns: 1fr; }
                     .summary-card { padding: 2rem 1.5rem; }
                     .live-price { font-size: 2.5rem; }
+                }
+
+                .ref-code-area {
+                    margin-top: 1rem;
+                    background: #f9f9f9;
+                    padding: 1.5rem;
+                    border-radius: var(--radius-sm);
+                    border: 1px solid #eee;
+                }
+                .ref-input-group {
+                    display: flex;
+                    gap: 10px;
+                }
+                .ref-input {
+                    flex: 1;
+                    padding: 0.75rem;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                    font-family: monospace;
+                    letter-spacing: 2px;
+                }
+                .btn-verify {
+                    padding: 0 1.5rem;
+                    background: var(--color-navy);
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+                .ref-error { color: red; font-size: 0.8rem; margin-top: 0.5rem; }
+                .ref-success { color: green; font-size: 0.8rem; margin-top: 0.5rem; font-weight: bold; }
+
+                .reorder-area {
+                    margin-top: 1rem;
+                    max-height: 200px;
+                    overflow-y: auto;
+                }
+                .past-order-item {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0.75rem;
+                    border-bottom: 1px solid #eee;
+                    cursor: pointer;
+                    font-size: 0.85rem;
+                    transition: background 0.2s;
+                }
+                .past-order-item:hover { background: #f0f4ff; }
+                
+                @media (min-width: 992px) {
+                    .design-options-grid {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
                 }
             `}</style>
         </section >

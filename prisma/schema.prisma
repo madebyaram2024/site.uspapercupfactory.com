@@ -117,3 +117,11 @@ model ContactSubmission {
   status    String   @default("NEW") // NEW, READ, REPLIED
   createdAt DateTime @default(now())
 }
+
+model DesignRef {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  fileUrl     String
+  description String?
+  createdAt   DateTime @default(now())
+}
