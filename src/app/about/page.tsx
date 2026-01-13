@@ -81,12 +81,14 @@ export default function AboutPage() {
                     <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>Common Questions</h2>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }} className="grid-responsive">
                         {[
+                            { q: "Why do you provide professional design services?", a: "We believe every cup is a brand ambassador. Whether you order 25 or 10,000, we want them to look spectacular. Keeping design in-house allows us to strictly control print quality and ensure the final product matches your vision perfectly." },
+                            { q: "How can you offer professional design for free?", a: "Efficiency meets expertise. Our designers leverage advanced AI tools to accelerate the workflow, allowing one designer to output over 100 print-ready files a day. This tech-enabled efficiency drastically reduces costs, savings we pass directly to you." },
+                            { q: "Why use real designers instead of an automated tool?", a: "Great design requires human nuance. While we use AI for speed, our expert designers understand the physical constraints of cup printing—curved surfaces and bleed lines. They don't just process files; they enhance your artwork to ensure it looks better in print than on screen." },
+                            { q: "How do you maintain quality while keeping prices low?", a: "We built our entire order processing system in-house. By developing proprietary software instead of licensing expensive enterprise solutions from the start, we avoid massive overhead costs, allowing us to keep prices competitive without sacrificing quality." },
                             { q: "What is the absolute minimum order quantity?", a: "We specialize in small runs, starting at just 25 cups per design." },
                             { q: "What file formats do I need to provide?", a: "We prefer vector files (AI, EPS, or PDF). High-res PNG/TIFFs (300+ dpi) are also accepted." },
-                            { q: "Can I see a sample before the full run?", a: "Every order receives a free digital 3D mockup for approval before we start production." },
                             { q: "How fast is your turnaround?", a: "Standard production is 7–10 business days after approval. Rush options are available." },
-                            { q: "Do you ship nationwide and offer white-labeling?", a: "Yes — we offer domestic shipping and white-label fulfillment for partners and agencies." },
-                            { q: "What is your returns policy?", a: "If a production defect is found, contact us within 7 days for a replacement or refund." }
+                            { q: "Do you ship nationwide and offer white-labeling?", a: "Yes — we offer domestic shipping and white-label fulfillment for partners and agencies." }
                         ].map((item, i) => (
                             <div key={i} style={{ background: '#f8f9fa', padding: '1.5rem', borderRadius: 'var(--radius-md)' }}>
                                 <h3 style={{ fontSize: '1.2rem', color: 'var(--color-navy)', marginBottom: '0.5rem' }}>{item.q}</h3>
