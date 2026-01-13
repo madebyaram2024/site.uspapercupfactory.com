@@ -327,17 +327,21 @@ export default async function Home() {
         </div>
 
         {/* RECENT WORK SECTION */}
-        {galleryItems.length > 0 && (
-          <section style={{ padding: '4rem 0', background: '#fff' }}>
-            <div className="container">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Recent <span style={{ color: 'var(--color-red)' }}>Work</span></h2>
-                <Link href="/gallery" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View Full Gallery</Link>
-              </div>
-              <GalleryGrid items={galleryItems.slice(0, 8)} />
+        <section style={{ padding: '4rem 0', background: '#fff' }}>
+          <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+              <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Recent <span style={{ color: 'var(--color-red)' }}>Work</span></h2>
+              <Link href="/gallery" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View Full Gallery</Link>
             </div>
-          </section>
-        )}
+            {galleryItems.length > 0 ? (
+              <GalleryGrid items={galleryItems.slice(0, 8)} />
+            ) : (
+              <div style={{ textAlign: 'center', padding: '3rem', background: '#f8f8f8', borderRadius: '8px', color: '#666' }}>
+                <p>Our portfolio is being updated. Check back soon for recent project showcases.</p>
+              </div>
+            )}
+          </div>
+        </section>
 
         {/* NEW CONCIERGE DESIGN SECTION */}
         <section className="design-section">
@@ -431,13 +435,13 @@ export default async function Home() {
         </section>
 
         {/* LATEST NEWS SECTION */}
-        {recentPosts.length > 0 && (
-          <section style={{ padding: '6rem 0', background: '#f8f8f8' }}>
-            <div className="container">
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-                <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Latest <span style={{ color: 'var(--color-red)' }}>News</span></h2>
-                <Link href="/blog" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View All Posts</Link>
-              </div>
+        <section style={{ padding: '6rem 0', background: '#f8f8f8' }}>
+          <div className="container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+              <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Latest <span style={{ color: 'var(--color-red)' }}>News</span></h2>
+              <Link href="/blog" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View All Posts</Link>
+            </div>
+            {recentPosts.length > 0 ? (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                 {recentPosts.map((post) => (
                   <Link href={`/blog/${post.slug}`} key={post.id} style={{ display: 'block', textDecoration: 'none' }}>
@@ -459,9 +463,13 @@ export default async function Home() {
                   </Link>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
+            ) : (
+              <div style={{ textAlign: 'center', padding: '3rem', background: '#fff', borderRadius: '8px', color: '#666' }}>
+                <p>No news articles published yet.</p>
+              </div>
+            )}
+          </div>
+        </section>
 
         {/* FEATURED STORY SECTION */}
         {featuredPost && (
