@@ -411,21 +411,21 @@ export default function OrderConfigurator() {
                                         <input type="radio" checked={proofingOption === 'digital'} onChange={() => setProofingOption('digital')} />
                                         <div className="proofing-info">
                                             <strong>Digital Mockup</strong>
-                                            <span>Free</span>
+                                            <span>3D Render via Email (Free)</span>
                                         </div>
                                     </label>
                                     <label className={`proofing-item ${proofingOption === 'photo' ? 'active' : ''}`}>
                                         <input type="radio" checked={proofingOption === 'photo'} onChange={() => setProofingOption('photo')} />
                                         <div className="proofing-info">
-                                            <strong>Printed Photo</strong>
-                                            <span>+$9.99</span>
+                                            <strong>Production Photo Proof</strong>
+                                            <span>Photo of first cup via email (+$9.99)</span>
                                         </div>
                                     </label>
                                     <label className={`proofing-item ${proofingOption === 'physical' ? 'active' : ''}`}>
                                         <input type="radio" checked={proofingOption === 'physical'} onChange={() => setProofingOption('physical')} />
                                         <div className="proofing-info">
-                                            <strong>Physical Sample</strong>
-                                            <span>+$19.99</span>
+                                            <strong>Mailed Physical Sample</strong>
+                                            <span>Actual cup shipped to you (+$19.99)</span>
                                         </div>
                                     </label>
                                 </div>
