@@ -7,7 +7,9 @@ import ScrollVideo from '@/components/ScrollVideo';
 import FeaturedInsight from '@/components/FeaturedInsight';
 import OrderConfigurator from '@/components/OrderConfigurator';
 import { getGalleryItems } from '@/actions/gallery';
-import { getFeaturedBlogPost } from '@/actions/blog';
+import { getFeaturedBlogPost, getBlogPosts } from '@/actions/blog';
+import GalleryGrid from '@/components/GalleryGrid';
+import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,6 +22,9 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const featuredPost = await getFeaturedBlogPost();
+  const galleryItems = await getGalleryItems();
+  const allPosts = await getBlogPosts();
+  const recentPosts = allPosts.slice(0, 3);
 
   const productsForSchema = [
     { qty: "25 Cups", price: 50.00, img: "/images/order-quantity-25-custom-cups.png" },
@@ -321,6 +326,19 @@ export default async function Home() {
           <p style={{ color: 'var(--text-secondary)' }}>Need volume pricing or white-label solutions? <a href="/contact" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>Get a custom quote</a></p>
         </div>
 
+        {/* RECENT WORK SECTION */}
+        {galleryItems.length > 0 && (
+          <section style={{ padding: '4rem 0', background: '#fff' }}>
+            <div className="container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Recent <span style={{ color: 'var(--color-red)' }}>Work</span></h2>
+                <Link href="/gallery" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View Full Gallery</Link>
+              </div>
+              <GalleryGrid items={galleryItems.slice(0, 8)} />
+            </div>
+          </section>
+        )}
+
         {/* NEW CONCIERGE DESIGN SECTION */}
         <section className="design-section">
           <div className="container">
@@ -411,6 +429,39 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* LATEST NEWS SECTION */}
+        {recentPosts.length > 0 && (
+          <section style={{ padding: '6rem 0', background: '#f8f8f8' }}>
+            <div className="container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+                <h2 className="section-title" style={{ fontSize: '2.5rem', margin: 0 }}>Latest <span style={{ color: 'var(--color-red)' }}>News</span></h2>
+                <Link href="/blog" style={{ color: 'var(--color-navy)', fontWeight: 'bold', textDecoration: 'underline' }}>View All Posts</Link>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                {recentPosts.map((post) => (
+                  <Link href={`/blog/${post.slug}`} key={post.id} style={{ display: 'block', textDecoration: 'none' }}>
+                    <div style={{ background: 'white', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#eee' }}>
+                        {post.imageUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={post.imageUrl} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        ) : (
+                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888' }}>No Image</div>
+                        )}
+                      </div>
+                      <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.5rem' }}>{new Date(post.createdAt).toLocaleDateString()}</div>
+                        <h3 style={{ fontSize: '1.25rem', color: 'var(--color-navy)', marginBottom: '1rem', lineHeight: '1.4' }}>{post.title}</h3>
+                        <span style={{ marginTop: 'auto', color: 'var(--color-red)', fontWeight: 'bold', fontSize: '0.9rem' }}>Read More &rarr;</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* FEATURED STORY SECTION */}
         {featuredPost && (
